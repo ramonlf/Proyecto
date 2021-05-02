@@ -66,7 +66,7 @@ public class CrearJuego extends HttpServlet {
 
         Juego nuevo = new Juego(nombre, genero, parseFecha(fechaLanzamiento), cantidad, precio, url, aux);
 
-        //Apartir de aqui no va
+        
         JuegoJpaController jjc = new JuegoJpaController(Persistence.createEntityManagerFactory("ProyectoFinalPU"));
         List<Juego> juegos = jjc.findJuegoEntities();
         Juego auxJuego = null;
@@ -78,7 +78,7 @@ public class CrearJuego extends HttpServlet {
         }
 
         try {
-            if (auxJuego != null) {
+            if (auxJuego == null) {
                 juego.añadirJuego(nuevo);
             } else {
                 error = "El juego ya existe";
@@ -87,10 +87,22 @@ public class CrearJuego extends HttpServlet {
         } catch (Exception e) {
             error = "Error al añadir el juego";
         }
-        //hasta aqui
+        
         if (error != null) {
             response.sendRedirect("crearJuego.jsp");
             return;
+        }
+        
+        if (error != null) {
+            request.setAttribute("nombre", nombre);
+            request.setAttribute("generacion", genero);
+            request.setAttribute("fechaLanzamiento", fechaLanzamiento);
+            request.setAttribute("precio", precio);
+            request.setAttribute("cantidad", cantidad);
+            request.setAttribute("url", url);
+            getServletContext().getRequestDispatcher("/juego/crearJuego.jsp").forward(request, response);
+        } else {
+            response.sendRedirect(response.encodeRedirectURL("../administrador/administracion.jsp"));
         }
 
     }
