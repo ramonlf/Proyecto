@@ -25,5 +25,4 @@ public class UsuarioBean implements Serializable {
         UsuarioJpaController ujc = new UsuarioJpaController(Persistence.createEntityManagerFactory(PERSISTENCIA));
         ujc.create(ump);
     }
-    
 }

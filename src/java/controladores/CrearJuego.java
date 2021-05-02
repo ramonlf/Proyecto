@@ -17,16 +17,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.entidades.Usuario;
-import modelo.entidades.UsuarioJpaController;
-import modelo.modelo.UsuarioBean;
+import modelo.entidades.Consola;
+import modelo.entidades.ConsolaJpaController;
+import modelo.entidades.Juego;
+import modelo.entidades.JuegoJpaController;
+import modelo.modelo.JuegoBean;
 
 /**
  *
  * @author Ramon
  */
-@WebServlet(name = "RegistroUsuario", urlPatterns = {"/usuario/RegistroUsuario"})
-public class RegistroUsuario extends HttpServlet {
+@WebServlet(name = "CrearJuego", urlPatterns = {"/juego/CrearJuego"})
+public class CrearJuego extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,44 +42,61 @@ public class RegistroUsuario extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+
         String error = null;
 
-        String dni = request.getParameter("dni");
         String nombre = request.getParameter("nombre");
-        String apellido = request.getParameter("apellido");
-        String login = request.getParameter("login");
-        String password = request.getParameter("password");
-        String fechaNacimiento = request.getParameter("fechaNacimiento");
-        boolean administrador = false;
-        UsuarioBean usuario = new UsuarioBean();
+        String genero = request.getParameter("genero");
+        String fechaLanzamiento = request.getParameter("fechaLanzamiento");
+        Integer cantidad = Integer.parseInt(request.getParameter("cantidad"));
+        Double precio = Double.parseDouble(request.getParameter("precio"));
+        String url = request.getParameter("url");
+        String consola = request.getParameter("consola");
 
-        Usuario nuevo = new Usuario(dni, nombre, apellido, login, password, parseFecha(fechaNacimiento), administrador);
-        
-        UsuarioJpaController ujc = new UsuarioJpaController(Persistence.createEntityManagerFactory("ProyectoFinalPU"));
-        List<Usuario> usuarios = ujc.findUsuarioEntities();
-
-        
-        try{
-            usuario.registroUsuario(nuevo);
-        }catch(Exception e){
-            error = "Error al crear el usuario";
+        ConsolaJpaController auxConsola = new ConsolaJpaController(Persistence.createEntityManagerFactory("ProyectoFinalPU"));
+        List<Consola> consolas = auxConsola.findConsolaEntities();
+        Consola aux = null;
+        for (Consola con : consolas) {
+            if (con.getNombre().equals(consola)) {
+                aux = con;
+            }
         }
-        
+
+        JuegoBean juego = new JuegoBean();
+
+        Juego nuevo = new Juego(nombre, genero, parseFecha(fechaLanzamiento), cantidad, precio, url, aux);
+
+        //Apartir de aqui no va
+        JuegoJpaController jjc = new JuegoJpaController(Persistence.createEntityManagerFactory("ProyectoFinalPU"));
+        List<Juego> juegos = jjc.findJuegoEntities();
+        Juego auxJuego = null;
+
+        for (Juego jue : juegos) {
+            if (jue.getNombre().equals(nombre) && jue.getConsola().getNombre().equals(consola)) {
+                auxJuego = jue;
+            }
+        }
+
+        try {
+            if (auxJuego != null) {
+                juego.añadirJuego(nuevo);
+            } else {
+                error = "El juego ya existe";
+            }
+
+        } catch (Exception e) {
+            error = "Error al añadir el juego";
+        }
+        //hasta aqui
         if (error != null) {
-            request.setAttribute("error", error);
-            request.setAttribute("nombre", nombre);
-            request.setAttribute("login", login);
-            request.setAttribute("password", password);
-            getServletContext().getRequestDispatcher("/usuario/registrarse.jsp").forward(request, response);
-        } else {
-            String mensaje = "Se ha dado de alta al Sanitario";
-            response.sendRedirect(response.encodeRedirectURL("../index.jsp?mensaje=" + mensaje));
+            response.sendRedirect("crearJuego.jsp");
+            return;
         }
-        
+
     }
 
     public static Date parseFecha(String fecha) {
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         Date fechaDate = null;
         try {
             fechaDate = formato.parse(fecha);

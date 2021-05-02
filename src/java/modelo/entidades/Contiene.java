@@ -7,36 +7,35 @@ package modelo.entidades;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author Ramon
  */
-@Entity(name = "pedido")
-@Table(name = "pedido")
-public class Pedido implements Serializable {
+@Entity
+public class Contiene implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Date fechaRealizacion;
-    private double factura;
     @ManyToOne
-    @JoinColumn(name = "dni")
-    private Usuario usuario;
-
+    Pedido pedido;
+    @ManyToOne
+    Juego juego;
+    @Column
+    double precio;
+    @Temporal(TemporalType.DATE)
+    Date fechaRealizacion;         
+    int unidades;
     
 
     public Long getId() {
@@ -45,22 +44,6 @@ public class Pedido implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Date getFechaRealizacion() {
-        return fechaRealizacion;
-    }
-
-    public void setFechaRealizacion(Date fechaRealizacion) {
-        this.fechaRealizacion = fechaRealizacion;
-    }
-
-    public double getFactura() {
-        return factura;
-    }
-
-    public void setFactura(double factura) {
-        this.factura = factura;
     }
 
     @Override
@@ -73,10 +56,10 @@ public class Pedido implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Pedido)) {
+        if (!(object instanceof Contiene)) {
             return false;
         }
-        Pedido other = (Pedido) object;
+        Contiene other = (Contiene) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -85,7 +68,7 @@ public class Pedido implements Serializable {
 
     @Override
     public String toString() {
-        return "modelo.entidades.Pedido[ id=" + id + " ]";
+        return "modelo.entidades.Contiene[ id=" + id + " ]";
     }
-
+    
 }

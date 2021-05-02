@@ -7,9 +7,6 @@ package controladores;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Persistence;
 import javax.servlet.ServletException;
@@ -17,16 +14,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import modelo.entidades.Usuario;
 import modelo.entidades.UsuarioJpaController;
-import modelo.modelo.UsuarioBean;
+import modelo.modelo.ConsolaBean;
 
 /**
  *
- * @author Ramon
+ * @author usuario
  */
-@WebServlet(name = "RegistroUsuario", urlPatterns = {"/usuario/RegistroUsuario"})
-public class RegistroUsuario extends HttpServlet {
+@WebServlet(name = "Login", urlPatterns = {"/usuario/Login"})
+public class Login extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,51 +38,34 @@ public class RegistroUsuario extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+
         String error = null;
 
-        String dni = request.getParameter("dni");
-        String nombre = request.getParameter("nombre");
-        String apellido = request.getParameter("apellido");
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        String fechaNacimiento = request.getParameter("fechaNacimiento");
-        boolean administrador = false;
-        UsuarioBean usuario = new UsuarioBean();
 
-        Usuario nuevo = new Usuario(dni, nombre, apellido, login, password, parseFecha(fechaNacimiento), administrador);
-        
-        UsuarioJpaController ujc = new UsuarioJpaController(Persistence.createEntityManagerFactory("ProyectoFinalPU"));
-        List<Usuario> usuarios = ujc.findUsuarioEntities();
-
-        
-        try{
-            usuario.registroUsuario(nuevo);
-        }catch(Exception e){
-            error = "Error al crear el usuario";
-        }
-        
-        if (error != null) {
-            request.setAttribute("error", error);
-            request.setAttribute("nombre", nombre);
-            request.setAttribute("login", login);
-            request.setAttribute("password", password);
-            getServletContext().getRequestDispatcher("/usuario/registrarse.jsp").forward(request, response);
+        if (login == null || password == null) {
+            error = "Debe acceder por la pagina de login";
         } else {
-            String mensaje = "Se ha dado de alta al Sanitario";
-            response.sendRedirect(response.encodeRedirectURL("../index.jsp?mensaje=" + mensaje));
+            if (login.isEmpty() || password.isEmpty()) {
+                error = "Ambos campos no estan rellenados";
+            } else {
+                UsuarioJpaController ujc = new UsuarioJpaController(Persistence.createEntityManagerFactory("ProyectoFinalPU"));
+                List<Usuario> usuarios = ujc.findUsuarioEntities();
+                for(Usuario usu : usuarios){
+                    if (usu.getLogin().equals(login) && usu.getPassword().equals(password)) {
+                        HttpSession sesion = request.getSession();
+                        sesion.setAttribute("usuario", usu);
+                        sesion.setAttribute("consolaBean", new ConsolaBean());
+                        response.sendRedirect("../index.jsp");
+                        return;
+                    }
+                }
+                error = "Usuario o contraseña incorrecto";
+            }
         }
-        
-    }
-
-    public static Date parseFecha(String fecha) {
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        Date fechaDate = null;
-        try {
-            fechaDate = formato.parse(fecha);
-        } catch (ParseException ex) {
-            System.out.println(ex);
-        }
-        return fechaDate;
+        request.setAttribute("error", error);
+        getServletContext().getRequestDispatcher("login.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

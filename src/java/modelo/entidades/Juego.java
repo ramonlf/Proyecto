@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +18,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import modelo.entidades.Pedido;
 
 /**
@@ -31,22 +34,40 @@ public class Juego implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(length = 40)
     private String nombre;
+    @Column (length = 40)
     private String genero;
+    @Column
+    @Temporal(TemporalType.DATE)
     private Date fechaLanzamiento;
+    @Column(length = 40)
     private int cantidad;
+    @Column(length = 3)
     private double precio;
+    @Column
     private String url;
 
     @ManyToOne
     @JoinColumn(name = "Consola")
     private Consola consola;
 
+    public Juego(){
+    }
+    
+    public Juego(String nombre, String genero, Date fechaLanzamiento, int cantidad, double precio, String url , Consola consola) {
+        this.nombre = nombre;
+        this.genero = genero;
+        this.fechaLanzamiento = fechaLanzamiento;
+        this.cantidad = cantidad;
+        this.precio = precio;
+        this.url = url;
+        this.consola = consola;
+    }
 
-
-    @ManyToMany(targetEntity = modelo.entidades.Pedido.class, cascade = CascadeType.ALL, mappedBy = "juegos")
-    private List<Pedido> pedidos;
-
+    
+    
+    
     public String getUrl() {
         return url;
     }

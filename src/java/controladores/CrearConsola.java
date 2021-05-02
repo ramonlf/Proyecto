@@ -17,16 +17,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.entidades.Usuario;
-import modelo.entidades.UsuarioJpaController;
-import modelo.modelo.UsuarioBean;
+import modelo.entidades.Consola;
+import modelo.entidades.ConsolaJpaController;
+import modelo.modelo.ConsolaBean;
 
 /**
  *
  * @author Ramon
  */
-@WebServlet(name = "RegistroUsuario", urlPatterns = {"/usuario/RegistroUsuario"})
-public class RegistroUsuario extends HttpServlet {
+@WebServlet(name = "/consola/CrearConsola", urlPatterns = {"/consola/CrearConsola"})
+public class CrearConsola extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,52 +39,35 @@ public class RegistroUsuario extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         String error = null;
-
-        String dni = request.getParameter("dni");
         String nombre = request.getParameter("nombre");
-        String apellido = request.getParameter("apellido");
-        String login = request.getParameter("login");
-        String password = request.getParameter("password");
-        String fechaNacimiento = request.getParameter("fechaNacimiento");
-        boolean administrador = false;
-        UsuarioBean usuario = new UsuarioBean();
+        int generacion = Integer.parseInt(request.getParameter("generacion"));
+        String fechaLanzamiento = request.getParameter("fechaLanzamiento");
+        String url = request.getParameter("url");
+        
 
-        Usuario nuevo = new Usuario(dni, nombre, apellido, login, password, parseFecha(fechaNacimiento), administrador);
-        
-        UsuarioJpaController ujc = new UsuarioJpaController(Persistence.createEntityManagerFactory("ProyectoFinalPU"));
-        List<Usuario> usuarios = ujc.findUsuarioEntities();
+        Consola nuevo = new Consola(nombre, parseFecha(fechaLanzamiento), generacion, url);
+        ConsolaBean consola = new ConsolaBean();
 
-        
-        try{
-            usuario.registroUsuario(nuevo);
-        }catch(Exception e){
-            error = "Error al crear el usuario";
-        }
-        
-        if (error != null) {
-            request.setAttribute("error", error);
-            request.setAttribute("nombre", nombre);
-            request.setAttribute("login", login);
-            request.setAttribute("password", password);
-            getServletContext().getRequestDispatcher("/usuario/registrarse.jsp").forward(request, response);
-        } else {
-            String mensaje = "Se ha dado de alta al Sanitario";
-            response.sendRedirect(response.encodeRedirectURL("../index.jsp?mensaje=" + mensaje));
-        }
-        
-    }
+        ConsolaJpaController cjc = new ConsolaJpaController(Persistence.createEntityManagerFactory("ProyectoFinalPU"));
+        List<Consola> consolas = cjc.findConsolaEntities();
 
-    public static Date parseFecha(String fecha) {
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        Date fechaDate = null;
+        Consola aux = null;
         try {
-            fechaDate = formato.parse(fecha);
-        } catch (ParseException ex) {
-            System.out.println(ex);
+            consola.añadirConsola(nuevo);
+        } catch (Exception e) {
+                error = "ERROR esta consola ya existe";
         }
-        return fechaDate;
+
+        if (error != null) {
+            request.setAttribute("nombre", nombre);
+            request.setAttribute("generacion", generacion + "");
+            request.setAttribute("fechaLanzamiento", fechaLanzamiento);
+            request.setAttribute("url", url);
+            getServletContext().getRequestDispatcher("/consola/crearConsola.jsp").forward(request, response);
+        } else {
+            response.sendRedirect(response.encodeRedirectURL("../administrador/administracion.jsp"));
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -126,4 +109,14 @@ public class RegistroUsuario extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    public static Date parseFecha(String fecha) {
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        Date fechaDate = null;
+        try {
+            fechaDate = formato.parse(fecha);
+        } catch (ParseException ex) {
+            System.out.println(ex);
+        }
+        return fechaDate;
+    }
 }

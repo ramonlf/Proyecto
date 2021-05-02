@@ -7,10 +7,13 @@ package modelo.entidades;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -23,10 +26,27 @@ public class Consola implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String nombre;
+    @Column
+    @Temporal(TemporalType.DATE)
     private Date fechaLanzamiento;
+    @Column
     private int generacion;
+    @Column
     private String url;
+   
 
+    public Consola(){
+    }
+
+    public Consola(String nombre, Date fechaLanzamiento, int generacion, String url) {
+        this.nombre = nombre;
+        this.fechaLanzamiento = fechaLanzamiento;
+        this.generacion = generacion;
+        this.url = url;
+    }
+    
+    
+    
     public String getNombre() {
         return nombre;
     }

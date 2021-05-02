@@ -3,29 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package crearAdmin;
+package controladores;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.entidades.Usuario;
-import modelo.entidades.UsuarioJpaController;
 
 /**
  *
- * @author Ramon
+ * @author usuario
  */
-@WebServlet(name = "CrearAdmin", urlPatterns = {"/CrearAdmin"})
-public class CrearAdmin extends HttpServlet {
+@WebServlet(name = "CerrarSesion", urlPatterns = {"/CerrarSesion"})
+public class CerrarSesion extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,42 +31,11 @@ public class CrearAdmin extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.getSession().invalidate();
+        getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 
-        String error = null;
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectoFinalPU");
-        UsuarioJpaController sjc = new UsuarioJpaController(emf);
+    }
 
-        Usuario usu = new Usuario("ABC123", "Ramon", "Lorenzo", "admin", "admin", parseFecha("1/11/1997"), true);
-        
-        try{
-            sjc.create(usu);
-        }catch(Exception e){
-            error = "No se ha podido crear el admin";
-        }
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet CrearAdmin</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Se ha creado el administrador</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-    public static Date parseFecha(String fecha) {
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        Date fechaDate = null;
-        try {
-            fechaDate = formato.parse(fecha);
-        } catch (ParseException ex) {
-            System.out.println(ex);
-        }
-        return fechaDate;
-    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
