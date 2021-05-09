@@ -19,10 +19,12 @@
                 <div>
                     <h2>Administración de Juego</h2>
                     <a href="../juego/crearJuego.jsp">Añadir nuevo Juego</a>
+                    
                 </div>
                 <div>
                     <h2>Administración de consolas</h2>
                     <a href="../consola/crearConsola.jsp">Añadir nueva consola</a>
+                    <a href="../consola/verConsola.jsp">Ver consolas activas</a>
                 </div>
             </div>
         </body>
