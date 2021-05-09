@@ -20,16 +20,19 @@
                 <th>Fecha de Lanzamiento</th>
                 <th>URL</th>
             </tr>
-            
+
             <c:forEach var="con" items="${consolaBean.consolas}">
                 <tr>
                     <td>"${con.nombre}"</td>
                     <td>"${con.generacion}"</td>
                     <td>"${con.fechaLanzamiento}"</td>
                     <td>"${con.url}"</td>
-                    <td><input type="submit" name="actualizar" value="Actualizar"></td>
-                </tr>
-            </c:forEach>
-        </table>
-    </body>
+                <form action="EditarConsola" method="POST">
+                    <input type="hidden" name="id" value="${con.nombre}">
+                    <input type="submit" value="Editar">
+                </form>
+            </tr>
+        </c:forEach>
+    </table>
+</body>
 </html>
