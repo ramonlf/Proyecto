@@ -25,14 +25,16 @@
                 <tr>
                     <td>"${con.nombre}"</td>
                     <td>"${con.generacion}"</td>
-                    <td>"${con.fechaLanzamiento}"</td>
+                    <td>"${con.fechaLanzamientoCorta}"</td>
                     <td>"${con.url}"</td>
-                <form action="EditarConsola" method="POST">
-                    <input type="hidden" name="id" value="${con.nombre}">
-                    <input type="submit" value="Editar">
-                </form>
-            </tr>
-        </c:forEach>
-    </table>
-</body>
+                    <td>
+                        <form action="EditarConsola" method="POST">
+                            <input type="hidden" name="nombre" value="${con.nombre}">
+                            <input type="submit" value="Editar">
+                        </form>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
+    </body>
 </html>

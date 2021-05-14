@@ -6,6 +6,7 @@
 package modelo.entidades;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -103,6 +104,14 @@ public class Consola implements Serializable {
     @Override
     public String toString() {
         return "modelo.entidades.Consola[ id=" + nombre + " ]";
+    }
+    
+     public String getFechaLanzamientoCorta() {
+        SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
+        String fecha;
+        fecha = formateador.format(this.getFechaLanzamiento());
+
+        return fecha;
     }
     
 }

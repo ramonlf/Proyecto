@@ -21,8 +21,20 @@ public class ConsolaBean {
         cjc.create(cmp);
     }   
     public List<Consola> getConsolas() {
-        ConsolaJpaController pjc = new 
+        ConsolaJpaController cjc = new 
             ConsolaJpaController(Persistence.createEntityManagerFactory(PERSISTENCIA));
-        return pjc.findConsolaEntities();
+        return cjc.findConsolaEntities();
+    }
+    
+    public Consola buscarConsola(String nombre) {
+        ConsolaJpaController cjc = new 
+            ConsolaJpaController(Persistence.createEntityManagerFactory(PERSISTENCIA));
+        return cjc.findConsola(nombre);
+    }
+    
+    public void actualizarConsola(Consola consola) throws Exception {
+        ConsolaJpaController cjc = new 
+            ConsolaJpaController(Persistence.createEntityManagerFactory(PERSISTENCIA));
+        cjc.edit(consola);
     }
 }
