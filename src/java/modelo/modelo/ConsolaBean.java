@@ -37,4 +37,10 @@ public class ConsolaBean {
             ConsolaJpaController(Persistence.createEntityManagerFactory(PERSISTENCIA));
         cjc.edit(consola);
     }
+    
+    public void eliminarConsola(String nombre) throws Exception {
+        ConsolaJpaController cjc = new
+            ConsolaJpaController(Persistence.createEntityManagerFactory(PERSISTENCIA));
+        cjc.destroy(nombre);
+    }
 }

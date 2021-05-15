@@ -51,18 +51,29 @@ public class EditarConsola extends HttpServlet {
                 consola.actualizarConsola(nuevo);
             } catch (Exception e) {
                 error = "Error al actualizar el usuario";
-            }            
-            response.sendRedirect("verConsola.jsp");           
-        }else{
+            }
+            response.sendRedirect("verConsola.jsp");
+        } else {
+            if (request.getParameter("eliminar") != null) {
+                try {
+                    consola.eliminarConsola(idNombre);
+                } catch (Exception e) {
+                    error = "Error al eliminar la consola";
+                    getServletContext().getRequestDispatcher("/consola/verConsola.jsp").forward(request, response);
+                }
+
+            } else {
+
                 request.setAttribute("nombre", nuevo.getNombre());
                 request.setAttribute("fechaLanzamiento", nuevo.getFechaLanzamiento());
                 request.setAttribute("generacion", nuevo.getGeneracion());
                 request.setAttribute("url", nuevo.getUrl());
                 getServletContext().getRequestDispatcher("/consola/editarConsola.jsp").forward(request, response);
+            }
         }
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *

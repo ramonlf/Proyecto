@@ -22,7 +22,8 @@
             <input type="date" id="fechaLanzamiento" name="fechaLanzamiento" value="${fechaLanzamiento}" required />
             <label>Nombre:</label>
             <input type="text" id="url" name="url" value="${url}" required />
-            <input type="submit" name="actualizar" id="actualizar" value="Actualizar">
+            <input type="submit" name="actualizar" id="actualizar" value="Actualizar" />
+            <input type="submit" name="eliminar" id="eliminar" value="Eliminar" />
         </form>
     </body>
 </html>
