@@ -3,8 +3,8 @@
     Created on : 04-abr-2021, 10:57:39
     Author     : Ramon
 --%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="iso-8859-1"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,7 +23,7 @@
             <input type="text" name="apellido" id="apellido" required /><br>
             <label>Nombre de Usuario: </label>
             <input type="text" name="login" id="login" required />
-            <label>ContraseÃ±a: </label>
+            <label>Contraseña: </label>
             <input type="password" name="password" id="password" required /><br>
             <label>Fecha Nacimiento: </label>
             <input type="text" name="fechaNacimiento" id="fechaNacimiento" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" required /><br>

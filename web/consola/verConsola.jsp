@@ -4,7 +4,7 @@
     Author     : Ramon
 --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="iso-8859-1"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,6 +13,7 @@
     </head>
     <body>
         <h1>Consolas actuales</h1>
+        <a href="crearConsola.jsp">Añadir consola</a>
         <table>
             <tr>
                 <th>Nombre</th>
@@ -31,6 +32,10 @@
                         <form action="EditarConsola" method="POST">
                             <input type="hidden" name="id" value="${con.id}">
                             <input type="submit" value="Editar">
+                           
+                    </td>
+                    <td>
+                        <input type="submit" id="eliminar" name="eliminar" value="Eliminar" />
                         </form>
                     </td>
                 </tr>
