@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 import modelo.entidades.Usuario;
 import modelo.entidades.UsuarioJpaController;
 import modelo.modelo.ConsolaBean;
+import modelo.modelo.JuegoBean;
 
 /**
  *
@@ -57,6 +58,7 @@ public class Login extends HttpServlet {
                         HttpSession sesion = request.getSession();
                         sesion.setAttribute("usuario", usu);
                         sesion.setAttribute("consolaBean", new ConsolaBean());
+                        sesion.setAttribute("juegoBean", new JuegoBean());
                         response.sendRedirect("../index.jsp");
                         return;
                     }

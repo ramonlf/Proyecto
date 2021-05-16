@@ -41,6 +41,6 @@
                 </tr>
             </c:forEach>
         </table>
-        <a href="../index.jsp">Volver</a>
+        <a href="../administrador/administracion.jsp">Volver</a>
     </body>
 </html>

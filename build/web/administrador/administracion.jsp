@@ -19,6 +19,7 @@
                 <div>
                     <h2>Administración de Juego</h2>
                     <a href="../juego/crearJuego.jsp">Añadir nuevo Juego</a>
+                    <a href="../juego/verJuego.jsp">Ver juegos activos</a>
                     
                 </div>
                 <div>
