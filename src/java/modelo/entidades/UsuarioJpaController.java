@@ -5,9 +5,6 @@
  */
 package modelo.entidades;
 
-import crearAdmin.exceptions.NonexistentEntityException;
-import crearAdmin.exceptions.PreexistingEntityException;
-import crearAdmin.exceptions.RollbackFailureException;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -18,7 +15,8 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.UserTransaction;
-import modelo.entidades.Usuario;
+import modelo.entidades.exceptions.NonexistentEntityException;
+import modelo.entidades.exceptions.RollbackFailureException;
 
 /**
  *
@@ -27,6 +25,7 @@ import modelo.entidades.Usuario;
 public class UsuarioJpaController implements Serializable {
 
     public UsuarioJpaController(EntityManagerFactory emf) {
+
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -35,11 +34,10 @@ public class UsuarioJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Usuario usuario) throws PreexistingEntityException, RollbackFailureException, Exception {
+    public void create(Usuario usuario) throws RollbackFailureException, Exception {
         EntityManager em = null;
         EntityTransaction etx = null;
         try {
-            
             em = getEntityManager();
             etx = em.getTransaction();
             etx.begin();
@@ -50,9 +48,6 @@ public class UsuarioJpaController implements Serializable {
                 etx.rollback();
             } catch (Exception re) {
                 throw new RollbackFailureException("An error occurred attempting to roll back the transaction.", re);
-            }
-            if (findUsuario(usuario.getDni()) != null) {
-                throw new PreexistingEntityException("Usuario " + usuario + " already exists.", ex);
             }
             throw ex;
         } finally {
@@ -66,7 +61,6 @@ public class UsuarioJpaController implements Serializable {
         EntityManager em = null;
         EntityTransaction etx = null;
         try {
-            
             em = getEntityManager();
             etx = em.getTransaction();
             etx.begin();
@@ -80,7 +74,7 @@ public class UsuarioJpaController implements Serializable {
             }
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                String id = usuario.getDni();
+                Long id = usuario.getId();
                 if (findUsuario(id) == null) {
                     throw new NonexistentEntityException("The usuario with id " + id + " no longer exists.");
                 }
@@ -93,18 +87,17 @@ public class UsuarioJpaController implements Serializable {
         }
     }
 
-    public void destroy(String id) throws NonexistentEntityException, RollbackFailureException, Exception {
+    public void destroy(Long id) throws NonexistentEntityException, RollbackFailureException, Exception {
         EntityManager em = null;
         EntityTransaction etx = null;
         try {
-            
             em = getEntityManager();
             etx = em.getTransaction();
             etx.begin();
             Usuario usuario;
             try {
                 usuario = em.getReference(Usuario.class, id);
-                usuario.getDni();
+                usuario.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The usuario with id " + id + " no longer exists.", enfe);
             }
@@ -148,7 +141,7 @@ public class UsuarioJpaController implements Serializable {
         }
     }
 
-    public Usuario findUsuario(String id) {
+    public Usuario findUsuario(Long id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(Usuario.class, id);
@@ -169,5 +162,5 @@ public class UsuarioJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }

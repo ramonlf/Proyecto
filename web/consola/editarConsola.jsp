@@ -14,8 +14,9 @@
     <body>
         <form action="EditarConsola" method="POST">
             <label>Nombre:</label>
-            <input type="hidden" id="nombre" name="nombre" value="${nombre}" />
-            <input type="text" value="${nombre}" disabled />
+            
+            <input type="hidden" id="id" name="id" value="${id}" />
+            <input type="text" id="nombre" name="nombre" value="${nombre}" />
             <label>Generacion:</label>
             <input type="number" id="generacion" name="generacion" value="${generacion}" required />
             <label>Fecha Lanzamiento:</label>
@@ -25,5 +26,6 @@
             <input type="submit" name="actualizar" id="actualizar" value="Actualizar" />
             <input type="submit" name="eliminar" id="eliminar" value="Eliminar" />
         </form>
+            <a href="verConsola.jsp">Volver</a>
     </body>
 </html>

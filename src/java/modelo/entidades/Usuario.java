@@ -26,6 +26,9 @@ public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    @Column(unique = true, length = 40)
     private String dni;
     @Column(length = 40)
     String nombre;
@@ -39,9 +42,9 @@ public class Usuario implements Serializable {
     private Date fechaNacimiento;
     boolean administrador;
 
-    public Usuario(){
+    public Usuario() {
     }
-    
+
     public Usuario(String dni, String nombre, String apellido, String login, String password, Date fechaNacimiento, boolean administrador) {
         this.dni = dni;
         this.nombre = nombre;
@@ -52,8 +55,14 @@ public class Usuario implements Serializable {
         this.administrador = administrador;
     }
 
-    
-    
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+ 
     public String getDni() {
         return dni;
     }

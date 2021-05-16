@@ -24,10 +24,10 @@ import modelo.entidades.exceptions.RollbackFailureException;
  */
 public class ConsolaJpaController implements Serializable {
 
-    public ConsolaJpaController( EntityManagerFactory emf) {        
+    public ConsolaJpaController(EntityManagerFactory emf) {
+
         this.emf = emf;
     }
-
     private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
@@ -44,7 +44,6 @@ public class ConsolaJpaController implements Serializable {
             etx.begin();
             em.persist(consola);
             etx.commit();
-            
         } catch (Exception ex) {
             try {
                 etx.rollback();
@@ -63,7 +62,6 @@ public class ConsolaJpaController implements Serializable {
         EntityManager em = null;
         EntityTransaction etx = null;
         try {
-
             em = getEntityManager();
             etx = em.getTransaction();
             etx.begin();
@@ -77,7 +75,7 @@ public class ConsolaJpaController implements Serializable {
             }
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                String id = consola.getNombre();
+                Long id = consola.getId();
                 if (findConsola(id) == null) {
                     throw new NonexistentEntityException("The consola with id " + id + " no longer exists.");
                 }
@@ -90,18 +88,17 @@ public class ConsolaJpaController implements Serializable {
         }
     }
 
-    public void destroy(String id) throws NonexistentEntityException, RollbackFailureException, Exception {
+    public void destroy(Long id) throws NonexistentEntityException, RollbackFailureException, Exception {
         EntityManager em = null;
         EntityTransaction etx = null;
         try {
-            
             em = getEntityManager();
             etx = em.getTransaction();
             etx.begin();
             Consola consola;
             try {
                 consola = em.getReference(Consola.class, id);
-                consola.getNombre();
+                consola.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The consola with id " + id + " no longer exists.", enfe);
             }
@@ -145,7 +142,7 @@ public class ConsolaJpaController implements Serializable {
         }
     }
 
-    public Consola findConsola(String id) {
+    public Consola findConsola(Long id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(Consola.class, id);
@@ -166,5 +163,5 @@ public class ConsolaJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }

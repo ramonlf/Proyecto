@@ -28,7 +28,6 @@ public class ContieneJpaController implements Serializable {
         
         this.emf = emf;
     }
-    private UserTransaction utx = null;
     private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
@@ -105,10 +104,10 @@ public class ContieneJpaController implements Serializable {
                 throw new NonexistentEntityException("The contiene with id " + id + " no longer exists.", enfe);
             }
             em.remove(contiene);
-            utx.commit();
+            etx.commit();
         } catch (Exception ex) {
             try {
-                utx.rollback();
+                etx.rollback();
             } catch (Exception re) {
                 throw new RollbackFailureException("An error occurred attempting to roll back the transaction.", re);
             }

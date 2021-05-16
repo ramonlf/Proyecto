@@ -23,9 +23,11 @@ import javax.persistence.TemporalType;
 @Entity
 public class Consola implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    @Column(unique = true, length = 40)
     private String nombre;
     @Column
     @Temporal(TemporalType.DATE)
@@ -34,9 +36,8 @@ public class Consola implements Serializable {
     private int generacion;
     @Column
     private String url;
-   
 
-    public Consola(){
+    public Consola() {
     }
 
     public Consola(String nombre, Date fechaLanzamiento, int generacion, String url) {
@@ -45,9 +46,11 @@ public class Consola implements Serializable {
         this.generacion = generacion;
         this.url = url;
     }
-    
-    
-    
+
+    public Long getId() {
+        return id;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -79,7 +82,6 @@ public class Consola implements Serializable {
     public void setUrl(String url) {
         this.url = url;
     }
-    
 
     @Override
     public int hashCode() {
@@ -105,13 +107,13 @@ public class Consola implements Serializable {
     public String toString() {
         return "modelo.entidades.Consola[ id=" + nombre + " ]";
     }
-    
-     public String getFechaLanzamientoCorta() {
+
+    public String getFechaLanzamientoCorta() {
         SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
         String fecha;
         fecha = formateador.format(this.getFechaLanzamiento());
 
         return fecha;
     }
-    
+
 }

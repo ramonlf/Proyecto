@@ -38,9 +38,9 @@ public class EditarConsola extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String error = null;
-        String idNombre = request.getParameter("nombre");
+        long id = Long.parseLong(request.getParameter("id"));
         ConsolaBean consola = (ConsolaBean) request.getSession().getAttribute("consolaBean");
-        Consola nuevo = consola.buscarConsola(idNombre);
+        Consola nuevo = consola.buscarConsola(id);
 
         if (request.getParameter("actualizar") != null) {
             nuevo.setNombre(nuevo.getNombre());
@@ -56,14 +56,15 @@ public class EditarConsola extends HttpServlet {
         } else {
             if (request.getParameter("eliminar") != null) {
                 try {
-                    consola.eliminarConsola(idNombre);
+                    consola.eliminarConsola(id);
                 } catch (Exception e) {
                     error = "Error al eliminar la consola";
                     getServletContext().getRequestDispatcher("/consola/verConsola.jsp").forward(request, response);
                 }
+                response.sendRedirect("verConsola.jsp");
 
             } else {
-
+                request.setAttribute("id", nuevo.getId());
                 request.setAttribute("nombre", nuevo.getNombre());
                 request.setAttribute("fechaLanzamiento", nuevo.getFechaLanzamiento());
                 request.setAttribute("generacion", nuevo.getGeneracion());

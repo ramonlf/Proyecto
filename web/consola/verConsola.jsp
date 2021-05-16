@@ -29,12 +29,13 @@
                     <td>"${con.url}"</td>
                     <td>
                         <form action="EditarConsola" method="POST">
-                            <input type="hidden" name="nombre" value="${con.nombre}">
+                            <input type="hidden" name="id" value="${con.id}">
                             <input type="submit" value="Editar">
                         </form>
                     </td>
                 </tr>
             </c:forEach>
         </table>
+        <a href="../index.jsp">Volver</a>
     </body>
 </html>

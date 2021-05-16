@@ -26,10 +26,10 @@ public class ConsolaBean {
         return cjc.findConsolaEntities();
     }
     
-    public Consola buscarConsola(String nombre) {
+    public Consola buscarConsola(long id) {
         ConsolaJpaController cjc = new 
             ConsolaJpaController(Persistence.createEntityManagerFactory(PERSISTENCIA));
-        return cjc.findConsola(nombre);
+        return cjc.findConsola(id);
     }
     
     public void actualizarConsola(Consola consola) throws Exception {
@@ -38,9 +38,9 @@ public class ConsolaBean {
         cjc.edit(consola);
     }
     
-    public void eliminarConsola(String nombre) throws Exception {
+    public void eliminarConsola(long id) throws Exception {
         ConsolaJpaController cjc = new
             ConsolaJpaController(Persistence.createEntityManagerFactory(PERSISTENCIA));
-        cjc.destroy(nombre);
+        cjc.destroy(id);
     }
 }
