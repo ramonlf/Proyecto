@@ -63,6 +63,12 @@ public class EditarJuego extends HttpServlet {
             nuevo.setGenero(toUpperCaseFirst(request.getParameter("genero")));
             nuevo.setUrl(request.getParameter("url"));
             nuevo.setFechaLanzamiento(parseFecha(request.getParameter("fechaLanzamiento")));
+            try{
+                juego.actualizarJuego(nuevo);
+            }catch(Exception e){
+                error = "Error al actualizar el juego";
+            }
+            response.sendRedirect("verJuego.jsp");
         }else{
             if(request.getParameter("eliminar") != null){
                 try {
@@ -81,6 +87,7 @@ public class EditarJuego extends HttpServlet {
                 request.setAttribute("cantidad", nuevo.getCantidad());
                 request.setAttribute("genero", nuevo.getGenero());
                 request.setAttribute("url", nuevo.getUrl());
+                request.setAttribute("consola", nuevo.getConsola().getNombre());
                 getServletContext().getRequestDispatcher("/juego/editarJuego.jsp").forward(request, response);
             
             }

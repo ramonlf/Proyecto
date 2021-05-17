@@ -24,10 +24,10 @@
 
             <c:forEach var="con" items="${consolaBean.consolas}">
                 <tr>
-                    <td>"${con.nombre}"</td>
-                    <td>"${con.generacion}"</td>
-                    <td>"${con.fechaLanzamientoCorta}"</td>
-                    <td>"${con.url}"</td>
+                    <td>${con.nombre}</td>
+                    <td>${con.generacion}</td>
+                    <td>${con.fechaLanzamientoCorta}</td>
+                    <td>${con.url}</td>
                     <td>
                         <form action="EditarConsola" method="POST">
                             <input type="hidden" name="id" value="${con.id}">

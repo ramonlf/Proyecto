@@ -5,25 +5,20 @@
         <group>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/consola/editarConsola.jsp</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/modelo/entidades/Juego.java</file>
-            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/modelo/entidades/Pedido.java</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/index.jsp</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/modelo/modelo/JuegoBean.java</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/controladores/EditarConsola.java</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/modelo/entidades/Consola.java</file>
-            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/modelo/entidades/ConsolaJpaController.java</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/controladores/EditarJuego.java</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/juego/editarJuego.jsp</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/modelo/modelo/ConsolaBean.java</file>
-            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/controladores/CrearConsola.java</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/controladores/Login.java</file>
-            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/consola/verConsola.jsp</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/juego/verJuego.jsp</file>
-            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/usuario/registrarse.jsp</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/consola/verConsola.jsp</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/modelo/modelo/UsuarioBean.java</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/juego/crearJuego.jsp</file>
-            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/consola/crearConsola.jsp</file>
-            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/modelo/entidades/Usuario.java</file>
-            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/modelo/entidades/UsuarioJpaController.java</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/administrador/administracion.jsp</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/controladores/CrearJuego.java</file>
-            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/usuario/login.jsp</file>
-            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/controladores/RegistroUsuario.java</file>
         </group>
     </open-files>
 </project-private>

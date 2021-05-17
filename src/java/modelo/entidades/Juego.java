@@ -6,6 +6,7 @@
 package modelo.entidades;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -157,4 +158,12 @@ public class Juego implements Serializable {
         return "modelo.entidades.Juego[ id=" + id + " ]";
     }
 
+     public String getFechaLanzamientoCorta() {
+        SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
+        String fecha;
+        fecha = formateador.format(this.getFechaLanzamiento());
+
+        return fecha;
+    }
+    
 }

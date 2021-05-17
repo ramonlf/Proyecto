@@ -27,7 +27,7 @@
                 <td>${jue.genero}</td>
                 <td>${jue.cantidad}</td>
                 <td>${jue.precio}</td>
-                <td>${jue.fechaLanzamiento}</td>
+                <td>${jue.fechaLanzamientoCorta}</td>
                 <td>${jue.url}</td>
                 <td>
                     <form action="EditarJuego">

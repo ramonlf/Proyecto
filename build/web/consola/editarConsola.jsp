@@ -9,12 +9,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Editar consola</title>
     </head>
     <body>
+        <h1>Editar ${nombre}</h1>
         <form action="EditarConsola" method="POST">
             <label>Nombre:</label>
-            
             <input type="hidden" id="id" name="id" value="${id}" />
             <input type="text" id="nombre" name="nombre" value="${nombre}" />
             <label>Generacion:</label>
