@@ -27,6 +27,10 @@
                     <a href="../consola/crearConsola.jsp">Añadir nueva consola</a>
                     <a href="../consola/verConsola.jsp">Ver consolas activas</a>
                 </div>
+                <div>
+                    <h2>Administración de usuarios</h2>
+                    <a href="../usuario/verUsuario.jsp">Ver usuarios activos</a>
+                </div>
             </div>
         </body>
     </c:if>

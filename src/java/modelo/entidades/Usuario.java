@@ -6,6 +6,7 @@
 package modelo.entidades;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -117,6 +118,14 @@ public class Usuario implements Serializable {
 
     public void setAdministrador(boolean administrador) {
         this.administrador = administrador;
+    }
+    
+    public String getFechaNacimientoCorta() {
+        SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
+        String fecha;
+        fecha = formateador.format(this.getFechaNacimiento());
+
+        return fecha;
     }
 
     @Override

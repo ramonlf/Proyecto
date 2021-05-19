@@ -19,6 +19,7 @@ import modelo.entidades.Usuario;
 import modelo.entidades.UsuarioJpaController;
 import modelo.modelo.ConsolaBean;
 import modelo.modelo.JuegoBean;
+import modelo.modelo.UsuarioBean;
 
 /**
  *
@@ -57,6 +58,7 @@ public class Login extends HttpServlet {
                     if (usu.getLogin().equals(login) && usu.getPassword().equals(password)) {
                         HttpSession sesion = request.getSession();
                         sesion.setAttribute("usuario", usu);
+                        sesion.setAttribute("usuarioBean", new UsuarioBean());
                         sesion.setAttribute("consolaBean", new ConsolaBean());
                         sesion.setAttribute("juegoBean", new JuegoBean());
                         response.sendRedirect("../index.jsp");

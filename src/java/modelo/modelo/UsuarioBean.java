@@ -6,6 +6,7 @@
 package modelo.modelo;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Persistence;
 import modelo.entidades.Usuario;
 import modelo.entidades.UsuarioJpaController;
@@ -24,5 +25,10 @@ public class UsuarioBean implements Serializable {
     public void registroUsuario(Usuario ump) throws Exception{
         UsuarioJpaController ujc = new UsuarioJpaController(Persistence.createEntityManagerFactory(PERSISTENCIA));
         ujc.create(ump);
+    }
+    
+    public List<Usuario> getUsuarios(){
+        UsuarioJpaController ujc = new UsuarioJpaController(Persistence.createEntityManagerFactory(PERSISTENCIA));
+        return ujc.findUsuarioEntities();
     }
 }
