@@ -32,7 +32,18 @@
                     <td>${usu.apellido}</td>
                     <td>${usu.password}</td>
                     <td>${usu.fechaNacimientoCorta}</td>
-                    <td>${usu.administrador?"Sí":"No"}</td>
+                    <td><input type="checkbox" checked<c:if test="${usu.administrador}">="checked" </c:if> disabled/></td>
+                    <td>
+                        <form action="EditarUsuarioAdmin" method="POST">
+                            <input type="hidden" name="id" value="${jue.id}"/>
+                            <input type="submit" value="Editar" />
+                    </td>
+                    <td>
+                        <input type="submit" name="eliminar" id="eliminar" value="Eliminar" />
+                        </form>
+                    </td>
+
+
                 </tr>
             </c:forEach>
         </table>
