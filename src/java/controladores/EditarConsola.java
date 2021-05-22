@@ -66,7 +66,7 @@ public class EditarConsola extends HttpServlet {
             } else {
                 request.setAttribute("id", nuevo.getId());
                 request.setAttribute("nombre", nuevo.getNombre());
-                request.setAttribute("fechaLanzamiento", nuevo.getFechaLanzamiento());
+                request.setAttribute("fechaLanzamiento", nuevo.getFechaLanzamientoCorta());
                 request.setAttribute("generacion", nuevo.getGeneracion());
                 request.setAttribute("url", nuevo.getUrl());
                 getServletContext().getRequestDispatcher("/consola/editarConsola.jsp").forward(request, response);
@@ -114,7 +114,7 @@ public class EditarConsola extends HttpServlet {
     }// </editor-fold>
 
     public static Date parseFecha(String fecha) {
-        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         Date fechaDate = null;
         try {
             fechaDate = formato.parse(fecha);

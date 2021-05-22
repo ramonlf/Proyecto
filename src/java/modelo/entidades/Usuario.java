@@ -41,18 +41,24 @@ public class Usuario implements Serializable {
     String password;
     @Temporal(TemporalType.DATE)
     private Date fechaNacimiento;
+    @Column(length = 50)
+    String email;
+    @Column(length = 20)
+    String telefono;        
     boolean administrador;
 
     public Usuario() {
     }
 
-    public Usuario(String dni, String nombre, String apellido, String login, String password, Date fechaNacimiento, boolean administrador) {
+    public Usuario(String dni, String nombre, String apellido, String login, String password, Date fechaNacimiento, String email, String telefono, boolean administrador) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
         this.login = login;
         this.password = password;
         this.fechaNacimiento = fechaNacimiento;
+        this.email = email;
+        this.telefono = telefono;
         this.administrador = administrador;
     }
 
@@ -116,6 +122,24 @@ public class Usuario implements Serializable {
         return administrador;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    
+    
     public void setAdministrador(boolean administrador) {
         this.administrador = administrador;
     }

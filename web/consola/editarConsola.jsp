@@ -20,7 +20,7 @@
             <label>Generacion:</label>
             <input type="number" id="generacion" name="generacion" value="${generacion}" required />
             <label>Fecha Lanzamiento:</label>
-            <input type="date" id="fechaLanzamiento" name="fechaLanzamiento" value="${fechaLanzamiento}" required />
+            <input type="text" name="fechaLanzamiento" id="fechaLanzamiento" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" placeholder="dd/mm/yyyy" value="${fechaLanzamiento}" required /><br>
             <label>Nombre:</label>
             <input type="text" id="url" name="url" value="${url}" required />
             <input type="submit" name="actualizar" id="actualizar" value="Actualizar" />

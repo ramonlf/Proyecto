@@ -28,11 +28,11 @@
                 </c:forEach>
             </select>
             <label>Url de la imagen</label>
-            <input type="text"  name="url" id="url" value="${url}" required />
+            <input type="text"  name="url" id="url" value="${url}"  required />
             <label>Cantidad:</label>
             <input type="number" id="cantidad" name="cantidad" value="${cantidad}" required />
             <label>Fecha de Lanzamiento</label>
-            <input type="date" id="fechaLanzamiento" name="fechaLanzamiento" required />
+            <input type="text" name="fechaLanzamiento" id="fechaLanzamiento" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" placeholder="dd/mm/yyyy" value="${fechaLanzamiento}" required /><br>
             <input type="submit" id="actualizar" name="actualizar" value="Editar" />
             <input type="reset" id="limpiar" name="limpiar" value="Limpiar" />
         </form>

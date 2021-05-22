@@ -7,9 +7,11 @@
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/usuario/registrarse.jsp</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/modelo/modelo/UsuarioBean.java</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/usuario/verUsuario.jsp</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/controladores/EditarUsuario.java</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/modelo/entidades/Juego.java</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/modelo/modelo/JuegoBean.java</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/modelo/entidades/Usuario.java</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/controladores/EditarJuego.java</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/administrador/administracion.jsp</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/controladores/Login.java</file>
         </group>

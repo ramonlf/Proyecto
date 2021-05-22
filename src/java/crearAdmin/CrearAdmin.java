@@ -43,7 +43,7 @@ public class CrearAdmin extends HttpServlet {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("ProyectoFinalPU");
         UsuarioJpaController sjc = new UsuarioJpaController(emf);
 
-        Usuario usu = new Usuario("ABC123", "Ramon", "Lorenzo", "admin", "admin", parseFecha("1/11/1997"), true);
+        Usuario usu = new Usuario("ABC123", "Ramon", "Lorenzo", "admin", "admin", parseFecha("1/11/1997"),"admin@email.com", "622863690", true);
         
         try{
             sjc.create(usu);

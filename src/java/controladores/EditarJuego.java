@@ -82,7 +82,7 @@ public class EditarJuego extends HttpServlet {
                  
                 request.setAttribute("id", nuevo.getId());
                 request.setAttribute("nombre", nuevo.getNombre());
-                request.setAttribute("fechaLanzamiento", nuevo.getFechaLanzamiento());
+                request.setAttribute("fechaLanzamiento", nuevo.getFechaLanzamientoCorta());
                 request.setAttribute("precio", nuevo.getPrecio());
                 request.setAttribute("cantidad", nuevo.getCantidad());
                 request.setAttribute("genero", nuevo.getGenero());
@@ -133,8 +133,8 @@ public class EditarJuego extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    public static Date parseFecha(String fecha) {
-        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+public static Date parseFecha(String fecha) {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         Date fechaDate = null;
         try {
             fechaDate = formato.parse(fecha);

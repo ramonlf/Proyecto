@@ -10,23 +10,20 @@ import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
-import javax.persistence.Persistence;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.entidades.Consola;
-import modelo.entidades.ConsolaJpaController;
-import modelo.modelo.ConsolaBean;
+import modelo.entidades.Usuario;
+import modelo.modelo.UsuarioBean;
 
 /**
  *
  * @author Ramon
  */
-@WebServlet(name = "/consola/CrearConsola", urlPatterns = {"/consola/CrearConsola"})
-public class CrearConsola extends HttpServlet {
+@WebServlet(name = "EditarUsuario", urlPatterns = {"/usuario/EditarUsuario"})
+public class EditarUsuario extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,34 +36,20 @@ public class CrearConsola extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         String error = null;
-        String nombre = request.getParameter("nombre");
-        int generacion = Integer.parseInt(request.getParameter("generacion"));
-        String fechaLanzamiento = request.getParameter("fechaLanzamiento");
-        String url = request.getParameter("url");
-        
-
-        Consola nuevo = new Consola(nombre, parseFecha(fechaLanzamiento), generacion, url);
-        ConsolaBean consola = new ConsolaBean();
-
-        ConsolaJpaController cjc = new ConsolaJpaController(Persistence.createEntityManagerFactory("ProyectoFinalPU"));
-        List<Consola> consolas = cjc.findConsolaEntities();
-
-        Consola aux = null;
-        try {
-            consola.añadirConsola(nuevo);
-        } catch (Exception e) {
-                error = "ERROR esta consola ya existe";
-        }
-
-        if (error != null) {
-            request.setAttribute("nombre", nombre);
-            request.setAttribute("generacion", generacion + "");
-            request.setAttribute("fechaLanzamiento", fechaLanzamiento);
-            request.setAttribute("url", url);
-            getServletContext().getRequestDispatcher("/consola/crearConsola.jsp").forward(request, response);
-        } else {
-            response.sendRedirect(response.encodeRedirectURL("../administrador/administracion.jsp"));
+        long id = Long.parseLong(request.getParameter("id"));
+        UsuarioBean usuario = (UsuarioBean)request.getSession().getAttribute("juegoBean");
+        Usuario nuevo = usuario.buscarUsuario(id);
+        if(request.getParameter("actualizar") != null){
+            nuevo.setNombre(request.getParameter("nombre")); 
+            nuevo.setDni(request.getParameter("dni"));
+            nuevo.setLogin(request.getParameter("login"));
+            nuevo.setPassword(request.getParameter("password"));
+            nuevo.setEmail(request.getParameter("email"));
+            nuevo.setTelefono(request.getParameter("telefono"));
+            nuevo.setFechaNacimiento(parseFecha(request.getParameter("fechaNacimiento")));
+            nuevo.setAdministrador(Boolean.parseBoolean(request.getParameter("administrador")));
         }
     }
 
@@ -108,7 +91,6 @@ public class CrearConsola extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
     public static Date parseFecha(String fecha) {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         Date fechaDate = null;

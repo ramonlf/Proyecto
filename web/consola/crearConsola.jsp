@@ -19,7 +19,7 @@
             <label>Generacion: </label>
             <input type="number" id="generacion" name="generacion" min="0" value="${generacion}" required />
             <label>Fecha de lanzamiento: </label>
-            <input type="date" id="fechaLanzamiento" name="fechaLanzamiento" value="${fechaLanzamiento}" required />
+            <input type="text" name="fechaLanzamiento" id="fechaLanzamiento" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" placeholder="dd/mm/yyyy" value="${fechaLanzamiento}" required /><br>
             <label>URL de la imagen:</label>
             <input type="file" id="url" name="url" accept="image/*" value="${url}" required />
             <input type="submit" name="enviar" value="Enviar" id="enviar" />

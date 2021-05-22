@@ -48,10 +48,12 @@ public class RegistroUsuario extends HttpServlet {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         String fechaNacimiento = request.getParameter("fechaNacimiento");
+        String email = request.getParameter("email");
+        String telefono = request.getParameter("telefono");
         boolean administrador = false;
         UsuarioBean usuario = new UsuarioBean();
 
-        Usuario nuevo = new Usuario(dni, nombre, apellido, login, password, parseFecha(fechaNacimiento), administrador);
+        Usuario nuevo = new Usuario(dni, nombre, apellido, login, password, parseFecha(fechaNacimiento), email, telefono, administrador);
         
         UsuarioJpaController ujc = new UsuarioJpaController(Persistence.createEntityManagerFactory("ProyectoFinalPU"));
         List<Usuario> usuarios = ujc.findUsuarioEntities();
