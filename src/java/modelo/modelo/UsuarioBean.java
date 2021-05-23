@@ -8,8 +8,6 @@ package modelo.modelo;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Persistence;
-import modelo.entidades.Juego;
-import modelo.entidades.JuegoJpaController;
 import modelo.entidades.Usuario;
 import modelo.entidades.UsuarioJpaController;
 
@@ -34,18 +32,23 @@ public class UsuarioBean implements Serializable {
         return ujc.findUsuarioEntities();
     }
 
-    public void añadirJuego(Usuario ump) throws Exception {
+    public void añadirUsuario(Usuario ump) throws Exception {
         UsuarioJpaController ujc = new UsuarioJpaController(Persistence.createEntityManagerFactory(PERSISTENCIA));
         ujc.create(ump);
     }
 
-    public void actualizarJuego(Usuario juego) throws Exception {
+    public void actualizarUsuario(Usuario usuario) throws Exception {
         UsuarioJpaController ujc = new UsuarioJpaController(Persistence.createEntityManagerFactory(PERSISTENCIA));
-        ujc.edit(juego);
+        ujc.edit(usuario);
     }
     
     public Usuario buscarUsuario(long id){
         UsuarioJpaController ujc = new UsuarioJpaController(Persistence.createEntityManagerFactory(PERSISTENCIA));
         return ujc.findUsuario(id);
+    }
+    
+    public void borrarUsuario(long id) throws Exception{
+        UsuarioJpaController ujc = new UsuarioJpaController(Persistence.createEntityManagerFactory(PERSISTENCIA));
+        ujc.destroy(id);
     }
 }

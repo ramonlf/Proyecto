@@ -1,11 +1,11 @@
 <%-- 
-    Document   : aÃ±adirJuego
+    Document   : añadirJuego
     Created on : 18-abr-2021, 11:18:06
     Author     : Ramon
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="iso-8859-1"%>
 <!DOCTYPE html>
 <html>
     <c:if test="${usuario.administrador}">
@@ -15,7 +15,7 @@
         </head>
         <body>
             
-            <h1>AÃ±adir un juego</h1>
+            <h1>Añadir un juego</h1>
             
             <form action="CrearJuego" method="POST">
                 <label>Nombre: </label>
@@ -36,7 +36,7 @@
                 <input type="number" id="cantidad" name="cantidad" required />
                 <label>Fecha de Lanzamiento</label>
                 <input type="text" name="fechaLanzamiento" id="fechaLanzamiento" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" placeholder="dd/mm/yyyy" value="${fechaLanzamiento}" required /><br>
-                <input type="submit" id="enviar" name="enviar" value="AÃ±adir juego" />
+                <input type="submit" id="enviar" name="enviar" value="Añadir juego" />
                 <input type="reset" id="limpiar" name="limpiar" value="Limpiar Campos" />
             </form>
         </body>

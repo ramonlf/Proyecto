@@ -22,6 +22,8 @@
                 <th>Apellidos</th>
                 <th>Contraseña</th>
                 <th>Fecha nacimiento</th>
+                <th>Email</th>
+                <th>Telefono</th>
                 <th>Administradorador<th>
             </tr>
             <c:forEach var="usu" items="${usuarioBean.usuarios}">
@@ -32,10 +34,12 @@
                     <td>${usu.apellido}</td>
                     <td>${usu.password}</td>
                     <td>${usu.fechaNacimientoCorta}</td>
-                    <td><input type="checkbox" checked<c:if test="${usu.administrador}">="checked" </c:if> disabled/></td>
+                    <td>${usu.email}</td>
+                    <td>${usu.telefono}</td>
+                    <td><input type="checkbox" <c:if test="${usu.administrador}">checked="checked" </c:if> disabled/></td>
                     <td>
-                        <form action="EditarUsuarioAdmin" method="POST">
-                            <input type="hidden" name="id" value="${jue.id}"/>
+                        <form action="EditarUsuario" method="POST">
+                            <input type="hidden" name="id" value="${usu.id}"/>
                             <input type="submit" value="Editar" />
                     </td>
                     <td>

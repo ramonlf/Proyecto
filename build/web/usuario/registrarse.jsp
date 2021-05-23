@@ -26,8 +26,8 @@
             <label>Contraseña: </label>
             <input type="password" name="password" id="password" required /><br>
             <label>Email:</label>
-            <input type="email" name="email" id="email" placeholder="example@email.com..." />
-            <input type="tel" name="telefono" id="telefono" placeholder="123456789" />
+            <input type="email" name="email" id="email" placeholder="example@email.com..." required />
+            <input type="tel" name="telefono" id="telefono" placeholder="123456789" required="" />
             <label>Fecha Nacimiento: </label>
             <input type="text" name="fechaNacimiento" id="fechaNacimiento" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" placeholder="dd/mm/yyyy" required /><br>
             <input name="enviar" id="enviar" type="submit" />

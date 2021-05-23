@@ -39,10 +39,11 @@ public class EditarUsuario extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String error = null;
         long id = Long.parseLong(request.getParameter("id"));
-        UsuarioBean usuario = (UsuarioBean)request.getSession().getAttribute("juegoBean");
+        UsuarioBean usuario = (UsuarioBean)request.getSession().getAttribute("usuarioBean");
         Usuario nuevo = usuario.buscarUsuario(id);
         if(request.getParameter("actualizar") != null){
             nuevo.setNombre(request.getParameter("nombre")); 
+            nuevo.setApellido(request.getParameter("apellido"));
             nuevo.setDni(request.getParameter("dni"));
             nuevo.setLogin(request.getParameter("login"));
             nuevo.setPassword(request.getParameter("password"));
@@ -50,6 +51,33 @@ public class EditarUsuario extends HttpServlet {
             nuevo.setTelefono(request.getParameter("telefono"));
             nuevo.setFechaNacimiento(parseFecha(request.getParameter("fechaNacimiento")));
             nuevo.setAdministrador(Boolean.parseBoolean(request.getParameter("administrador")));
+            try{
+                usuario.actualizarUsuario(nuevo);
+            }catch(Exception e){
+                error = "Error al actualizar el usuario";
+            }
+            response.sendRedirect("verUsuario.jsp");
+        }else{
+            if(request.getParameter("eliminar") != null){
+                try{
+                    usuario.borrarUsuario(id);
+                }catch(Exception e){
+                    error = "Error al borrar el usuario";
+                    getServletContext().getRequestDispatcher("/usuario/verUsuario.jsp").forward(request, response);
+                }
+            }else{
+                request.setAttribute("id", nuevo.getId());
+                request.setAttribute("nombre", nuevo.getNombre());
+                request.setAttribute("apellido", nuevo.getApellido());
+                request.setAttribute("dni", nuevo.getDni());
+                request.setAttribute("login", nuevo.getLogin());
+                request.setAttribute("password", nuevo.getPassword());
+                request.setAttribute("email", nuevo.getEmail());
+                request.setAttribute("telefono", nuevo.getTelefono());
+                request.setAttribute("fechaNacimiento", nuevo.getFechaNacimientoCorta());
+                request.setAttribute("checked", nuevo.isAdministrador()?"checked":"");
+                getServletContext().getRequestDispatcher("/usuario/editarUsuario.jsp").forward(request, response);
+            }
         }
     }
 

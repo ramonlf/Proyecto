@@ -3,8 +3,8 @@
     Created on : 16-abr-2021, 10:49:47
     Author     : usuario
 --%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="iso-8859-1"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,8 +16,8 @@
         <form action="Login" method="POST">
             <label>Usuario: </label>
             <input type="text" id="login" name="login" placeholder="ej: ejemplo" required />
-            <label>ContraseÃ±a: </label>
-            <input type="password" id="password" name="password" placeholder="introduce tu contraseÃ±a" required />
+            <label>Contraseña: </label>
+            <input type="password" id="password" name="password" placeholder="introduce tu contraseña" required />
             <input type="submit" name="enviar" id="enviar" value="Iniciar sesion" />
             <input type="reset" name="reset" id="reset" value="Limpiar campos" />
         </form>
