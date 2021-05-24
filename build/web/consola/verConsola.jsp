@@ -14,33 +14,40 @@
     <body>
         <h1>Consolas actuales</h1>
         <a href="crearConsola.jsp">Añadir consola</a>
-        <table>
-            <tr>
-                <th>Nombre</th>
-                <th>Generacion</th>
-                <th>Fecha de Lanzamiento</th>
-                <th>URL</th>
-            </tr>
-
-            <c:forEach var="con" items="${consolaBean.consolas}">
+        <table id="tabla">
+            <thead>
                 <tr>
-                    <td>${con.nombre}</td>
-                    <td>${con.generacion}</td>
-                    <td>${con.fechaLanzamientoCorta}</td>
-                    <td>${con.url}</td>
-                    <td>
-                        <form action="EditarConsola" method="POST">
-                            <input type="hidden" name="id" value="${con.id}">
-                            <input type="submit" value="Editar">
-                           
-                    </td>
-                    <td>
-                        <input type="submit" id="eliminar" name="eliminar" value="Eliminar" />
-                        </form>
-                    </td>
+                    <th>Nombre</th>
+                    <th>Generacion</th>
+                    <th>Fecha de Lanzamiento</th>
+                    <th>URL</th>
                 </tr>
-            </c:forEach>
+                <tr>
+                    <td colspan="4"><input type="text" id="buscar" placeholder="Introduce algo para filtrar..."/></td>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="con" items="${consolaBean.consolas}">
+                    <tr>
+                        <td>${con.nombre}</td>
+                        <td>${con.generacion}</td>
+                        <td>${con.fechaLanzamientoCorta}</td>
+                        <td>${con.url}</td>
+                        <td>
+                            <form action="EditarConsola" method="POST">
+                                <input type="hidden" name="id" value="${con.id}">
+                                <input type="submit" value="Editar">
+
+                                </td>
+                                <td>
+                                    <input type="submit" id="eliminar" name="eliminar" value="Eliminar" />
+                            </form>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
         </table>
         <a href="../administrador/administracion.jsp">Volver</a>
     </body>
+    <script src="../js/filtro.js"></script>
 </html>

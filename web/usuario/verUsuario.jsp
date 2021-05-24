@@ -14,42 +14,51 @@
     </head>
     <body>
         <h1>Usuarios</h1>
-        <table>
-            <tr>
-                <th>DNI</th>
-                <th>Login</th>
-                <th>Nombre</th>
-                <th>Apellidos</th>
-                <th>Contraseña</th>
-                <th>Fecha nacimiento</th>
-                <th>Email</th>
-                <th>Telefono</th>
-                <th>Administradorador<th>
-            </tr>
-            <c:forEach var="usu" items="${usuarioBean.usuarios}">
+        <table id="tabla">
+            <thead>
                 <tr>
-                    <td>${usu.dni}</td>
-                    <td>${usu.login}</td>
-                    <td>${usu.nombre}</td>
-                    <td>${usu.apellido}</td>
-                    <td>${usu.password}</td>
-                    <td>${usu.fechaNacimientoCorta}</td>
-                    <td>${usu.email}</td>
-                    <td>${usu.telefono}</td>
-                    <td><input type="checkbox" <c:if test="${usu.administrador}">checked="checked" </c:if> disabled/></td>
-                    <td>
-                        <form action="EditarUsuario" method="POST">
-                            <input type="hidden" name="id" value="${usu.id}"/>
-                            <input type="submit" value="Editar" />
-                    </td>
-                    <td>
-                        <input type="submit" name="eliminar" id="eliminar" value="Eliminar" />
-                        </form>
-                    </td>
-
-
+                    <th>DNI</th>
+                    <th>Login</th>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Contraseña</th>
+                    <th>Fecha nacimiento</th>
+                    <th>Email</th>
+                    <th>Telefono</th>
+                    <th>Administradorador<th>
                 </tr>
-            </c:forEach>
+                <tr>
+                    <td colspan="7"><input type="text" id="buscar" placeholder="Introduce algo para filtrar..."/></td>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="usu" items="${usuarioBean.usuarios}">
+                    <tr>
+                        <td>${usu.dni}</td>
+                        <td>${usu.login}</td>
+                        <td>${usu.nombre}</td>
+                        <td>${usu.apellido}</td>
+                        <td>${usu.password}</td>
+                        <td>${usu.fechaNacimientoCorta}</td>
+                        <td>${usu.email}</td>
+                        <td>${usu.telefono}</td>
+                        <td><input type="checkbox" <c:if test="${usu.administrador}">checked="checked" </c:if> disabled/></td>
+                            <td>
+                                <form action="EditarUsuario" method="POST">
+                                    <input type="hidden" name="id" value="${usu.id}"/>
+                                <input type="submit" value="Editar" />
+                        </td>
+                        <td>
+                            <input type="submit" name="eliminar" id="eliminar" value="Eliminar" />
+                            </form>
+                        </td>
+
+
+                    </tr>
+                </c:forEach>
+            </tbody>
         </table>
+    <a href="../administrador/administracion.jsp">Volver</a>
     </body>
+    <script src="../js/filtro.js"></script>
 </html>
