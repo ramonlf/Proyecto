@@ -10,20 +10,27 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Mostrar Consolas</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <h1>Consolas actuales</h1>
-        <a href="crearConsola.jsp">Añadir consola</a>
-        <table id="tabla">
+        <a href="crearConsola.jsp" class="btn btn-primary m-2">Añadir consola</a>
+        <table id="tabla" class="table table-striped">
             <thead>
                 <tr>
                     <th>Nombre</th>
                     <th>Generacion</th>
                     <th>Fecha de Lanzamiento</th>
                     <th>URL</th>
+                    <th></th>
+                    <th></th>
                 </tr>
                 <tr>
-                    <td colspan="4"><input type="text" id="buscar" placeholder="Introduce algo para filtrar..."/></td>
+                    <td colspan="6"><input type="text" id="buscar" class="form-control" placeholder="Introduce algo para filtrar..."/></td>
                 </tr>
             </thead>
             <tbody>
