@@ -59,47 +59,51 @@
             </div>
         </nav>
         <section class=" pb-5 mt-4" id="admin-course">
-            <div class="container bg-light">
+            <div class="container">
                 <div class="col-sm-offset-2 col-sm-12 offset-xl-0 col-xl-12 offset-lg-0 col-lg-12">
-                    <form action="EditarJuego" method="POST">
-                        <div class="form-group">
-                            <label>Nombre: </label>
-                            <input type="hidden" name="id" id="id" value="${id}" />
-                            <input type="text" name="nombre" id="nombre" class="form-control" value="${nombre}" required />
+                    <div class="card card-default">
+                        <div class="card-body">
+                            <form action="EditarJuego" method="POST">
+                                <div class="form-group">
+                                    <label>Nombre: </label>
+                                    <input type="hidden" name="id" id="id" value="${id}" />
+                                    <input type="text" name="nombre" id="nombre" class="form-control" value="${nombre}" required />
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label>Genero:</label>
+                                        <input type="text" name="genero" class="form-control" id="genero" pattern="[A-Z]{1}[a-z]*" value="${genero}" required />
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label>Precio: </label>
+                                        <input type="number" step="0.01" min="0" class="form-control" id="precio" name="precio" value="${precio}" required />
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label>Consola:</label>                       
+                                        <select name="consola" id="consola" class="form-control" name="consola" >
+                                            <c:forEach var="con" items="${consolaBean.consolas}" >
+                                                <option value="${con.nombre}">${con.nombre}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Url de la imagen</label>
+                                    <input type="text"  name="url" id="url" class="form-control" value="${url}"  required />
+                                </div>
+                                <div class="form-group">
+                                    <label>Cantidad:</label>
+                                    <input type="number" id="cantidad" class="form-control" name="cantidad" value="${cantidad}" required />
+                                </div>
+                                <div class="form-group">
+                                    <label>Fecha de Lanzamiento</label>
+                                    <input type="text" name="fechaLanzamiento" id="fechaLanzamiento" class="form-control" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" placeholder="dd/mm/yyyy" value="${fechaLanzamiento}" required /><br>
+                                </div>
+                                <input type="submit" id="actualizar" name="actualizar" value="Editar" />
+                                <input type="reset" id="limpiar" name="limpiar" value="Limpiar" />
+                            </form>
                         </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label>Genero:</label>
-                                <input type="text" name="genero" class="form-control" id="genero" pattern="[A-Z]{1}[a-z]*" value="${genero}" required />
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label>Precio: </label>
-                                <input type="number" step="0.01" min="0" class="form-control" id="precio" name="precio" value="${precio}" required />
-                            </div>
-                            <div class="form-group col-md-2">
-                                <label>Consola:</label>                       
-                                <select name="consola" id="consola" class="form-control" name="consola" >
-                                    <c:forEach var="con" items="${consolaBean.consolas}" >
-                                        <option value="${con.nombre}">${con.nombre}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Url de la imagen</label>
-                            <input type="text"  name="url" id="url" class="form-control" value="${url}"  required />
-                        </div>
-                        <div class="form-group">
-                            <label>Cantidad:</label>
-                            <input type="number" id="cantidad" class="form-control" name="cantidad" value="${cantidad}" required />
-                        </div>
-                        <div class="form-group">
-                            <label>Fecha de Lanzamiento</label>
-                            <input type="text" name="fechaLanzamiento" id="fechaLanzamiento" class="form-control" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" placeholder="dd/mm/yyyy" value="${fechaLanzamiento}" required /><br>
-                        </div>
-                        <input type="submit" id="actualizar" name="actualizar" value="Editar" />
-                        <input type="reset" id="limpiar" name="limpiar" value="Limpiar" />
-                    </form>
+                    </div>
                 </div>
             </div>
         </section>

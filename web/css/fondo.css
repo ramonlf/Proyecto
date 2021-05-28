@@ -11,3 +11,15 @@ and open the template in the editor.
 body{
     background-image: url(../fotos/logo/cyber-gif.gif); 
 }
+
+nav {
+    background-color: #000;
+    color: #18bc9c;
+}
+
+.card{
+    background: rgb(77, 75, 75);
+    color: white;
+    border: solid black;
+}
+
