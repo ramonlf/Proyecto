@@ -18,8 +18,10 @@ nav {
 }
 
 .card{
-    background: rgb(77, 75, 75);
-    color: white;
-    border: solid black;
+    background-color: rgb(199, 202, 255) ;
+    color: black;
+    opacity: 97%;
+    
+    box-shadow:0 0 60px #fe00f6;
 }
 

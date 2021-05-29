@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Editar juego ${nombre}</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -62,6 +62,9 @@
             <div class="container">
                 <div class="col-sm-offset-2 col-sm-12 offset-xl-0 col-xl-12 offset-lg-0 col-lg-12">
                     <div class="card card-default">
+                        <div class="card-header">
+                            <h1>Editar juego: ${nombre}</h1>
+                        </div>
                         <div class="card-body">
                             <form action="EditarJuego" method="POST">
                                 <div class="form-group">
@@ -103,6 +106,7 @@
                                 <input type="reset" id="limpiar" name="limpiar" value="Limpiar" />
                             </form>
                         </div>
+                        <a href="verJuego.jsp" class="btn btn-primary">Volver</a>
                     </div>
                 </div>
             </div>

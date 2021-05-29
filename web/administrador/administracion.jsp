@@ -17,6 +17,7 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="../css/administracion.css">
         </head>
         <body>
             <nav class="navbar navbar-expand-lg navbar-light text-light">
@@ -58,46 +59,47 @@
 
                 </div>
             </nav>
-                <h1>Zona de administración</h1>
+                
 
 
                 <section class="wrap mb-5" id="curriculo">
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-8 offset-sm-2">
-                                <div class="card">
+                                <div class="card mt-4" id="contenedorSombra">
                                     <div class="card-header">
+                                        <h1>Zona de administración</h1>
                                         <div class="card">
                                             <div class="card-header">
-                                                <a class="text-primary" href="">Administrar juegos</a>
+                                                <a class="" href="">Administrar juegos</a>
                                             </div>
                                             <!-- card header -->
 
                                             <div class="card-body">                                           
-                                                <a href="../juego/crearJuego.jsp" class="list-group-item text-primary"  >Añadir nuevo Juego</a>
-                                                <a href="../juego/verJuego.jsp" class="list-group-item text-primary"  >Ver juegos activos</a>
+                                                <a href="../juego/crearJuego.jsp" class="list-group-item"  >Añadir nuevo Juego</a>
+                                                <a href="../juego/verJuego.jsp" class="list-group-item"  >Ver juegos activos</a>
                                             </div>
                                             <!-- card body -->
 
                                             <div class="card-header">
-                                                <a class="text-primary" href="">Administrar consola</a>
+                                                <a class="" href="">Administrar consolas</a>
                                             </div>
                                             <!-- card header -->
 
                                             <div class="card-body">                                           
-                                                <a href="../consola/crearConsola.jsp" class="list-group-item text-primary"  >Añadir nueva consola</a>
-                                                <a href="../consola/verConsola.jsp" class="list-group-item text-primary"  >Ver consola activas</a>
+                                                <a href="../consola/crearConsola.jsp" class="list-group-item"  >Añadir nueva consola</a>
+                                                <a href="../consola/verConsola.jsp" class="list-group-item"  >Ver consola activas</a>
                                             </div>
                                             <!-- card body -->
 
 
                                             <div class="card-header">
-                                                <a class="text-primary" href="">Administrar consola</a>
+                                                <a class="" href="">Administrar usuarios</a>
                                             </div>
                                             <!-- card header -->
 
                                             <div class="card-body">                                           
-                                                <a href="../usuario/verUsuario.jsp" class="list-group-item text-primary"  >Ver usuarios activos</a>
+                                                <a href="../usuario/verUsuario.jsp" class="list-group-item"  >Ver usuarios activos</a>
                                             </div>
                                             <!-- card body -->
 
@@ -105,6 +107,7 @@
                                         <!-- card -->
                                     </div>
                                     <!-- card header-->
+                                    <a href="../index.jsp" class="btn btn-primary">Volver</a>
                                 </div>
                                 <!-- Card -->
                             </div>

@@ -18,6 +18,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/fondo.css">
     </head>
 </head>
 <body>
@@ -52,7 +53,9 @@
                     </button>
                     <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item text-light" href="usuario/editarPerfil"><i class="fa fa-user mr-1"></i>Editar Perfil</a>
-                        <a class="dropdown-item text-light" href="administrador/administracion.jsp"><i class="fa fa-user mr-1"></i>Administrar Sitio</a>
+                        <c:if test="${usuario.administrador}">
+                            <a class="dropdown-item text-light" href="administrador/administracion.jsp"><i class="fa fa-user mr-1"></i>Administrar Sitio</a>
+                        </c:if>
                         <a class="dropdown-item text-light" href="CerrarSesion"><i class="fa fa-power-off mr-1"></i>Cerrar Sesion</a>
                     </div>
                 </div>
@@ -62,15 +65,16 @@
     </nav>
     <div>
 
-        <div class="row">
+        <div class="row offset-lg-1 col-lg-10">
             <c:forEach var="jue" items="${juegoBean.juegos}">
                 <div class="col-lg-2 ml-2">
-                    <div class="card border">
+                    <div class="card border mt-3">
                         <img class="card-img-top" src="fotos/juegos/${jue.url}" alt="Imagen ${jue.nombre}  ${jue.consola.nombre}">
                         <div class="card-body">
                             <h5 class="card-title">${jue.nombre}</h5>
                             <p class="card-text">Precio: ${jue.precio} &#8364;</p>
                             <form action="MostrarJuego" method="POST">
+                                <input type="hidden" value="id" name="id" id="id" />
                                 <button type="submit" class="btn btn-primary">Añadir</button>
                             </form>
                         </div>

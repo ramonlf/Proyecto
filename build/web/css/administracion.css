@@ -4,7 +4,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 28-may-2021, 19:14:44
+    Created on : 29-may-2021, 10:31:15
     Author     : Ramon
 */
 
@@ -17,11 +17,15 @@ nav {
     color: #18bc9c;
 }
 
-.card{
+.card,.card-body, .list-group-item{
     background-color: rgb(199, 202, 255) ;
     color: black;
     opacity: 97%;
-    
+
+
+
+
+}
+.card:first-child{
     box-shadow:0 0 60px #fe00f6;
 }
-
