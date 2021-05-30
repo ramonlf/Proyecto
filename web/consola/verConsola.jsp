@@ -18,44 +18,92 @@
         <link rel="stylesheet" href="../css/fondo.css">
     </head>
     <body>
-        <h1>Consolas actuales</h1>
-        <a href="crearConsola.jsp" class="btn btn-primary m-2">Añadir consola</a>
-        <table id="tabla" class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Generacion</th>
-                    <th>Fecha de Lanzamiento</th>
-                    <th>URL</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <td colspan="6"><input type="text" id="buscar" class="form-control" placeholder="Introduce algo para filtrar..."/></td>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach var="con" items="${consolaBean.consolas}">
-                    <tr>
-                        <td>${con.nombre}</td>
-                        <td>${con.generacion}</td>
-                        <td>${con.fechaLanzamientoCorta}</td>
-                        <td>${con.url}</td>
-                        <td>
-                            <form action="EditarConsola" method="POST">
-                                <input type="hidden" name="id" value="${con.id}">
-                                <input type="submit" value="Editar">
 
-                                </td>
-                                <td>
-                                    <input type="submit" id="eliminar" name="eliminar" value="Eliminar" />
-                            </form>
-                        </td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
-        <a href="../administrador/administracion.jsp">Volver</a>
+        <nav class="navbar navbar-expand-lg navbar-light text-light">
+            <a class="navbar-brand ml-lg-5" href="../index.jsp"><img src="../fotos/logo/logo.png" width="80" alt="Logo"></a>
+            <button class="navbar-toggler" id="botonHamburguesa" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="text-light"><i class="fa fa-bars fa-2x"></i></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto" id="menu">
+                    <li class="nav-item active">
+                        <a class="nav-link text-light ml-lg-1" href="../index.jsp">Inicio <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link text-light" href="../juego/directorioJuegos.jsp">Juegos</a>
+                    </li>
+
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-primary my-2 " type="submit" id="search"><i class="fa fa-search"></i></button>
+                </form>
+                <c:if test="${usuario == null}">
+                    <a class="btn btn-primary  my-sm-0" id="login" href="../usuario/login.jsp"><i class="fa fa-user mr-1"></i>Iniciar Sesión</a>
+                    <a class="btn btn-primary  my-sm-0 ml-lg-2" id="sigUp" href="../usuario/registrarse.jsp"><i class="fas fa-sign-in-alt"></i>Registrarse</a>
+                </c:if>
+                <c:if test="${usuario != null}">    
+                    <div class="dropdown ml-lg-2">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-user mr-2"></i>${usuario.login}
+                        </button>
+                        <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item text-light" href="../usuario/editarPerfil"><i class="fa fa-user mr-1"></i>Editar Perfil</a>
+                            <a class="dropdown-item text-light" href="../administrador/administracion.jsp"><i class="fa fa-user mr-1"></i>Administrar Sitio</a>
+                            <a class="dropdown-item text-light" href="../CerrarSesion"><i class="fa fa-power-off mr-1"></i>Cerrar Sesion</a>
+                        </div>
+                    </div>
+                </c:if>
+
+            </div>
+        </nav>
+        <div class="offset-lg-2 col-lg-8"> 
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h1>Consolas actuales</h1>
+                </div>
+                <div class="card-body">
+                    <a href="crearConsola.jsp" class="btn btn-primary m-2">Añadir consola</a>
+                    <table id="tabla" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Generacion</th>
+                                <th>Fecha de Lanzamiento</th>
+                                <th>URL</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <td colspan="6"><input type="text" id="buscar" class="form-control" placeholder="Introduce algo para filtrar..."/></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="con" items="${consolaBean.consolas}">
+                                <tr>
+                                    <td>${con.nombre}</td>
+                                    <td>${con.generacion}</td>
+                                    <td>${con.fechaLanzamientoCorta}</td>
+                                    <td>${con.url}</td>
+                                    <td>
+                                        <form action="EditarConsola" method="POST">
+                                            <input type="hidden" name="id" value="${con.id}">
+                                            <input type="submit" value="Editar">
+
+                                            </td>
+                                            <td>
+                                                <input type="submit" id="eliminar" name="eliminar" value="Eliminar" />
+                                        </form>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+                <a href="../administrador/administracion.jsp" class="btn btn-primary" >Volver</a>
+            </div>
+        </div>
     </body>
     <script src="../js/filtro.js"></script>
 </html>

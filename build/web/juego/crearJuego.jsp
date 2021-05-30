@@ -61,8 +61,6 @@
                 </div>
             </nav>
 
-            <h1>Añadir un juego</h1>
-
             <section class=" pb-5 mt-4" id="admin-course">
                 <div class="container">
                     <div class="col-sm-offset-2 col-sm-12 offset-xl-0 col-xl-12 offset-lg-0 col-lg-12">
@@ -71,7 +69,7 @@
                                 <h1>Añadir juego</h1>
                             </div>
                             <div class="card-body">
-                                <form action="CrearJuego" method="POST">
+                                <form action="EditarConsola" method="POST">
                                     <div class="form-group">
                                         <label>Nombre: </label>
                                         <input type="hidden" name="id" id="id" value="${id}" />
