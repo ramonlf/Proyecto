@@ -59,63 +59,70 @@
 
                 </div>
             </nav>
-                
 
 
-                <section class="wrap mb-5" id="curriculo">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-8 offset-sm-2">
-                                <div class="card mt-4" id="contenedorSombra">
-                                    <div class="card-header">
-                                        <h1>Zona de administración</h1>
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <a class="" href="">Administrar juegos</a>
-                                            </div>
-                                            <!-- card header -->
 
-                                            <div class="card-body">                                           
-                                                <a href="../juego/crearJuego.jsp" class="list-group-item"  >Añadir nuevo Juego</a>
-                                                <a href="../juego/verJuego.jsp" class="list-group-item"  >Ver juegos activos</a>
-                                            </div>
-                                            <!-- card body -->
-
-                                            <div class="card-header">
-                                                <a class="" href="">Administrar consolas</a>
-                                            </div>
-                                            <!-- card header -->
-
-                                            <div class="card-body">                                           
-                                                <a href="../consola/crearConsola.jsp" class="list-group-item"  >Añadir nueva consola</a>
-                                                <a href="../consola/verConsola.jsp" class="list-group-item"  >Ver consola activas</a>
-                                            </div>
-                                            <!-- card body -->
-
-
-                                            <div class="card-header">
-                                                <a class="" href="">Administrar usuarios</a>
-                                            </div>
-                                            <!-- card header -->
-
-                                            <div class="card-body">                                           
-                                                <a href="../usuario/verUsuario.jsp" class="list-group-item"  >Ver usuarios activos</a>
-                                            </div>
-                                            <!-- card body -->
-
+            <section class="wrap mb-5" id="curriculo">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8 offset-sm-2">
+                            <div class="card mt-4" id="contenedorSombra">
+                                <div class="card-header">
+                                    <h1>Zona de administración</h1>
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <a class="" href="">Administrar juegos</a>
                                         </div>
-                                        <!-- card -->
+                                        <!-- card header -->
+
+                                        <div class="card-body">                                           
+                                            <a href="../juego/crearJuego.jsp" class="list-group-item"  >Añadir nuevo Juego</a>
+                                            <a href="../juego/verJuego.jsp" class="list-group-item"  >Ver juegos activos</a>
+                                        </div>
+                                        <!-- card body -->
+
+                                        <div class="card-header">
+                                            <a class="" href="">Administrar consolas</a>
+                                        </div>
+                                        <!-- card header -->
+
+                                        <div class="card-body">                                           
+                                            <a href="../consola/crearConsola.jsp" class="list-group-item"  >Añadir nueva consola</a>
+                                            <a href="../consola/verConsola.jsp" class="list-group-item"  >Ver consola activas</a>
+                                        </div>
+                                        <!-- card body -->
+
+
+                                        <div class="card-header">
+                                            <a class="" href="">Administrar usuarios</a>
+                                        </div>
+                                        <!-- card header -->
+
+                                        <div class="card-body">                                           
+                                            <a href="../usuario/verUsuario.jsp" class="list-group-item"  >Ver usuarios activos</a>
+                                        </div>
+                                        <!-- card body -->
+
                                     </div>
-                                    <!-- card header-->
-                                    <a href="../home.jsp" class="btn btn-primary">Volver</a>
+                                    <!-- card -->
                                 </div>
-                                <!-- Card -->
+                                <!-- card header-->
+                                <a href="../home.jsp" class="btn btn-primary">Volver</a>
                             </div>
+                            <!-- Card -->
                         </div>
-                        <!-- row -->
                     </div>
-                    <!-- Container -->
-                </section>
-        </body>
-    </c:if>
+                    <!-- row -->
+                </div>
+                <!-- Container -->
+            </section>
+        </c:if>
+        <footer id="footer " class=" pt-2 pb-1 fixed-bottom ">
+            <div class="container-fluid mt-0 ">
+                <p> &copy; 2021 PlayMon.com <span class="float-right"> <a href="../juego/directorio.jsp">Directorio</a></span> <span class="float-right mr-2"><a href="../home.jsp">Inicio</a></span> </p>
+
+            </div>
+        </footer>
+    </body>
+
 </html>

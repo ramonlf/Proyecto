@@ -113,6 +113,13 @@
                 </div>
             </div>
         </section>
+
+        <footer id="footer " class=" pt-2 pb-1 fixed-bottom ">
+            <div class="container-fluid mt-0 ">
+                <p> &copy; 2021 PlayMon.com <span class="float-right"> <a href="../juego/directorio.jsp">Directorio</a></span> <span class="float-right mr-2"><a href="../home.jsp">Inicio</a></span> </p>
+
+            </div>
+        </footer>
     </body>
 
 </html>

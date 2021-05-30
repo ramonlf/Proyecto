@@ -37,20 +37,19 @@ public class VistaJuego extends HttpServlet {
         long id = Long.parseLong(request.getParameter("id"));
         JuegoBean juego = (JuegoBean) request.getSession().getAttribute("juegoBean");
         Juego nuevo = juego.buscarJuego(id);
-        
-       
-                 
-                request.setAttribute("id", nuevo.getId());
-                request.setAttribute("nombre", nuevo.getNombre());
-                request.setAttribute("fechaLanzamiento", nuevo.getFechaLanzamientoCorta());
-                request.setAttribute("precio", nuevo.getPrecio());
-                request.setAttribute("cantidad", nuevo.getCantidad());
-                request.setAttribute("genero", nuevo.getGenero());
-                request.setAttribute("url", nuevo.getUrl());
-                request.setAttribute("consola", nuevo.getConsola().getNombre());
-                getServletContext().getRequestDispatcher("/juego/vistaJuego.jsp").forward(request, response);
-            
-            
+
+        if (request.getParameter("vistaJuego") != null) {
+            request.setAttribute("id", nuevo.getId());
+            request.setAttribute("nombre", nuevo.getNombre());
+            request.setAttribute("fechaLanzamiento", nuevo.getFechaLanzamientoCorta());
+            request.setAttribute("precio", nuevo.getPrecio());
+            request.setAttribute("cantidad", nuevo.getCantidad());
+            request.setAttribute("genero", nuevo.getGenero());
+            request.setAttribute("url", nuevo.getUrl());
+            request.setAttribute("consola", nuevo.getConsola().getNombre());
+            getServletContext().getRequestDispatcher("/juego/vistaJuego.jsp").forward(request, response);
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

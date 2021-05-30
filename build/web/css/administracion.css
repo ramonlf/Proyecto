@@ -29,3 +29,28 @@ nav {
 .card:first-child{
     box-shadow:0 0 60px #fe00f6;
 }
+
+footer {
+    background-color: #000;
+    color: #18bc9c;
+}
+
+footer span a {
+    color: #18bc9c;
+    text-decoration: none;
+}
+
+footer span a:hover {
+    color: #17947b;
+    text-decoration: none;
+}
+
+.title {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#footer{
+    position: fixed;
+    bottom: 0;
+}
