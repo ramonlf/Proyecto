@@ -51,7 +51,7 @@
                                 <i class="fa fa-user mr-2"></i>${usuario.login}
                             </button>
                             <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item text-light" href="../usuario/editarPerfil"><i class="fa fa-user mr-1"></i>Editar Perfil</a>
+                                <a class="dropdown-item text-light" href="../usuario/EditarPerfil"><i class="fa fa-user mr-1"></i>Editar Perfil</a>
                                 <a class="dropdown-item text-light" href="../administrador/administracion.jsp"><i class="fa fa-user mr-1"></i>Administrar Sitio</a>
                                 <a class="dropdown-item text-light" href="../CerrarSesion"><i class="fa fa-power-off mr-1"></i>Cerrar Sesion</a>
                             </div>

@@ -48,7 +48,7 @@
                             <i class="fa fa-user mr-2"></i>${usuario.login}
                         </button>
                         <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item text-light" href="editarPerfil"><i class="fa fa-user mr-1"></i>Editar Perfil</a>
+                            <a class="dropdown-item text-light" href="EditarPerfil"><i class="fa fa-user mr-1"></i>Editar Perfil</a>
                             <c:if test="${usuario.administrador}">
                                 <a class="dropdown-item text-light" href="administrador/administracion.jsp"><i class="fa fa-user mr-1"></i>Administrar Sitio</a>
                             </c:if>
