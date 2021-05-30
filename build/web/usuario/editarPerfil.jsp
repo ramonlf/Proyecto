@@ -20,7 +20,7 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light text-light">
-            <a class="navbar-brand ml-lg-5" href="../index.jsp"><img src="../fotos/logo/logo.png" width="80" alt="Logo"></a>
+            <a class="navbar-brand ml-lg-5" href="../home.jsp"><img src="../fotos/logo/logo.png" width="80" alt="Logo"></a>
             <button class="navbar-toggler" id="botonHamburguesa" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="text-light"><i class="fa fa-bars fa-2x"></i></span>
             </button>
@@ -28,7 +28,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto" id="menu">
                     <li class="nav-item active">
-                        <a class="nav-link text-light ml-lg-1" href="../index.jsp">Inicio <span class="sr-only">(current)</span></a>
+                        <a class="nav-link text-light ml-lg-1" href="../home.jsp">Inicio <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link text-light" href="../juego/directorioJuegos.jsp">Juegos</a>
@@ -58,8 +58,8 @@
 
             </div>
         </nav>
-        
-         <section class=" pb-5 mt-4" id="admin-course">
+
+        <section class=" pb-5 mt-4" id="admin-course">
             <div class="container">
                 <div class="col-sm-offset-2 col-sm-12 offset-xl-0 col-xl-12 offset-lg-0 col-lg-12">
                     <div class="card card-default">
