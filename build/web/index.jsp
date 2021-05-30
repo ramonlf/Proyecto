@@ -7,10 +7,10 @@
 <%@page contentType="text/html" pageEncoding="iso-8859-1"%>
 <!DOCTYPE html>
 <html>
-    <jsp:useBean id="juegoBean" class="modelo.modelo.JuegoBean"/>
+    
 
     <head>
-        <title>TODO supply a title</title>
+        <title>Inicio</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -67,17 +67,20 @@
 
         <div class="row offset-lg-1 col-lg-10">
             <c:forEach var="jue" items="${juegoBean.juegos}">
+
                 <div class="col-lg-2 ml-2">
                     <div class="card border mt-3">
                         <img class="card-img-top" src="fotos/juegos/${jue.url}" alt="Imagen ${jue.nombre}  ${jue.consola.nombre}">
                         <div class="card-body">
                             <h5 class="card-title">${jue.nombre}</h5>
                             <p class="card-text">Precio: ${jue.precio} &#8364;</p>
-                            <form action="MostrarJuego" method="POST">
-                                <input type="hidden" value="id" name="id" id="id" />
-                                <button type="submit" class="btn btn-primary">Añadir</button>
-                            </form>
+
+
                         </div>
+                        <form action="juego/VistaJuego" method="POST">
+                            <input type="hidden" name="id" value="${jue.id}" />
+                            <input type="submit" value="Añadir" name="vistaJuego" class="btn-primary btn" />
+                        </form>
                     </div>
                 </div>
             </c:forEach>

@@ -12,13 +12,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.entidades.Juego;
+import modelo.modelo.JuegoBean;
 
 /**
  *
- * @author usuario
+ * @author Ramon
  */
-@WebServlet(name = "CerrarSesion", urlPatterns = {"/CerrarSesion"})
-public class CerrarSesion extends HttpServlet {
+@WebServlet(name = "VistaJuego", urlPatterns = {"/juego/VistaJuego"})
+public class VistaJuego extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,9 +33,24 @@ public class CerrarSesion extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getSession().invalidate();
-        getServletContext().getRequestDispatcher("/IniciarSesiones").forward(request, response);
-
+        response.setContentType("text/html;charset=UTF-8");
+        long id = Long.parseLong(request.getParameter("id"));
+        JuegoBean juego = (JuegoBean) request.getSession().getAttribute("juegoBean");
+        Juego nuevo = juego.buscarJuego(id);
+        
+       
+                 
+                request.setAttribute("id", nuevo.getId());
+                request.setAttribute("nombre", nuevo.getNombre());
+                request.setAttribute("fechaLanzamiento", nuevo.getFechaLanzamientoCorta());
+                request.setAttribute("precio", nuevo.getPrecio());
+                request.setAttribute("cantidad", nuevo.getCantidad());
+                request.setAttribute("genero", nuevo.getGenero());
+                request.setAttribute("url", nuevo.getUrl());
+                request.setAttribute("consola", nuevo.getConsola().getNombre());
+                getServletContext().getRequestDispatcher("/juego/vistaJuego.jsp").forward(request, response);
+            
+            
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

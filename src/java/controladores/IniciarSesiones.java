@@ -12,13 +12,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import modelo.modelo.ConsolaBean;
+import modelo.modelo.JuegoBean;
+import modelo.modelo.UsuarioBean;
 
 /**
  *
- * @author usuario
+ * @author Ramon
  */
-@WebServlet(name = "CerrarSesion", urlPatterns = {"/CerrarSesion"})
-public class CerrarSesion extends HttpServlet {
+@WebServlet(name = "IniciarSesiones", urlPatterns = {"/IniciarSesiones"})
+public class IniciarSesiones extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,9 +35,13 @@ public class CerrarSesion extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getSession().invalidate();
-        getServletContext().getRequestDispatcher("/IniciarSesiones").forward(request, response);
-
+        response.setContentType("text/html;charset=UTF-8");
+        HttpSession sesion = request.getSession();
+        sesion.setAttribute("usuarioBean", new UsuarioBean());
+        sesion.setAttribute("consolaBean", new ConsolaBean());
+        sesion.setAttribute("juegoBean", new JuegoBean());
+        response.sendRedirect("index.jsp");
+        return;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

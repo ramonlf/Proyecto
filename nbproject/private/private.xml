@@ -7,20 +7,27 @@
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/usuario/verUsuario.jsp</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/index.jsp</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/css/administracion.css</file>
-            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/controladores/EditarJuego.java</file>
-            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/juego/editarJuego.jsp</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/usuario/editarUsuario.jsp</file>
-            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/consola/verConsola.jsp</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/juego/verJuego.jsp</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/fotos/logo/logo.png</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/usuario/registrarse.jsp</file>
-            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/modelo/modelo/UsuarioBean.java</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/controladores/EditarUsuario.java</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/consola/crearConsola.jsp</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/juego/crearJuego.jsp</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/css/fondo.css</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/administrador/administracion.jsp</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/usuario/login.jsp</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/usuario/editarPerfil.jsp</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/controladores/EditarPerfil.java</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/controladores/EditarJuego.java</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/juego/editarJuego.jsp</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/controladores/VistaJuego.java</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/controladores/Login.java</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/consola/verConsola.jsp</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/controladores/CerrarSesion.java</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/modelo/modelo/UsuarioBean.java</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/controladores/IniciarSesiones.java</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/juego/vistaJuego.jsp</file>
         </group>
     </open-files>
 </project-private>
