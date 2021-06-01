@@ -65,7 +65,7 @@
             <c:forEach var="jue" items="${juegoBean.juegos}">
 
                 <div class="col-lg-2 ml-2">
-                    <div class="card border mt-3">
+                    <div class="card border mt-3 mb-1">
                         <img class="card-img-top" src="fotos/juegos/${jue.url}" alt="Imagen ${jue.nombre}  ${jue.consola.nombre}">
                         <div class="card-body">
                             <h5 class="card-title">${jue.nombre}</h5>

@@ -61,13 +61,12 @@
 
             </div>
         </nav>
+        <div class="offset-lg-2 card mt-4 mb-4">
+            <div class="row mt-5">
 
-        <div class="col-lg-5 offset-lg-4">
-            <div class="card mt-4">
-                <div class="card-header">
-                    <h1 class="text-center">${nombre}</h1>
-                </div>
-                <div class="card-body">
+                <!--Principio foto y botones-->
+                <div class=" col-lg-4 offset-lg-1">
+
                     <div id="fotoAnime">
                         <div class="imagen">
                             <figure>
@@ -75,15 +74,47 @@
                             </figure>
                         </div>
                     </div>
+                    <div class="container rounded-left rounded-right shadow" id="estado">
+                        <p class="text-center p-2 ">Disponible</p>
+
+                    </div>
+
+                    <div class="container rounded-left rounded-right shadow" id="botones">
+                        <p class="text-center p-2 "><a href="">SEGUIR</a></p>
+
+                    </div>
                 </div>
-                <div class="container rounded-left rounded-right shadow" id="estado">
-                    <p class="text-center ">En stock</p>
-
-                </div>
-
-                <div class="container rounded-left rounded-right shadow" id="botones">
-                    <p class="text-center "><a href="">Añadir</a></p>
-
+                <!--Fin Foto y botones-->
+                <div class="col-lg-6 ">
+                    <div class="container pl-5 pt-2 pb-2 fondoBlanco rounded-right rounded-left">
+                        <h4 class="font-weight-bold">${nombre} (${consola}) ${consola} clave GLOBAL</h4>
+                        <div class="votos mb-2">
+                            <div class="contenedor">
+                                <span id="nota">3.9</span>
+                            </div>
+                            <div class="contenedor">
+                                <form class="d-inline">
+                                    <span class="clasificacion">
+                                        <input id="radio1" type="radio" name="estrellas" value="5">
+                                        <label for="radio1">★</label>
+                                        <input id="radio2" type="radio" name="estrellas" value="4">
+                                        <label for="radio2">★</label>
+                                        <input id="radio3" type="radio" name="estrellas" value="3">
+                                        <label for="radio3">★</label>
+                                        <input id="radio4" type="radio" name="estrellas" value="2">
+                                        <label for="radio4">★</label>
+                                        <input id="radio5" type="radio" name="estrellas" value="1">
+                                        <label for="radio5">★</label>
+                                    </span>
+                                </form>
+                            </div>
+                        </div>
+                        <div id="descripcion">
+                            <h4>${nombre} (${consola})</h4>
+                            <p>${descripcion}
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

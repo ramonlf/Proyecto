@@ -19,11 +19,11 @@ nav {
 
 .card{
     background-color: rgb(199, 202, 255) ;
-    
+
     color: black;
     opacity: 97%;
     width: 80%;
-    
+
     box-shadow:0 0 60px #fe00f6;
 }
 
@@ -36,8 +36,9 @@ nav {
     border-radius: 3px;
     margin-bottom: 10px;
     position: relative;
-    height: 100%
+    height: 500px
 }
+
 
 .imagen figure img {
     position: absolute;
@@ -62,7 +63,7 @@ nav {
 #estado {
     max-width: 80%;
     background:#00c853;
-     
+
 }
 
 
@@ -102,4 +103,69 @@ footer span a:hover {
 .title {
     font-size: 25px;
     font-weight: bold;
+}
+#form {
+    width: 250px;
+    margin: 0 auto;
+    height: 50px;
+}
+
+#form p {
+    text-align: center;
+}
+
+#form label {
+    font-size: 20px;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+label {
+    color: grey;
+}
+
+.clasificacion {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+}
+
+label:hover,
+label:hover~label {
+    color: orange;
+}
+
+input[type="radio"]:checked~label {
+    color: orange;
+}
+.votos {
+    background-color: rgba(66, 66, 66, .9);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 20px;
+    min-height: 50px;
+    border-radius: 3px;
+    width: 165px;
+    margin: 0 auto;
+    margin-bottom: 5px;
+    position: relative;
+}
+
+.contenedor {
+    display: inline;
+    width: 50%;
+    margin-left: 2%;
+}
+#nota {
+    width: 60px;
+    line-height: 30px;
+    left: 0;
+    top: 0;
+    border-radius: 3px 0 0 3px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 25px;
+    letter-spacing: -1px;
+    text-align: center;
 }

@@ -47,6 +47,7 @@ public class VistaJuego extends HttpServlet {
             request.setAttribute("genero", nuevo.getGenero());
             request.setAttribute("url", nuevo.getUrl());
             request.setAttribute("consola", nuevo.getConsola().getNombre());
+            request.setAttribute("descripcion", nuevo.getDescripcion());
             getServletContext().getRequestDispatcher("/juego/vistaJuego.jsp").forward(request, response);
         }
 
