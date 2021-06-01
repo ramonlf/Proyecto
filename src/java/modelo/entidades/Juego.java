@@ -48,6 +48,8 @@ public class Juego implements Serializable {
     private double precio;
     @Column
     private String url;
+    @Column(length = 400)
+    private String descripcion;
 
     @ManyToOne
     @JoinColumn(name = "Consola")
@@ -56,7 +58,7 @@ public class Juego implements Serializable {
     public Juego(){
     }
     
-    public Juego(String nombre, String genero, Date fechaLanzamiento, int cantidad, double precio, String url , Consola consola) {
+    public Juego(String nombre, String genero, Date fechaLanzamiento, int cantidad, double precio, String url , Consola consola, String descripcion) {
         this.nombre = nombre;
         this.genero = genero;
         this.fechaLanzamiento = fechaLanzamiento;
@@ -64,6 +66,7 @@ public class Juego implements Serializable {
         this.precio = precio;
         this.url = url;
         this.consola = consola;
+        this.descripcion = descripcion;
     }
 
     
@@ -132,6 +135,16 @@ public class Juego implements Serializable {
     public void setConsola(Consola consola) {
         this.consola = consola;
     }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    
+    
 
     @Override
     public int hashCode() {

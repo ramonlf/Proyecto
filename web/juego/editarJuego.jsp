@@ -93,6 +93,10 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label>Descripcion:</label>
+                                    <textarea class="form-control" name="descripcion" id="descripcion"  required>${descripcion}</textarea>
+                                </div>
+                                <div class="form-group">
                                     <label>Url de la imagen</label>
                                     <input type="text"  name="url" id="url" class="form-control" value="${url}"  required />
                                 </div>

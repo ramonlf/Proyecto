@@ -63,6 +63,7 @@ public class EditarJuego extends HttpServlet {
             nuevo.setGenero(toUpperCaseFirst(request.getParameter("genero")));
             nuevo.setUrl(request.getParameter("url"));
             nuevo.setFechaLanzamiento(parseFecha(request.getParameter("fechaLanzamiento")));
+            nuevo.setDescripcion(request.getParameter("descripcion"));
             try{
                 juego.actualizarJuego(nuevo);
             }catch(Exception e){
@@ -88,6 +89,7 @@ public class EditarJuego extends HttpServlet {
                 request.setAttribute("genero", nuevo.getGenero());
                 request.setAttribute("url", nuevo.getUrl());
                 request.setAttribute("consola", nuevo.getConsola().getNombre());
+                request.setAttribute("descripcion", nuevo.getDescripcion());
                 getServletContext().getRequestDispatcher("/juego/editarJuego.jsp").forward(request, response);
             
             }

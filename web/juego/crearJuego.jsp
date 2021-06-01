@@ -71,7 +71,7 @@
                                 <h1>Añadir juego</h1>
                             </div>
                             <div class="card-body">
-                                <form action="EditarConsola" method="POST">
+                                <form action="CrearJuego" method="POST">
                                     <div class="form-group">
                                         <label>Nombre: </label>
                                         <input type="hidden" name="id" id="id" value="${id}" />
@@ -96,6 +96,10 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <label>Descripcion:</label>
+                                        <textarea class="form-control" name="descripcion" id="descripcion" required>${descripcion}</textarea>
+                                    </div>
+                                    <div class="form-group">
                                         <label>Url de la imagen</label>
                                         <input type="file"  accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*" name="url" id="url" class="form-control" value="${url}"  required />
                                     </div>
@@ -107,6 +111,8 @@
                                         <label>Fecha de Lanzamiento</label>
                                         <input type="text" name="fechaLanzamiento" id="fechaLanzamiento" class="form-control" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" placeholder="dd/mm/yyyy" value="${fechaLanzamiento}" required /><br>
                                     </div>
+
+
                                     <input type="submit" id="actualizar" name="crear" value="Añadir juego" />
                                     <input type="reset" id="limpiar" name="limpiar" value="Limpiar" />
                                 </form>

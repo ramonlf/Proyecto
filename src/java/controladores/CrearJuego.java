@@ -52,6 +52,7 @@ public class CrearJuego extends HttpServlet {
         Double precio = Double.parseDouble(request.getParameter("precio"));
         String url = request.getParameter("url");
         String consola = request.getParameter("consola");
+        String descripcion = request.getParameter("descripcion");
 
         ConsolaJpaController auxConsola = new ConsolaJpaController(Persistence.createEntityManagerFactory("ProyectoFinalPU"));
         List<Consola> consolas = auxConsola.findConsolaEntities();
@@ -64,7 +65,7 @@ public class CrearJuego extends HttpServlet {
 
         JuegoBean juego = new JuegoBean();
 
-        Juego nuevo = new Juego(nombre, genero, parseFecha(fechaLanzamiento), cantidad, precio, url, aux);
+        Juego nuevo = new Juego(nombre, genero, parseFecha(fechaLanzamiento), cantidad, precio, url, aux, descripcion);
 
         
         JuegoJpaController jjc = new JuegoJpaController(Persistence.createEntityManagerFactory("ProyectoFinalPU"));
@@ -100,6 +101,7 @@ public class CrearJuego extends HttpServlet {
             request.setAttribute("precio", precio);
             request.setAttribute("cantidad", cantidad);
             request.setAttribute("url", url);
+            request.setAttribute("descripcion", descripcion);
             getServletContext().getRequestDispatcher("/juego/crearJuego.jsp").forward(request, response);
         } else {
             response.sendRedirect(response.encodeRedirectURL("../administrador/administracion.jsp"));
