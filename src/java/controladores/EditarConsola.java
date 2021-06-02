@@ -41,37 +41,49 @@ public class EditarConsola extends HttpServlet {
         long id = Long.parseLong(request.getParameter("id"));
         ConsolaBean consola = (ConsolaBean) request.getSession().getAttribute("consolaBean");
         Consola nuevo = consola.buscarConsola(id);
-
+        Consola aux = consola.buscarConsola(id);
         if (request.getParameter("actualizar") != null) {
-            nuevo.setNombre(nuevo.getNombre());
+            nuevo.setNombre(request.getParameter("nombre"));
             nuevo.setFechaLanzamiento(parseFecha(request.getParameter("fechaLanzamiento")));
             nuevo.setGeneracion(Integer.parseInt(request.getParameter("generacion")));
             nuevo.setUrl(request.getParameter("url"));
             try {
                 consola.actualizarConsola(nuevo);
+                nuevo = consola.buscarConsola(id);
+                if (aux.equals(nuevo)) {                    
+                    error = "No se ha podido actualizar la consola";
+                }
             } catch (Exception e) {
-                error = "Error al actualizar el usuario";
+                error = "Error al actualizar la consola";
             }
-            response.sendRedirect("verConsola.jsp");
+            if (error != null) {
+                response.sendRedirect("verConsola.jsp?error=" + error);
+            } else {
+                response.sendRedirect("verConsola.jsp");
+            }
         } else {
             if (request.getParameter("eliminar") != null) {
                 try {
                     consola.eliminarConsola(id);
+                    error = "No se ha podido eliminar la consola";                    
                 } catch (Exception e) {
                     error = "Error al eliminar la consola";
+                    request.setAttribute("error", error);
                     getServletContext().getRequestDispatcher("/consola/verConsola.jsp").forward(request, response);
                 }
-                response.sendRedirect("verConsola.jsp");
-
+                response.sendRedirect("verConsola.jsp?error=" + error);
+                
             } else {
                 request.setAttribute("id", nuevo.getId());
                 request.setAttribute("nombre", nuevo.getNombre());
                 request.setAttribute("fechaLanzamiento", nuevo.getFechaLanzamientoCorta());
                 request.setAttribute("generacion", nuevo.getGeneracion());
                 request.setAttribute("url", nuevo.getUrl());
+                
                 getServletContext().getRequestDispatcher("/consola/editarConsola.jsp").forward(request, response);
             }
         }
+        
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 

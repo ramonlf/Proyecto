@@ -64,6 +64,7 @@ public class CrearConsola extends HttpServlet {
             request.setAttribute("generacion", generacion + "");
             request.setAttribute("fechaLanzamiento", fechaLanzamiento);
             request.setAttribute("url", url);
+            request.setAttribute("error", error);
             getServletContext().getRequestDispatcher("/consola/crearConsola.jsp").forward(request, response);
         } else {
             response.sendRedirect(response.encodeRedirectURL("../administrador/administracion.jsp"));

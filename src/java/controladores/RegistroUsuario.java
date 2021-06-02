@@ -62,18 +62,22 @@ public class RegistroUsuario extends HttpServlet {
         try{
             usuario.registroUsuario(nuevo);
         }catch(Exception e){
-            error = "Error al crear el usuario";
+            error = "El usuario ya existe";
         }
         
         if (error != null) {
+            request.setAttribute("dni", dni);
             request.setAttribute("error", error);
             request.setAttribute("nombre", nombre);
             request.setAttribute("login", login);
             request.setAttribute("password", password);
+            request.setAttribute("apellido", apellido);
+            request.setAttribute("email", email);
+            request.setAttribute("telefono", telefono);
+            request.setAttribute("fechaNacimiento", fechaNacimiento);
             getServletContext().getRequestDispatcher("/usuario/registrarse.jsp").forward(request, response);
         } else {
-            String mensaje = "Se ha dado de alta al Sanitario";
-            response.sendRedirect(response.encodeRedirectURL("../index.jsp?mensaje=" + mensaje));
+            response.sendRedirect(response.encodeRedirectURL("../index.jsp"));
         }
         
     }

@@ -74,6 +74,7 @@ public class EditarPerfil extends HttpServlet {
                 request.setAttribute("email", nuevo.getEmail());
                 request.setAttribute("telefono", nuevo.getTelefono());
                 request.setAttribute("fechaNacimiento", nuevo.getFechaNacimientoCorta());
+                request.setAttribute("error", error);
                 getServletContext().getRequestDispatcher("/usuario/editarPerfil.jsp").forward(request, response);
             }
         }

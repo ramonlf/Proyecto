@@ -67,6 +67,14 @@
                 <div class="container">
                     <div class="col-sm-offset-2 col-sm-12 offset-xl-0 col-xl-12 offset-lg-0 col-lg-12">
                         <div class="card card-default">
+                            <c:if test="${!empty error}">
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>${error}</strong> 
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </c:if>
                             <div class="card-header">
                                 <h1>Añadir juego</h1>
                             </div>

@@ -64,6 +64,7 @@
             <div class="container">
                 <div class="col-sm-offset-2 col-sm-12 offset-xl-0 col-xl-12 offset-lg-0 col-lg-12">
                     <div class="card card-default">
+                        
                         <div class="card-header">
                             <h1>Editar juego: ${nombre}</h1>
                         </div>

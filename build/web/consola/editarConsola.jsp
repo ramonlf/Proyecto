@@ -68,7 +68,7 @@
                         <h1>Editar consola: ${nombre}</h1>
                     </div>
                     <div class="card-body">
-                        <form action="EditarConsola" method="POST" >
+                        <form action="EditarConsola" method="GET" >
                             <div class="form-group">
                                 <input type="hidden" id="id" name="id" value="${id}" />
                                 <label>Nombre: </label>

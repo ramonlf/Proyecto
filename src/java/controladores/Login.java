@@ -61,7 +61,7 @@ public class Login extends HttpServlet {
                         sesion.setAttribute("usuarioBean", new UsuarioBean());
                         sesion.setAttribute("consolaBean", new ConsolaBean());
                         sesion.setAttribute("juegoBean", new JuegoBean());
-                        response.sendRedirect("../index.jsp");
+                        response.sendRedirect("../home.jsp");
                         return;
                     }
                 }

@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.entidades.Consola;
 import modelo.entidades.ConsolaJpaController;
 import modelo.entidades.Juego;
+import modelo.entidades.JuegoJpaController;
 import modelo.modelo.JuegoBean;
 
 /**
@@ -45,6 +46,7 @@ public class EditarJuego extends HttpServlet {
         long id = Long.parseLong(request.getParameter("id"));
         JuegoBean juego = (JuegoBean) request.getSession().getAttribute("juegoBean");
         Juego nuevo = juego.buscarJuego(id);
+        Juego juegoAux = nuevo;
 
         if (request.getParameter("actualizar") != null) {
             ConsolaJpaController auxConsola = new ConsolaJpaController(Persistence.createEntityManagerFactory("ProyectoFinalPU"));
@@ -64,23 +66,39 @@ public class EditarJuego extends HttpServlet {
             nuevo.setUrl(request.getParameter("url"));
             nuevo.setFechaLanzamiento(parseFecha(request.getParameter("fechaLanzamiento")));
             nuevo.setDescripcion(request.getParameter("descripcion"));
-            try{
-                juego.actualizarJuego(nuevo);
-            }catch(Exception e){
+            
+            JuegoJpaController jjc = new JuegoJpaController(Persistence.createEntityManagerFactory("ProyectoFinalPU"));
+            List<Juego> juegos = jjc.findJuegoEntities();
+            Juego auxJuego = null;
+
+            for (Juego jue : juegos) {
+                if (jue.getNombre().equals(request.getParameter("nombre")) && jue.getConsola().getNombre().equals(aux.getNombre())) {
+                    auxJuego = jue;
+                }
+            }
+
+            try {
+                if (auxJuego == null) {
+                    juego.actualizarJuego(nuevo);
+                } else {
+                    error = "El juego ya existe";
+                }
+
+            } catch (Exception e) {
                 error = "Error al actualizar el juego";
             }
-            response.sendRedirect("verJuego.jsp");
-        }else{
-            if(request.getParameter("eliminar") != null){
+            response.sendRedirect("verJuego.jsp?error=" + error);
+        } else {
+            if (request.getParameter("eliminar") != null) {
                 try {
                     juego.eliminarJuego(id);
                 } catch (Exception e) {
-                    error = "Error al eliminar la consola";
+                    error = "Error al eliminar la el juego";
                     getServletContext().getRequestDispatcher("/juego/verJuego.jsp").forward(request, response);
                 }
                 response.sendRedirect("verJuego.jsp");
-            }else{
-                 
+            } else {
+
                 request.setAttribute("id", nuevo.getId());
                 request.setAttribute("nombre", nuevo.getNombre());
                 request.setAttribute("fechaLanzamiento", nuevo.getFechaLanzamientoCorta());
@@ -91,7 +109,7 @@ public class EditarJuego extends HttpServlet {
                 request.setAttribute("consola", nuevo.getConsola().getNombre());
                 request.setAttribute("descripcion", nuevo.getDescripcion());
                 getServletContext().getRequestDispatcher("/juego/editarJuego.jsp").forward(request, response);
-            
+
             }
         }
     }
@@ -135,7 +153,7 @@ public class EditarJuego extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-public static Date parseFecha(String fecha) {
+    public static Date parseFecha(String fecha) {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         Date fechaDate = null;
         try {
@@ -145,12 +163,12 @@ public static Date parseFecha(String fecha) {
         }
         return fechaDate;
     }
-    
+
     public static String toUpperCaseFirst(String valor) {
-    if (valor == null || valor.isEmpty()) {
-        return valor;
-    } else {       
-        return  valor.toUpperCase().charAt(0) + valor.substring(1, valor.length()).toLowerCase();
+        if (valor == null || valor.isEmpty()) {
+            return valor;
+        } else {
+            return valor.toUpperCase().charAt(0) + valor.substring(1, valor.length()).toLowerCase();
+        }
     }
-}
 }

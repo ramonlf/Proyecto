@@ -60,6 +60,22 @@
         </nav>
         <div class="offset-lg-2 col-lg-8"> 
             <div class="card mt-4">
+                <c:if test="${!empty param.error}">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>${param.error}</strong> 
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </c:if>
+                <c:if test="${!empty error}">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>${error}</strong> 
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </c:if>
                 <div class="card-header">
                     <h1>Consolas actuales</h1>
                 </div>
