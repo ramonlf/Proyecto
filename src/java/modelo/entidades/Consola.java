@@ -8,6 +8,7 @@ package modelo.entidades;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -91,17 +92,36 @@ public class Consola implements Serializable {
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the nombre fields are not set
-        if (!(object instanceof Consola)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Consola other = (Consola) object;
-        if ((this.nombre == null && other.nombre != null) || (this.nombre != null && !this.nombre.equals(other.nombre))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Consola other = (Consola) obj;
+        if (this.generacion != other.generacion) {
+            return false;
+        }
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        if (!Objects.equals(this.url, other.url)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.fechaLanzamiento, other.fechaLanzamiento)) {
             return false;
         }
         return true;
     }
+
+   
 
     @Override
     public String toString() {

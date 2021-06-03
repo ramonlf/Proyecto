@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Persistence;
@@ -46,8 +47,8 @@ public class EditarJuego extends HttpServlet {
         long id = Long.parseLong(request.getParameter("id"));
         JuegoBean juego = (JuegoBean) request.getSession().getAttribute("juegoBean");
         Juego nuevo = juego.buscarJuego(id);
-        Juego juegoAux = nuevo;
-
+        Juego juegoAux = juego.buscarJuego(id);
+        
         if (request.getParameter("actualizar") != null) {
             ConsolaJpaController auxConsola = new ConsolaJpaController(Persistence.createEntityManagerFactory("ProyectoFinalPU"));
             List<Consola> consolas = auxConsola.findConsolaEntities();
@@ -69,25 +70,40 @@ public class EditarJuego extends HttpServlet {
             
             JuegoJpaController jjc = new JuegoJpaController(Persistence.createEntityManagerFactory("ProyectoFinalPU"));
             List<Juego> juegos = jjc.findJuegoEntities();
-            Juego auxJuego = null;
-
+            List<Juego> juegosFiltrados = (List) new ArrayList<Juego>();
             for (Juego jue : juegos) {
+                if (!jue.equals(juegoAux)) {
+                    juegosFiltrados.add(jue);
+                }
+            }
+            Juego auxJuego = null;
+            
+            for (Juego jue : juegosFiltrados) {
                 if (jue.getNombre().equals(request.getParameter("nombre")) && jue.getConsola().getNombre().equals(aux.getNombre())) {
                     auxJuego = jue;
                 }
             }
-
+            
             try {
                 if (auxJuego == null) {
+                    
                     juego.actualizarJuego(nuevo);
+                    nuevo = juego.buscarJuego(id);
+                    if (juegoAux.equals(nuevo)) {
+                        error = "No se ha podido actualizar";
+                    }
                 } else {
                     error = "El juego ya existe";
                 }
-
+                
             } catch (Exception e) {
                 error = "Error al actualizar el juego";
             }
-            response.sendRedirect("verJuego.jsp?error=" + error);
+            if (error != null) {
+                response.sendRedirect("verJuego.jsp?error=" + error);
+            } else {
+                response.sendRedirect("verJuego.jsp");
+            }
         } else {
             if (request.getParameter("eliminar") != null) {
                 try {
@@ -98,7 +114,7 @@ public class EditarJuego extends HttpServlet {
                 }
                 response.sendRedirect("verJuego.jsp");
             } else {
-
+                
                 request.setAttribute("id", nuevo.getId());
                 request.setAttribute("nombre", nuevo.getNombre());
                 request.setAttribute("fechaLanzamiento", nuevo.getFechaLanzamientoCorta());
@@ -109,7 +125,7 @@ public class EditarJuego extends HttpServlet {
                 request.setAttribute("consola", nuevo.getConsola().getNombre());
                 request.setAttribute("descripcion", nuevo.getDescripcion());
                 getServletContext().getRequestDispatcher("/juego/editarJuego.jsp").forward(request, response);
-
+                
             }
         }
     }
@@ -163,7 +179,7 @@ public class EditarJuego extends HttpServlet {
         }
         return fechaDate;
     }
-
+    
     public static String toUpperCaseFirst(String valor) {
         if (valor == null || valor.isEmpty()) {
             return valor;

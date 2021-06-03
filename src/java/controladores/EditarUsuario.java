@@ -39,11 +39,11 @@ public class EditarUsuario extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String error = null;
         long id = Long.parseLong(request.getParameter("id"));
-        UsuarioBean usuario = (UsuarioBean)request.getSession().getAttribute("usuarioBean");
+        UsuarioBean usuario = (UsuarioBean) request.getSession().getAttribute("usuarioBean");
         Usuario nuevo = usuario.buscarUsuario(id);
-        if(request.getParameter("actualizar") != null){
+        if (request.getParameter("actualizar") != null) {
             boolean administrador = (request.getParameter("administrador") != null);
-            nuevo.setNombre(request.getParameter("nombre")); 
+            nuevo.setNombre(request.getParameter("nombre"));
             nuevo.setApellido(request.getParameter("apellido"));
             nuevo.setDni(request.getParameter("dni"));
             nuevo.setLogin(request.getParameter("login"));
@@ -52,21 +52,26 @@ public class EditarUsuario extends HttpServlet {
             nuevo.setTelefono(request.getParameter("telefono"));
             nuevo.setFechaNacimiento(parseFecha(request.getParameter("fechaNacimiento")));
             nuevo.setAdministrador(administrador);
-            try{
+            try {
                 usuario.actualizarUsuario(nuevo);
-            }catch(Exception e){
+            } catch (Exception e) {
                 error = "Error al actualizar el usuario";
             }
-            response.sendRedirect("verUsuario.jsp");
-        }else{
-            if(request.getParameter("eliminar") != null){
-                try{
+            if (error != null) {
+                response.sendRedirect("verUsuario.jsp?error=" + error);
+            }else{
+                response.sendRedirect("verUsuario.jsp");
+            }
+        } else {
+            if (request.getParameter("eliminar") != null) {
+                try {
                     usuario.borrarUsuario(id);
-                }catch(Exception e){
+                } catch (Exception e) {
                     error = "Error al borrar el usuario";
+                    request.setAttribute("error", error);
                     getServletContext().getRequestDispatcher("/usuario/verUsuario.jsp").forward(request, response);
                 }
-            }else{
+            } else {
                 request.setAttribute("id", nuevo.getId());
                 request.setAttribute("nombre", nuevo.getNombre());
                 request.setAttribute("apellido", nuevo.getApellido());
@@ -76,7 +81,8 @@ public class EditarUsuario extends HttpServlet {
                 request.setAttribute("email", nuevo.getEmail());
                 request.setAttribute("telefono", nuevo.getTelefono());
                 request.setAttribute("fechaNacimiento", nuevo.getFechaNacimientoCorta());
-                request.setAttribute("checked", nuevo.isAdministrador()?"checked":"");
+                request.setAttribute("checked", nuevo.isAdministrador() ? "checked" : "");
+                request.setAttribute("error", error);
                 getServletContext().getRequestDispatcher("/usuario/editarUsuario.jsp").forward(request, response);
             }
         }
@@ -120,6 +126,7 @@ public class EditarUsuario extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
     public static Date parseFecha(String fecha) {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         Date fechaDate = null;
