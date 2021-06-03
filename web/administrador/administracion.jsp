@@ -78,6 +78,7 @@
                                         <div class="card-body">                                           
                                             <a href="../juego/crearJuego.jsp" class="list-group-item"  >Añadir nuevo Juego</a>
                                             <a href="../juego/verJuego.jsp" class="list-group-item"  >Ver juegos activos</a>
+                                            <a href="../juego/subirFoto.jsp" class="list-group-item"  >Subir foto</a>
                                         </div>
                                         <!-- card body -->
 

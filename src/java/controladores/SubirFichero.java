@@ -10,29 +10,19 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import javax.persistence.Persistence;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import modelo.entidades.Consola;
-import modelo.entidades.ConsolaJpaController;
-import modelo.entidades.Juego;
-import modelo.entidades.JuegoJpaController;
-import modelo.modelo.JuegoBean;
 
 /**
  *
  * @author Ramon
  */
-@WebServlet(name = "CrearJuego", urlPatterns = {"/juego/CrearJuego"})
-public class CrearJuego extends HttpServlet {
+@WebServlet(name = "SubirFichero", urlPatterns = {"/SubirFichero"})
+public class SubirFichero extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,12 +35,11 @@ public class CrearJuego extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-
-        String error = null;
+                response.setContentType("text/html;charset=UTF-8");
+        String error ="";
         
-         try{
-            Part parteFichero = request.getPart("url");
+        try{
+            Part parteFichero = request.getPart("fichero");
             String ruta = getServletContext().getRealPath("fotos/juegos/");
             //Creo el directorio si no existe
             File directorio = new File("fotos/juegos/");
@@ -83,88 +72,15 @@ public class CrearJuego extends HttpServlet {
                 parteFichero.delete();
                 
             }
-            
+            request.setAttribute("error", error);
+            response.sendRedirect("administrador/administracion.jsp");
         }catch (IOException e){
             error += "Se ha producido un error de entrada/salida: " + e.getMessage();
+            response.sendRedirect("administrador/administracion.jsp");
         }
         //Codifico los espacios y simbolos especiales
         error = response.encodeURL(error);
         //Mando el error a la página de inicio
-    
-
-        String nombre = request.getParameter("nombre");
-        String genero = request.getParameter("genero");
-        String fechaLanzamiento = request.getParameter("fechaLanzamiento");
-        Integer cantidad = Integer.parseInt(request.getParameter("cantidad"));
-        Double precio = Double.parseDouble(request.getParameter("precio"));
-        String url = request.getParameter("url");
-        String consola = request.getParameter("consola");
-        String descripcion = request.getParameter("descripcion");
-
-        ConsolaJpaController auxConsola = new ConsolaJpaController(Persistence.createEntityManagerFactory("ProyectoFinalPU"));
-        List<Consola> consolas = auxConsola.findConsolaEntities();
-        Consola aux = null;
-        for (Consola con : consolas) {
-            if (con.getNombre().equals(consola)) {
-                aux = con;
-            }
-        }
-
-        JuegoBean juego = new JuegoBean();
-
-        Juego nuevo = new Juego(nombre, genero, parseFecha(fechaLanzamiento), cantidad, precio, url, aux, descripcion);
-
-        
-        JuegoJpaController jjc = new JuegoJpaController(Persistence.createEntityManagerFactory("ProyectoFinalPU"));
-        List<Juego> juegos = jjc.findJuegoEntities();
-        Juego auxJuego = null;
-
-        for (Juego jue : juegos) {
-            if (jue.getNombre().equals(nombre) && jue.getConsola().getNombre().equals(consola)) {
-                auxJuego = jue;
-            }
-        }
-
-        try {
-            if (auxJuego == null) {
-                juego.añadirJuego(nuevo);
-            } else {
-                error = "El juego ya existe";
-            }
-
-        } catch (Exception e) {
-            error = "Error al añadir el juego";
-        }
-        
-        if (error != null) {
-            response.sendRedirect("crearJuego.jsp");
-            return;
-        }
-        
-        if (error != null) {
-            request.setAttribute("nombre", nombre);
-            request.setAttribute("generacion", genero);
-            request.setAttribute("fechaLanzamiento", fechaLanzamiento);
-            request.setAttribute("precio", precio);
-            request.setAttribute("cantidad", cantidad);
-            request.setAttribute("url", url);
-            request.setAttribute("descripcion", descripcion);
-            getServletContext().getRequestDispatcher("/juego/crearJuego.jsp").forward(request, response);
-        } else {
-            response.sendRedirect(response.encodeRedirectURL("../administrador/administracion.jsp"));
-        }
-
-    }
-
-   public static Date parseFecha(String fecha) {
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        Date fechaDate = null;
-        try {
-            fechaDate = formato.parse(fecha);
-        } catch (ParseException ex) {
-            System.out.println(ex);
-        }
-        return fechaDate;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
