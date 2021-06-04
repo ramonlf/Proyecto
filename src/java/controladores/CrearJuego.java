@@ -46,84 +46,144 @@ public class CrearJuego extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        if (request.getParameter("subirFichero") != null) {
+            String error = "";
 
-        String error = null;              
-        String nombre = request.getParameter("nombre");
-        String genero = request.getParameter("genero");
-        String fechaLanzamiento = request.getParameter("fechaLanzamiento");
-        Integer cantidad = Integer.parseInt(request.getParameter("cantidad"));
-        Double precio = Double.parseDouble(request.getParameter("precio"));
-        String url = request.getParameter("url");
-        String consola = request.getParameter("consola");
-        String descripcion = request.getParameter("descripcion");
+            try {
+                Part parteFichero = request.getPart("fichero");
+                String ruta = getServletContext().getRealPath("fotos/juegos/");
+                File directorioUsuario = new File(ruta);
 
-        ConsolaJpaController auxConsola = new ConsolaJpaController(Persistence.createEntityManagerFactory("ProyectoFinalPU"));
-        List<Consola> consolas = auxConsola.findConsolaEntities();
-        Consola aux = null;
-        for (Consola con : consolas) {
-            if (con.getNombre().equals(consola)) {
-                aux = con;
+                ruta += "/" + parteFichero.getSubmittedFileName();
+                if (error.isEmpty()) {
+                    FileOutputStream salida = new FileOutputStream(ruta);
+                    InputStream entrada = parteFichero.getInputStream();
+                    // Creamos un buffer de entrada / salida de bytes
+                    // Su tamaño se toma del parámetro de inicialización tamBuffer
+                    int tamBuffer = Integer.parseInt(getServletConfig().getInitParameter("tamBuffer"));
+                    byte[] buffer = new byte[tamBuffer];
+                    int leidos;
+                    while (entrada.available() > 0) {
+                        leidos = entrada.read(buffer);
+                        salida.write(buffer, 0, leidos);
+                    }
+                    salida.close();
+                    entrada.close();
+                    parteFichero.delete();
+                    error = "Se ha subido la foto";
+                }
+            } catch (IOException e) {
+                error += "Se ha producido un error de entrada/salida: " + e.getMessage();
             }
+            error = response.encodeURL(error);
+            response.sendRedirect("subirFoto.jsp?error=" + error);
         }
+        if (request.getParameter("crear") != null) {
+            String error = null;
+            String nombre = request.getParameter("nombre");
+            String genero = request.getParameter("genero");
+            String fechaLanzamiento = request.getParameter("fechaLanzamiento");
+            Integer cantidad = Integer.parseInt(request.getParameter("cantidad"));
+            Double precio = Double.parseDouble(request.getParameter("precio"));
+            String url = null;
+            String consola = request.getParameter("consola");
+            String descripcion = request.getParameter("descripcion");
 
-        JuegoBean juego = new JuegoBean();
-
-        Juego nuevo = new Juego(nombre, genero, parseFecha(fechaLanzamiento), cantidad, precio, url, aux, descripcion);
-
-        
-        JuegoJpaController jjc = new JuegoJpaController(Persistence.createEntityManagerFactory("ProyectoFinalPU"));
-        List<Juego> juegos = jjc.findJuegoEntities();
-        Juego auxJuego = null;
-
-        for (Juego jue : juegos) {
-            if (jue.getNombre().equals(nombre) && jue.getConsola().getNombre().equals(consola)) {
-                auxJuego = jue;
+            ConsolaJpaController auxConsola = new ConsolaJpaController(Persistence.createEntityManagerFactory("ProyectoFinalPU"));
+            List<Consola> consolas = auxConsola.findConsolaEntities();
+            Consola aux = null;
+            for (Consola con : consolas) {
+                if (con.getNombre().equals(consola)) {
+                    aux = con;
+                }
             }
-        }
 
-        try {
-            if (auxJuego == null) {
-                juego.añadirJuego(nuevo);
+            JuegoBean juego = new JuegoBean();
+            try {
+                Part parteFichero = request.getPart("url");
+                String ruta = getServletContext().getRealPath("fotos/juegos/");
+                File directorioUsuario = new File(ruta);
+
+                ruta += "/" + parteFichero.getSubmittedFileName();
+                String rutaAux = parteFichero.getSubmittedFileName();
+                url = rutaAux.split("/")[rutaAux.split("/").length - 1];
+                if (error == null) {
+                    FileOutputStream salida = new FileOutputStream(ruta);
+                    InputStream entrada = parteFichero.getInputStream();
+                    // Creamos un buffer de entrada / salida de bytes
+                    // Su tamaño se toma del parámetro de inicialización tamBuffer
+                    int tamBuffer = Integer.parseInt(getServletConfig().getInitParameter("tamBuffer"));
+                    byte[] buffer = new byte[tamBuffer];
+                    int leidos;
+                    while (entrada.available() > 0) {
+                        leidos = entrada.read(buffer);
+                        salida.write(buffer, 0, leidos);
+                    }
+                    salida.close();
+                    entrada.close();
+                    parteFichero.delete();
+                }
+            } catch (IOException e) {
+                error += "Se ha producido un error de entrada/salida: " + e.getMessage();
+            }
+
+            Juego nuevo = new Juego(nombre, genero, parseFecha(fechaLanzamiento), cantidad, precio, url, aux, descripcion);
+
+            JuegoJpaController jjc = new JuegoJpaController(Persistence.createEntityManagerFactory("ProyectoFinalPU"));
+            List<Juego> juegos = jjc.findJuegoEntities();
+            Juego auxJuego = null;
+
+            for (Juego jue : juegos) {
+                if (jue.getNombre().equals(nombre) && jue.getConsola().getNombre().equals(consola)) {
+                    auxJuego = jue;
+                }
+            }
+
+            try {
+                if (auxJuego == null) {
+                    juego.añadirJuego(nuevo);
+
+                } else {
+                    error = "El juego ya existe";
+                }
+
+            } catch (Exception e) {
+                error = "Error al añadir el juego";
+            }
+
+            if (error != null) {
+                request.setAttribute("nombre", nombre);
+                request.setAttribute("generacion", genero);
+                request.setAttribute("fechaLanzamiento", fechaLanzamiento);
+                request.setAttribute("precio", precio);
+                request.setAttribute("cantidad", cantidad);
+                request.setAttribute("url", url);
+                request.setAttribute("genero", genero);
+                request.setAttribute("descripcion", descripcion);
+                request.setAttribute("error", error);
+                getServletContext().getRequestDispatcher("/juego/crearJuego.jsp").forward(request, response);
+
+                return;
+            }
+
+            if (error != null) {
+                request.setAttribute("nombre", nombre);
+                request.setAttribute("generacion", genero);
+                request.setAttribute("fechaLanzamiento", fechaLanzamiento);
+                request.setAttribute("precio", precio);
+                request.setAttribute("cantidad", cantidad);
+                request.setAttribute("genero", genero);
+                request.setAttribute("url", url);
+                request.setAttribute("descripcion", descripcion);
+                getServletContext().getRequestDispatcher("/juego/crearJuego.jsp").forward(request, response);
             } else {
-                error = "El juego ya existe";
+                response.sendRedirect(response.encodeRedirectURL("../administrador/administracion.jsp"));
             }
 
-        } catch (Exception e) {
-            error = "Error al añadir el juego";
         }
-        
-        if (error != null) {
-            request.setAttribute("nombre", nombre);
-            request.setAttribute("generacion", genero);
-            request.setAttribute("fechaLanzamiento", fechaLanzamiento);
-            request.setAttribute("precio", precio);
-            request.setAttribute("cantidad", cantidad);
-            request.setAttribute("url", url);
-            request.setAttribute("genero", genero);
-            request.setAttribute("descripcion", descripcion);
-            request.setAttribute("error", error);
-            getServletContext().getRequestDispatcher("/juego/crearJuego.jsp").forward(request, response);
-            
-            return;
-        }
-        
-        if (error != null) {
-            request.setAttribute("nombre", nombre);
-            request.setAttribute("generacion", genero);
-            request.setAttribute("fechaLanzamiento", fechaLanzamiento);
-            request.setAttribute("precio", precio);
-            request.setAttribute("cantidad", cantidad);
-            request.setAttribute("genero", genero);
-            request.setAttribute("url", url);
-            request.setAttribute("descripcion", descripcion);
-            getServletContext().getRequestDispatcher("/juego/crearJuego.jsp").forward(request, response);
-        } else {
-            response.sendRedirect(response.encodeRedirectURL("../administrador/administracion.jsp"));
-        }
-
     }
 
-   public static Date parseFecha(String fecha) {
+    public static Date parseFecha(String fecha) {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         Date fechaDate = null;
         try {

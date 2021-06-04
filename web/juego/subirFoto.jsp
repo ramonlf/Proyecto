@@ -64,19 +64,27 @@
             <div class="container">
                 <div class="col-sm-offset-2 col-sm-12 offset-xl-0 col-xl-12 offset-lg-0 col-lg-12">
                     <div class="card card-default">
+                        <c:if test="${!empty param.error}">
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong>${param.error}</strong> 
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </c:if>
                         <div class="card-header">
                             <h4>Subir fichero</h4>
                         </div>
                         <div class="card-body">
-                        <p>${error}</p>
-                        <form action="../SubirFichero" method="post" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <input type="file"  accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*" class="form-control" name="fichero">
-                            </div>
-                            <div>
-                                <input type="submit" class="btn btn-primary" value="Enviar">
-                            </div>
-                        </form>
+                            <p>${error}</p>
+                            <form action="CrearJuego" method="post" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <input type="file"  accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*" class="form-control" name="fichero">
+                                </div>
+                                <div>
+                                    <input type="submit" name="subirFichero" class="btn btn-primary" value="Enviar">
+                                </div>
+                            </form>
                         </div>
                         <a href="../administrador/administracion.jsp" class="btn btn-primary">Volver</a>
                     </div>

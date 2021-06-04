@@ -87,7 +87,7 @@
                                 <h1>Añadir juego</h1>
                             </div>
                             <div class="card-body">
-                                <form action="CrearJuego" method="POST">
+                                <form action="CrearJuego" method="POST" enctype="multipart/form-data" >
                                     <div class="form-group">
                                         <label>Nombre: </label>
                                         <input type="hidden" name="id" id="id" value="${id}" />
@@ -129,7 +129,7 @@
                                     </div>
 
 
-                                    <input type="submit" id="actualizar" name="crear" value="Añadir juego" />
+                                    <input type="submit" id="crear" name="crear" value="Añadir juego" />
                                     <input type="reset" id="limpiar" name="limpiar" value="Limpiar" />
                                 </form>
                             </div>

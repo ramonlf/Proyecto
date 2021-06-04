@@ -38,51 +38,34 @@ public class SubirFichero extends HttpServlet {
                 response.setContentType("text/html;charset=UTF-8");
         String error ="";
         
-        try{
+        try {
             Part parteFichero = request.getPart("fichero");
             String ruta = getServletContext().getRealPath("fotos/juegos/");
-            //Creo el directorio si no existe
-            File directorio = new File("fotos/juegos/");
-            
-            if (!directorio.exists()){
-                 //Si el directorio no se ha creado
-                if(!directorio.mkdir()){
-                    error +="No se ha podido crear el directorio";
-                }
-            }
-            ruta +="/"+parteFichero.getSubmittedFileName();
-            if(error.isEmpty()){
-                //Donde vamos a escribir
+            File directorioUsuario = new File(ruta);
+
+            ruta += "/" + parteFichero.getSubmittedFileName();
+            if (error.isEmpty()) {
                 FileOutputStream salida = new FileOutputStream(ruta);
                 InputStream entrada = parteFichero.getInputStream();
-                //Creo buffer de entrada/salida de bytes
-                //Su tamaño se toma del parametro de iniucializacion tamBuffer
+                // Creamos un buffer de entrada / salida de bytes
+                // Su tamaño se toma del parámetro de inicialización tamBuffer
                 int tamBuffer = Integer.parseInt(getServletConfig().getInitParameter("tamBuffer"));
-                byte[] buffer = new byte [tamBuffer];
+                byte[] buffer = new byte[tamBuffer];
                 int leidos;
-                //Mientras queden bytes por leer
-                while (entrada.available() > 0 ){
+                while (entrada.available() > 0) {
                     leidos = entrada.read(buffer);
                     salida.write(buffer, 0, leidos);
                 }
-                //cierro ficheros
                 salida.close();
                 entrada.close();
-                //Borro parteFichero despues de haberlo creado dejando todo más limpio
                 parteFichero.delete();
-                
             }
-            request.setAttribute("error", error);
-            response.sendRedirect("administrador/administracion.jsp");
-        }catch (IOException e){
+        } catch (IOException e) {
             error += "Se ha producido un error de entrada/salida: " + e.getMessage();
-            response.sendRedirect("administrador/administracion.jsp");
         }
-        //Codifico los espacios y simbolos especiales
         error = response.encodeURL(error);
-        //Mando el error a la página de inicio
+        response.sendRedirect("juego/subirFoto.jsp?error=" + error);
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
