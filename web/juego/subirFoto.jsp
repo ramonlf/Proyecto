@@ -71,7 +71,7 @@
                         <p>${error}</p>
                         <form action="../SubirFichero" method="post" enctype="multipart/form-data">
                             <div class="form-group">
-                                <input type="file" class="form-control" name="fichero">
+                                <input type="file"  accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*" class="form-control" name="fichero">
                             </div>
                             <div>
                                 <input type="submit" class="btn btn-primary" value="Enviar">

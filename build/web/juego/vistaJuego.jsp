@@ -88,11 +88,14 @@
                 <div class="col-lg-6 ">
                     <div class="container pl-5 pt-2 pb-2 fondoBlanco rounded-right rounded-left">
                         <h4 class="font-weight-bold">${nombre} (${consola}) ${consola} clave GLOBAL</h4>
+                        <span>${precio}&#8364;</span>
                         <div class="votos mb-2">
+
                             <div class="contenedor">
                                 <span id="nota">3.9</span>
                             </div>
                             <div class="contenedor">
+
                                 <form class="d-inline">
                                     <span class="clasificacion">
                                         <input id="radio1" type="radio" name="estrellas" value="5">
@@ -109,14 +112,23 @@
                                 </form>
                             </div>
                         </div>
-                        <div id="descripcion">
+                        <div id="descripcion" class="container">
                             <h4>${nombre} (${consola})</h4>
                             <p>${descripcion}
                             </p>
                         </div>
-                            <div>
-                                
-                            </div>
+                        <div class="container">
+                            <h4>Genero: </h4>
+                            <p>${genero}</p>
+                        </div>
+                        <div class="container">
+                            <h4>Fecha de lanzamiento: </h4>
+                            <p>${fechaLanzamiento}</p>
+                        </div>
+                        <div class="container">
+                            <h4>Stock: </h4>
+                            <p>${cantidad} <span>disponibles</span></p>
+                        </div>
                     </div>
                 </div>
             </div>

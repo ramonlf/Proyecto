@@ -70,12 +70,12 @@
                         <div class="card-body">
                             <h5 class="card-title">${jue.nombre}</h5>
                             <p class="card-text">Precio: ${jue.precio} &#8364;</p>
-
+                            <form action="juego/VistaJuego" method="POST">
 
                         </div>
-                        <form action="juego/VistaJuego" method="POST">
-                            <input type="hidden" name="id" value="${jue.id}" />
-                            <input type="submit" value="Añadir" name="vistaJuego" class="btn-primary btn" />
+
+                        <input type="hidden" name="id" value="${jue.id}" />
+                        <input type="submit" value="Añadir" name="vistaJuego" class="btn-primary btn" />
                         </form>
                     </div>
                 </div>
@@ -84,7 +84,7 @@
 
         <footer id="footer " class=" pt-2 pb-1 ">
             <div class="container-fluid mt-0 ">
-                <p> &copy; 2021 PlayMon.com <span class="float-right"> <a href="../juego/directorio.jsp">Directorio</a></span> <span class="float-right mr-2"><a href="../home.jsp">Inicio</a></span> </p>
+                <p> &copy; 2021 PlayMon.com <span class="float-right"> <a href="../juego/directorio.jsp">Directorio</a></span> <span class="float-right mr-2"><a href="home.jsp">Inicio</a></span> </p>
 
             </div>
         </footer>
