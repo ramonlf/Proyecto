@@ -47,51 +47,7 @@ public class CrearJuego extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        String error = null;
-        
-         try{
-            Part parteFichero = request.getPart("url");
-            String ruta = getServletContext().getRealPath("fotos/juegos/");
-            //Creo el directorio si no existe
-            File directorio = new File("fotos/juegos/");
-            
-            if (!directorio.exists()){
-                 //Si el directorio no se ha creado
-                if(!directorio.mkdir()){
-                    error +="No se ha podido crear el directorio";
-                }
-            }
-            ruta +="/"+parteFichero.getSubmittedFileName();
-            if(error.isEmpty()){
-                //Donde vamos a escribir
-                FileOutputStream salida = new FileOutputStream(ruta);
-                InputStream entrada = parteFichero.getInputStream();
-                //Creo buffer de entrada/salida de bytes
-                //Su tamaño se toma del parametro de iniucializacion tamBuffer
-                int tamBuffer = Integer.parseInt(getServletConfig().getInitParameter("tamBuffer"));
-                byte[] buffer = new byte [tamBuffer];
-                int leidos;
-                //Mientras queden bytes por leer
-                while (entrada.available() > 0 ){
-                    leidos = entrada.read(buffer);
-                    salida.write(buffer, 0, leidos);
-                }
-                //cierro ficheros
-                salida.close();
-                entrada.close();
-                //Borro parteFichero despues de haberlo creado dejando todo más limpio
-                parteFichero.delete();
-                
-            }
-            
-        }catch (IOException e){
-            error += "Se ha producido un error de entrada/salida: " + e.getMessage();
-        }
-        //Codifico los espacios y simbolos especiales
-        error = response.encodeURL(error);
-        //Mando el error a la página de inicio
-    
-
+        String error = null;              
         String nombre = request.getParameter("nombre");
         String genero = request.getParameter("genero");
         String fechaLanzamiento = request.getParameter("fechaLanzamiento");
@@ -137,7 +93,17 @@ public class CrearJuego extends HttpServlet {
         }
         
         if (error != null) {
-            response.sendRedirect("crearJuego.jsp");
+            request.setAttribute("nombre", nombre);
+            request.setAttribute("generacion", genero);
+            request.setAttribute("fechaLanzamiento", fechaLanzamiento);
+            request.setAttribute("precio", precio);
+            request.setAttribute("cantidad", cantidad);
+            request.setAttribute("url", url);
+            request.setAttribute("genero", genero);
+            request.setAttribute("descripcion", descripcion);
+            request.setAttribute("error", error);
+            getServletContext().getRequestDispatcher("/juego/crearJuego.jsp").forward(request, response);
+            
             return;
         }
         
@@ -147,6 +113,7 @@ public class CrearJuego extends HttpServlet {
             request.setAttribute("fechaLanzamiento", fechaLanzamiento);
             request.setAttribute("precio", precio);
             request.setAttribute("cantidad", cantidad);
+            request.setAttribute("genero", genero);
             request.setAttribute("url", url);
             request.setAttribute("descripcion", descripcion);
             getServletContext().getRequestDispatcher("/juego/crearJuego.jsp").forward(request, response);
