@@ -8,12 +8,15 @@ package controladores;
 import static controladores.EditarUsuario.parseFecha;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.persistence.Persistence;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import modelo.entidades.Usuario;
+import modelo.entidades.UsuarioJpaController;
 import modelo.modelo.UsuarioBean;
 
 /**
@@ -35,8 +38,11 @@ public class EditarPerfil extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-               UsuarioBean usuario = (UsuarioBean) request.getSession().getAttribute("usuarioBean");
-        Usuario nuevo = (Usuario) request.getSession().getAttribute("usuario");
+        UsuarioBean usuario = (UsuarioBean) request.getSession().getAttribute("usuarioBean");
+        UsuarioJpaController ujc = new UsuarioJpaController(Persistence.createEntityManagerFactory("ProyectoFinalPU"));       
+        Usuario aux = (Usuario) request.getSession().getAttribute("usuario");
+        Usuario nuevo = ujc.findUsuario(aux.getId());
+        
         String error = null;
         
         if (request.getParameter("actualizar") != null) {
@@ -50,6 +56,8 @@ public class EditarPerfil extends HttpServlet {
             nuevo.setFechaNacimiento(parseFecha(request.getParameter("fechaNacimiento")));
             try {
                 usuario.actualizarUsuario(nuevo);
+                HttpSession sesion = request.getSession();
+                sesion.setAttribute("usuario", nuevo);
             } catch (Exception e) {
                 error = "Error al actualizar el usuario";
             }
