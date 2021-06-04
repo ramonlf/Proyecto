@@ -88,7 +88,11 @@
                 <div class="col-lg-6 ">
                     <div class="container pl-5 pt-2 pb-2 fondoBlanco rounded-right rounded-left">
                         <h4 class="font-weight-bold">${nombre} (${consola}) ${consola} clave GLOBAL</h4>
-                        <span>${precio}&#8364;</span>
+                        <div class="card-default text-dark bg-dark mb-3" style="max-width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title text-center font-weight-bold text-light">${precio}&#8364;</h5>                               
+                            </div>
+                        </div>
                         <div class="votos mb-2">
 
                             <div class="contenedor">
@@ -125,10 +129,12 @@
                             <h4>Fecha de lanzamiento: </h4>
                             <p>${fechaLanzamiento}</p>
                         </div>
-                        <div class="container">
-                            <h4>Stock: </h4>
-                            <p>${cantidad} <span>disponibles</span></p>
-                        </div>
+                        <c:if test="${usuario.administrador}" >
+                            <div class="container">
+                                <h4>Stock: </h4>
+                                <p class="h3 ">${cantidad} <span class="text-success">disponibles</span></p>
+                            </div>
+                        </c:if>
                     </div>
                 </div>
             </div>

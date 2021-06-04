@@ -38,7 +38,7 @@ public class VistaJuego extends HttpServlet {
         JuegoBean juego = (JuegoBean) request.getSession().getAttribute("juegoBean");
         Juego nuevo = juego.buscarJuego(id);
 
-        if (request.getParameter("vistaJuego") != null) {
+        
             request.setAttribute("id", nuevo.getId());
             request.setAttribute("nombre", nuevo.getNombre());
             request.setAttribute("fechaLanzamiento", nuevo.getFechaLanzamientoCorta());
@@ -49,7 +49,7 @@ public class VistaJuego extends HttpServlet {
             request.setAttribute("consola", nuevo.getConsola().getNombre());
             request.setAttribute("descripcion", nuevo.getDescripcion());
             getServletContext().getRequestDispatcher("/juego/vistaJuego.jsp").forward(request, response);
-        }
+        
 
     }
 

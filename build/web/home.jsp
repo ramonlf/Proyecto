@@ -66,16 +66,17 @@
 
                 <div class="col-lg-2 ml-2">
                     <div class="card border mt-3 mb-1">
-                        <img class="card-img-top" src="fotos/juegos/${jue.url}" alt="Imagen ${jue.nombre}  ${jue.consola.nombre}">
-                        <div class="card-body">
-                            <h5 class="card-title">${jue.nombre}</h5>
-                            <p class="card-text">Precio: ${jue.precio} &#8364;</p>
-                            <form action="juego/VistaJuego" method="POST">
+                        <form action="juego/VistaJuego" method="POST">
+                            <button type="submit" ><img class="card-img-top" src="fotos/juegos/${jue.url}" alt="Imagen ${jue.nombre}  ${jue.consola.nombre}"></button>
+                            <div class="card-body">
+                                <h5 class="card-title">${jue.nombre}</h5>
+                                <p class="card-text">Precio: ${jue.precio} &#8364;</p>
 
-                        </div>
 
-                        <input type="hidden" name="id" value="${jue.id}" />
-                        <input type="submit" value="Añadir" name="vistaJuego" class="btn-primary btn" />
+                            </div>
+
+                            <input type="hidden" name="id" value="${jue.id}" />
+                            <input type="submit" value="Añadir" name="vistaJuego" class="btn-primary btn" />
                         </form>
                     </div>
                 </div>
