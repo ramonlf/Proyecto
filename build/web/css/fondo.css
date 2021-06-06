@@ -45,11 +45,14 @@ footer span a:hover {
     font-weight: bold;
 }
 
-button{
+button img{
     width: 100%;
 }
 
-img{
+.card form button{
     width: 100%;
 }
+
+
+
 

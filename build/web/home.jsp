@@ -71,8 +71,6 @@
                             <div class="card-body">
                                 <h5 class="card-title">${jue.nombre}</h5>
                                 <p class="card-text">Precio: ${jue.precio} &#8364;</p>
-
-
                             </div>
 
                             <input type="hidden" name="id" value="${jue.id}" />
