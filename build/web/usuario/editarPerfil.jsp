@@ -4,7 +4,7 @@
     Author     : Ramon
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="iso-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -40,7 +40,7 @@
                     <button class="btn btn-primary my-2 " type="submit" id="search"><i class="fa fa-search"></i></button>
                 </form>
                 <c:if test="${usuario == null}">
-                    <a class="btn btn-primary  my-sm-0" id="login" href="login.jsp"><i class="fa fa-user mr-1"></i>Iniciar SesiÃ³n</a>
+                    <a class="btn btn-primary  my-sm-0" id="login" href="login.jsp"><i class="fa fa-user mr-1"></i>Iniciar Sesión</a>
                     <a class="btn btn-primary  my-sm-0 ml-lg-2" id="sigUp" href="registrarse.jsp"><i class="fas fa-sign-in-alt"></i>Registrarse</a>
                 </c:if>
                 <c:if test="${usuario != null}">    
@@ -97,7 +97,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>ContraseÃ±a: </label>
+                                    <label>Contraseña: </label>
                                     <input type="password" name="password" class="form-control" id="password" required value="${password}" />
                                 </div>
                                 <div class="form-group">

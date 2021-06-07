@@ -14,6 +14,7 @@
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/modelo/modelo/JuegoBean.java</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/css/administracion.css</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/modelo/entidades/Consola.java</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/usuario/carrito.jsp</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/usuario/editarUsuario.jsp</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/juego/verJuego.jsp</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/usuario/registrarse.jsp</file>
@@ -27,6 +28,7 @@
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/controladores/CrearJuego.java</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/usuario/editarPerfil.jsp</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/controladores/EditarPerfil.java</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/controladores/Carrito.java</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/controladores/EditarJuego.java</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/juego/editarJuego.jsp</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/controladores/VistaJuego.java</file>
@@ -40,7 +42,6 @@
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/controladores/IniciarSesiones.java</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/css/vistaJuego.css</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/modelo/entidades/Usuario.java</file>
-            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/modelo/entidades/UsuarioJpaController.java</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/juego/vistaJuego.jsp</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/controladores/RegistroUsuario.java</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/nbproject/build-impl.xml</file>

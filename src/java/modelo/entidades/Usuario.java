@@ -7,7 +7,9 @@ package modelo.entidades;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -49,6 +51,9 @@ public class Usuario implements Serializable {
     @Column(length = 20)
     String telefono;        
     boolean administrador;
+    private List <Juego> carrito = new ArrayList<>();
+
+    
 
     public Usuario() {
     }
@@ -154,7 +159,15 @@ public class Usuario implements Serializable {
 
         return fecha;
     }
+    
+    public List<Juego> getCarrito() {
+        return carrito;
+    }
 
+    public void setCarrito(List<Juego> carrito) {
+        this.carrito = carrito;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
