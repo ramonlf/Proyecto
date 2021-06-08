@@ -76,6 +76,10 @@
                             <input type="hidden" name="id" value="${jue.id}" />
                             <input type="submit" value="Añadir" name="vistaJuego" class="btn-primary btn" />
                         </form>
+                        <form action="usuario/Carrito">
+                            <input type="hidden" name="id" value="${jue.id}" />
+                            <input type="submit" value="carrito" name="carrito" class="btn btn-primary" />
+                        </form>
                     </div>
                 </div>
             </c:forEach>

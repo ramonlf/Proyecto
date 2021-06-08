@@ -13,8 +13,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <c:forEach var="usu" items="${carrito}">
+        <c:forEach var="usu" items="${usuario.carrito}">
             <p>${usu.nombre}</p>
         </c:forEach>
+            <p>total: ${total}</p>
     </body>
 </html>
