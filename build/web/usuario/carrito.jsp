@@ -14,8 +14,14 @@
     </head>
     <body>
         <c:forEach var="usu" items="${usuario.carrito}">
-            <p>${usu.nombre}</p>
+            <form action="Carrito" method="post">
+                <p>${usu.juego.nombre} ${usu.cantidad} <input type="submit" value=" - " name="menos"/> <input type="submit" value=" + " name="mas" /></p>
+                <input type="hidden" value="${usu.juego.id}" name="id">
+                
+            </form>
         </c:forEach>
-            <p>total: ${total}</p>
+            <p>total: ${param.total}</p>
+            <a href="../home.jsp">Volver</a>
+            
     </body>
 </html>

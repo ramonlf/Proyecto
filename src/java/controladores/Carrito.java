@@ -7,6 +7,8 @@ package controladores;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import javax.persistence.Persistence;
 import javax.servlet.ServletException;
@@ -20,6 +22,7 @@ import modelo.entidades.Usuario;
 import modelo.entidades.UsuarioJpaController;
 import modelo.modelo.JuegoBean;
 import modelo.modelo.UsuarioBean;
+import modelo.entidades.MeterCarrito;
 
 /**
  *
@@ -40,7 +43,7 @@ public class Carrito extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         double total = 0;
-        
+
         UsuarioBean usuario = (UsuarioBean) request.getSession().getAttribute("usuarioBean");
         UsuarioJpaController ujc = new UsuarioJpaController(Persistence.createEntityManagerFactory("ProyectoFinalPU"));
         Usuario aux = (Usuario) request.getSession().getAttribute("usuario");
@@ -49,15 +52,49 @@ public class Carrito extends HttpServlet {
 
         JuegoJpaController jjc = new JuegoJpaController(Persistence.createEntityManagerFactory("ProyectoFinalPU"));
         Juego nuevo = jjc.findJuego(id);
-        List<Juego> carrito = aux.getCarrito();
-        carrito.add(nuevo);
-        aux.setCarrito(carrito);
-        for(Juego jue : carrito){
-            total += jue.getPrecio();
+
+        MeterCarrito meterCarrito = new MeterCarrito(nuevo);
+        List<MeterCarrito> carrito = aux.getCarrito();
+        if (request.getParameter("carrito") != null) {
+            MeterCarrito repetido = null;
+            for (MeterCarrito jue : carrito) {
+                if (jue.getJuego().equals(nuevo)) {
+                    repetido = jue;
+                    jue.setCantidad(jue.getCantidad() + 1);
+                }
+            }
+            if (repetido == null) {
+                meterCarrito.setCantidad(meterCarrito.getCantidad() + 1);
+                carrito.add(meterCarrito);
+            }
+
         }
         
+        if (request.getParameter("mas") != null) {
+            MeterCarrito repetido = null;
+            for (MeterCarrito jue : carrito) {
+                if (jue.getJuego().equals(nuevo)) {
+                    jue.setCantidad(jue.getCantidad() + 1);
+                }
+            }
+        }
+
+        if (request.getParameter("menos") != null) {
+            MeterCarrito repetido = null;
+            for (MeterCarrito jue : carrito) {
+                if (jue.getJuego().equals(nuevo)) {
+                    if (jue.getCantidad() > 0) {
+                        jue.setCantidad(jue.getCantidad() - 1);
+                    }
+                }
+            }
+        }
+        aux.setCarrito(carrito);
+        for (MeterCarrito jue : carrito) {
+            total += jue.getJuego().getPrecio() * jue.getCantidad();
+        }
         request.setAttribute("total", total);
-        getServletContext().getRequestDispatcher("/usuario/carrito.jsp").forward(request, response);
+        response.sendRedirect("carrito.jsp?total=" + total);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

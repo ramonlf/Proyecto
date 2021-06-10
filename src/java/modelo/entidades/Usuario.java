@@ -8,6 +8,7 @@ package modelo.entidades;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -28,7 +29,7 @@ import static modelo.modelo.UsuarioBean.PERSISTENCIA;
  * @author Ramon
  */
 @Entity
-public class Usuario implements Serializable {
+public class Usuario implements Serializable, Comparable<Usuario> {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -51,7 +52,8 @@ public class Usuario implements Serializable {
     @Column(length = 20)
     String telefono;        
     boolean administrador;
-    private List <Juego> carrito = new ArrayList<>();
+    @OneToMany
+    private List <MeterCarrito> carrito;
 
     
 
@@ -159,14 +161,20 @@ public class Usuario implements Serializable {
 
         return fecha;
     }
-    
-    public List<Juego> getCarrito() {
+
+    public List<MeterCarrito> getCarrito() {
         return carrito;
     }
 
-    public void setCarrito(List<Juego> carrito) {
+    public void setCarrito(List<MeterCarrito> carrito) {
         this.carrito = carrito;
     }
+
+
+
+
+    
+    
     
     @Override
     public int hashCode() {
@@ -227,4 +235,11 @@ public class Usuario implements Serializable {
         return "modelo.entidades.Usuario[ id=" + dni + " ]";
     }
 
+    @Override
+    public int compareTo(Usuario o) {
+        long valor = o.getId();
+        int valor2 = (int) valor;
+        return valor2;
+    }
+    
 }
