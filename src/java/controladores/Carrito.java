@@ -7,8 +7,10 @@ package controladores;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 import javax.persistence.Persistence;
 import javax.servlet.ServletException;
@@ -49,15 +51,15 @@ public class Carrito extends HttpServlet {
         Usuario aux = (Usuario) request.getSession().getAttribute("usuario");
         long id = 0;
         Juego nuevo = null;
-        if(request.getParameter("verCarrito") == null){
-        id = Long.parseLong(request.getParameter("id"));
+        if (request.getParameter("verCarrito") == null) {
+            id = Long.parseLong(request.getParameter("id"));
 
-        JuegoJpaController jjc = new JuegoJpaController(Persistence.createEntityManagerFactory("ProyectoFinalPU"));
-        nuevo = jjc.findJuego(id);
+            JuegoJpaController jjc = new JuegoJpaController(Persistence.createEntityManagerFactory("ProyectoFinalPU"));
+            nuevo = jjc.findJuego(id);
         }
         MeterCarrito meterCarrito = new MeterCarrito(nuevo);
         List<MeterCarrito> carrito = aux.getCarrito();
-        
+
         if (request.getParameter("carrito") != null) {
             MeterCarrito repetido = null;
             for (MeterCarrito jue : carrito) {
@@ -72,7 +74,17 @@ public class Carrito extends HttpServlet {
             }
 
         }
-        
+
+        if (request.getParameter("eliminar") != null) {
+            for (int i = 0; i < carrito.size(); i++) {
+
+                if (carrito.get(i).getJuego().equals(nuevo)) {
+                    carrito.remove(i);
+                    i = 0;
+                }
+            }
+        }
+
         if (request.getParameter("mas") != null) {
             MeterCarrito repetido = null;
             for (MeterCarrito jue : carrito) {
@@ -91,12 +103,20 @@ public class Carrito extends HttpServlet {
                     }
                 }
             }
+            for (int i = 0; i < carrito.size(); i++) {
+
+                if (carrito.get(i).getCantidad() < 1) {
+                    carrito.remove(i);
+                    i = 0;
+                }
+
+            }
         }
-        
-        if(request.getParameter("verCarrito") != null){
-            
+
+        if (request.getParameter("verCarrito") != null) {
+
         }
-        
+
         aux.setCarrito(carrito);
         for (MeterCarrito jue : carrito) {
             total += jue.getJuego().getPrecio() * jue.getCantidad();

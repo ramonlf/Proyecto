@@ -84,3 +84,12 @@ span.rojo {
   text-align: center;
   width: 1.6em; 
 }
+
+.btn-danger{
+    background-color: red !important;
+}
+
+.btn-danger:hover{
+    background-color: white !important;
+    color: red !important;
+}

@@ -68,8 +68,15 @@
                     <div class="card-body">
                         <c:forEach var="usu" items="${usuario.carrito}">
                             <form action="Carrito" method="post">
-                                <p class="lead">${usu.juego.nombre} - ${usu.juego.consola.nombre} - Precio: ${usu.juego.precio}&#8364; - <input class="btn" type="submit" value=" - " name="menos"/> ${usu.cantidad}  <input type="submit" class="btn" value=" + " name="mas" /></p>
-                                <input type="hidden" value="${usu.juego.id}" name="id">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <p class="lead">${usu.juego.nombre} - ${usu.juego.consola.nombre} - Precio: ${usu.juego.precio}&#8364;</p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p><input class="btn" type="submit" value=" - " name="menos"/> ${usu.cantidad}  <input type="submit" class="btn" value=" + " name="mas" /> <input type="submit" value="Eliminar" name="eliminar" class="btn btn-danger" /> </p>
+                                        <input type="hidden" value="${usu.juego.id}" name="id">
+                                    </div>
+                                </div>
 
                             </form>
                         </c:forEach>
