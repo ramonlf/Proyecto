@@ -81,7 +81,7 @@
                 </div>
                 <div class="card-body">
                     <a href="crearConsola.jsp" class="btn btn-primary m-2">Añadir consola</a>
-                    <table id="tabla" class="table table-striped">
+                    <table id="tabla" class="table table-striped table-responsive">
                         <thead>
                             <tr>
                                 <th>Nombre</th>
@@ -105,11 +105,11 @@
                                     <td>
                                         <form action="EditarConsola" method="POST">
                                             <input type="hidden" name="id" value="${con.id}">
-                                            <input type="submit" value="Editar">
+                                            <input type="submit" class="btn" value="Editar">
 
                                             </td>
                                             <td>
-                                                <input type="submit" id="eliminar" name="eliminar" value="Eliminar" />
+                                                <input type="submit" id="eliminar" class="btn" name="eliminar" value="Eliminar" />
                                         </form>
                                     </td>
                                 </tr>

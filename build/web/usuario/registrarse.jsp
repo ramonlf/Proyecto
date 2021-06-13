@@ -37,19 +37,19 @@
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-primary my-2 " type="submit" id="search"><i class="fa fa-search"></i></button>
+                    <button class="btn my-2 " type="submit" id="search"><i class="fa fa-search"></i></button>
                 </form>
                 <c:if test="${usuario == null}">
-                    <a class="btn btn-primary  my-sm-0" id="login" href="login.jsp"><i class="fa fa-user mr-1"></i>Iniciar Sesión</a>
-                    <a class="btn btn-primary  my-sm-0 ml-lg-2" id="sigUp" href="registrarse.jsp"><i class="fas fa-sign-in-alt"></i>Registrarse</a>
+                    <a class="btn  my-sm-0" id="login" href="login.jsp"><i class="fa fa-user mr-1"></i>Iniciar Sesión</a>
+                    <a class="btn  my-sm-0 ml-lg-2" id="sigUp" href="registrarse.jsp"><i class="fas fa-sign-in-alt"></i>Registrarse</a>
                 </c:if>
                 <c:if test="${usuario != null}">    
                     <div class="dropdown ml-lg-2">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-user mr-2"></i>${usuario.login}
                         </button>
-                        <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item text-light" href="EditarPerfil"><i class="fa fa-user mr-1"></i>Editar Perfil</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item btn text-light" href="EditarPerfil"><i class="fa fa-user mr-1"></i>Editar Perfil</a>
                             <a class="dropdown-item text-light" href="../administrador/administracion.jsp"><i class="fa fa-user mr-1"></i>Administrar Sitio</a>
                             <a class="dropdown-item text-light" href="../CerrarSesion"><i class="fa fa-power-off mr-1"></i>Cerrar Sesion</a>
                         </div>
@@ -116,13 +116,22 @@
                                         <input type="text" name="fechaNacimiento" class="form-control" id="fechaNacimiento" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" placeholder="dd/mm/yyyy" value="${fechaNacimiento}" required />
                                     </div>
 
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <input name="enviar" id="enviar" class="btn form-control" type="submit" />
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <input name="reset" id="reset" class="btn form-control" type="reset" />
+                                        </div>
+                                    </div>               
 
-                                    <input name="enviar" id="enviar" type="submit" />
-                                    <input name="reset" id="reset" type="reset" />
+
                             </form>
                         </div>
                     </div>
+                    <a href="../home.jsp" class="btn form-control">volver</a>
                 </div>
+
             </div>
         </section>
 

@@ -43,7 +43,10 @@
                     <a class="btn btn-primary  my-sm-0" id="login" href="../usuario/login.jsp"><i class="fa fa-user mr-1"></i>Iniciar Sesión</a>
                     <a class="btn btn-primary  my-sm-0 ml-lg-2" id="sigUp" href="../usuario/registrarse.jsp"><i class="fas fa-sign-in-alt"></i>Registrarse</a>
                 </c:if>
-                <c:if test="${usuario != null}">    
+                <c:if test="${usuario != null}">  
+                    <form action="../usuario/Carrito" method="POST">
+                        <button type="submit" name="verCarrito"  class="btn" ><span class="rojo">${usuario.carrito.size()}</span><i class="fa fa-cart-arrow-down fa"></i></button>
+                    </form>
                     <div class="dropdown ml-lg-2">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-user mr-2"></i>${usuario.login}
@@ -64,7 +67,7 @@
             <div class="container">
                 <div class="col-sm-offset-2 col-sm-12 offset-xl-0 col-xl-12 offset-lg-0 col-lg-12">
                     <div class="card card-default">
-                        
+
                         <div class="card-header">
                             <h1>Editar juego: ${nombre}</h1>
                         </div>
@@ -109,8 +112,15 @@
                                     <label>Fecha de Lanzamiento</label>
                                     <input type="text" name="fechaLanzamiento" id="fechaLanzamiento" class="form-control" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" placeholder="dd/mm/yyyy" value="${fechaLanzamiento}" required /><br>
                                 </div>
-                                <input type="submit" id="actualizar" name="actualizar" value="Editar" />
-                                <input type="reset" id="limpiar" name="limpiar" value="Limpiar" />
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <input type="submit" id="actualizar" name="actualizar" class="btn btn-primary form-control" value="Editar" />
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <input type="reset" id="limpiar" name="limpiar" class="btn btn-primary form-control" value="Limpiar" />
+                                    </div>
+                                </div>                              
                             </form>
                         </div>
                         <a href="verJuego.jsp" class="btn btn-primary">Volver</a>

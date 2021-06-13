@@ -36,15 +36,19 @@
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-primary my-2 " type="submit" id="search"><i class="fa fa-search"></i></button>
+                <button class="btn my-2 " type="submit" id="search"><i class="fa fa-search"></i></button>
             </form>
             <c:if test="${usuario == null}">
-                <a class="btn btn-primary  my-sm-0" id="login" href="usuario/login.jsp"><i class="fa fa-user mr-1"></i>Iniciar Sesión</a>
-                <a class="btn btn-primary  my-sm-0 ml-lg-2" id="sigUp" href="usuario/registrarse.jsp"><i class="fas fa-sign-in-alt"></i>Registrarse</a>
+                <a class="btn my-sm-0" id="login" href="usuario/login.jsp"><i class="fa fa-user mr-1"></i>Iniciar Sesión</a>
+                <a class="btn  my-sm-0 ml-lg-2" id="sigUp" href="usuario/registrarse.jsp"><i class="fas fa-sign-in-alt"></i>Registrarse</a>
             </c:if>
             <c:if test="${usuario != null}">    
+                <form action="usuario/Carrito" method="POST">
+                    <button type="submit" name="verCarrito"  class="btn" ><span class="rojo">${usuario.carrito.size()}</span><i class="fa fa-cart-arrow-down fa"></i></button>
+                </form>
                 <div class="dropdown ml-lg-2">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                    <button class="btn dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-user mr-2"></i>${usuario.login}
                     </button>
                     <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton">
@@ -66,37 +70,53 @@
 
                 <div class="col-lg-2 ml-2">
                     <div class="card border mt-3 mb-1">
-                        <form action="juego/VistaJuego" method="POST">
+                        <form action="juego/VistaJuego" method="POST" >
                             <button type="submit" ><img class="card-img-top" src="fotos/juegos/${jue.url}" alt="Imagen ${jue.nombre}  ${jue.consola.nombre}"></button>
                             <div class="card-body">
                                 <h5 class="card-title">${jue.nombre}</h5>
+                                <input type="hidden" name="id" value="${jue.id}" />
                                 <p class="card-text">Precio: ${jue.precio} &#8364;</p>
                             </div>
-
-                            <input type="hidden" name="id" value="${jue.id}" />
-                            <input type="submit" value="Añadir" name="vistaJuego" class="btn-primary btn" />
                         </form>
-                        <c:if test="${usuario != null}">
-                            <form action="usuario/Carrito">
-                                <input type="hidden" name="id" value="${jue.id}" />
-                                <input type="submit" value="carrito" name="carrito" class="btn btn-primary" />
-                            </form>
-                        </c:if>
+
+                        <div class="form-row">
+                            <c:if test="${usuario != null}">
+                                <div class="col-sm-6">
+                                </c:if>
+                                <c:if test="${usuario == null}">
+                                    <div class="col-sm-12">
+                                    </c:if>
+                                    <form action="juego/VistaJuego" method="POST">
+                                        <input type="hidden" name="id" value="${jue.id}" />
+                                        <input type="submit"  value="Ver" name="vistaJuego" class="btn form-control" />
+                                    </form>
+                                </div>
+
+                                <c:if test="${usuario != null}">
+                                    <div class="col-sm-6">
+                                        <form action="usuario/Carrito">
+
+                                            <input type="hidden" name="id" value="${jue.id}" />
+                                            <button type="submit" value="carrito" name="carrito" class="btn form-control" > <i class="fa fa-cart-plus"></i> </button>
+                                        </form>
+                                    </div>
+                                </c:if>
+                            </div>
+                        </div>
                     </div>
+                </c:forEach>
+            </div>
+
+            <footer id="footer " class=" pt-2 pb-1 ">
+                <div class="container-fluid mt-0 ">
+                    <p> &copy; 2021 PlayMon.com <span class="float-right"> <a href="../juego/directorio.jsp">Directorio</a></span> <span class="float-right mr-2"><a href="home.jsp">Inicio</a></span> </p>
+
                 </div>
-            </c:forEach>
+            </footer>
+
         </div>
 
-        <footer id="footer " class=" pt-2 pb-1 ">
-            <div class="container-fluid mt-0 ">
-                <p> &copy; 2021 PlayMon.com <span class="float-right"> <a href="../juego/directorio.jsp">Directorio</a></span> <span class="float-right mr-2"><a href="home.jsp">Inicio</a></span> </p>
-
-            </div>
-        </footer>
 
     </div>
-
-
-</div>
 </body>
 </html>

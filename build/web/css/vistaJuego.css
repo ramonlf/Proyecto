@@ -173,3 +173,28 @@ input[type="radio"]:checked~label {
 .h3{
     color: green;
 }
+
+.btn{
+    background-color: rgb(139, 46, 151);
+    border: rgb(145, 65, 155);
+    color: white;
+}
+
+.btn:hover{
+    background-color: white;
+    color: rgb(139, 46, 151);
+}
+
+span.rojo {
+  background: red !important;
+   border-radius: 0.8em;
+  -moz-border-radius: 0.8em;
+  -webkit-border-radius: 0.8em;
+  color: #ffffff;
+  display: inline-block;
+  font-weight: bold;
+  line-height: 1.6em;
+  margin-right: 15px;
+  text-align: center;
+  width: 1.6em; 
+}

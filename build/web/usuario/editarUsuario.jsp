@@ -42,7 +42,10 @@
                     <a class="btn btn-primary  my-sm-0" id="login" href="login.jsp"><i class="fa fa-user mr-1"></i>Iniciar Sesión</a>
                     <a class="btn btn-primary  my-sm-0 ml-lg-2" id="sigUp" href="registrarse.jsp"><i class="fas fa-sign-in-alt"></i>Registrarse</a>
                 </c:if>
-                <c:if test="${usuario != null}">    
+                <c:if test="${usuario != null}">  
+                   <form action="Carrito" method="POST">
+                        <button type="submit" name="verCarrito"  class="btn" ><span class="rojo">${usuario.carrito.size()}</span><i class="fa fa-cart-arrow-down fa"></i></button>
+                    </form>
                     <div class="dropdown ml-lg-2">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-user mr-2"></i>${usuario.login}

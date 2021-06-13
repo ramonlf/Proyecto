@@ -39,15 +39,18 @@
                     </ul>
                     <form class="form-inline my-2 my-lg-0">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-primary my-2 " type="submit" id="search"><i class="fa fa-search"></i></button>
+                        <button class="btn my-2 " type="submit" id="search"><i class="fa fa-search"></i></button>
                     </form>
                     <c:if test="${usuario == null}">
-                        <a class="btn btn-primary  my-sm-0" id="login" href="../usuario/login.jsp"><i class="fa fa-user mr-1"></i>Iniciar Sesión</a>
-                        <a class="btn btn-primary  my-sm-0 ml-lg-2" id="sigUp" href="../usuario/registrarse.jsp"><i class="fas fa-sign-in-alt"></i>Registrarse</a>
+                        <a class="btn my-sm-0" id="login" href="../usuario/login.jsp"><i class="fa fa-user mr-1"></i>Iniciar Sesión</a>
+                        <a class="btn my-sm-0 ml-lg-2" id="sigUp" href="../usuario/registrarse.jsp"><i class="fas fa-sign-in-alt"></i>Registrarse</a>
                     </c:if>
-                    <c:if test="${usuario != null}">    
+                    <c:if test="${usuario != null}"> 
+                        <form action="../usuario/Carrito" method="POST">
+                            <button type="submit" name="verCarrito"  class="btn" ><span class="rojo">${usuario.carrito.size()}</span><i class="fa fa-cart-arrow-down fa"></i></button>
+                        </form>
                         <div class="dropdown ml-lg-2">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-user mr-2"></i>${usuario.login}
                             </button>
                             <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton">
@@ -127,10 +130,18 @@
                                         <label>Fecha de Lanzamiento</label>
                                         <input type="text" name="fechaLanzamiento" id="fechaLanzamiento" class="form-control" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01]).(0[1-9]|1[012]).[0-9]{4}" placeholder="dd/mm/yyyy" value="${fechaLanzamiento}" required /><br>
                                     </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <input type="submit" id="crear" name="crear" class="form-control btn" value="Añadir juego" />
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <input type="reset" id="limpiar" name="limpiar" class="form-control btn" value="Limpiar" />
+                                        </div>
+                                    </div>
 
 
-                                    <input type="submit" id="crear" name="crear" value="Añadir juego" />
-                                    <input type="reset" id="limpiar" name="limpiar" value="Limpiar" />
+
+
                                 </form>
                             </div>
                             <a href="../administrador/administracion.jsp" class="btn btn-primary">Volver</a>
@@ -139,7 +150,7 @@
                 </div>
             </section>
 
-          
+
 
             <footer id="footer " class=" pt-2 pb-1 fixed-bottom ">
                 <div class="container-fluid mt-0 ">

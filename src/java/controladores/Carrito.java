@@ -47,14 +47,17 @@ public class Carrito extends HttpServlet {
         UsuarioBean usuario = (UsuarioBean) request.getSession().getAttribute("usuarioBean");
         UsuarioJpaController ujc = new UsuarioJpaController(Persistence.createEntityManagerFactory("ProyectoFinalPU"));
         Usuario aux = (Usuario) request.getSession().getAttribute("usuario");
-
-        long id = Long.parseLong(request.getParameter("id"));
+        long id = 0;
+        Juego nuevo = null;
+        if(request.getParameter("verCarrito") == null){
+        id = Long.parseLong(request.getParameter("id"));
 
         JuegoJpaController jjc = new JuegoJpaController(Persistence.createEntityManagerFactory("ProyectoFinalPU"));
-        Juego nuevo = jjc.findJuego(id);
-
+        nuevo = jjc.findJuego(id);
+        }
         MeterCarrito meterCarrito = new MeterCarrito(nuevo);
         List<MeterCarrito> carrito = aux.getCarrito();
+        
         if (request.getParameter("carrito") != null) {
             MeterCarrito repetido = null;
             for (MeterCarrito jue : carrito) {
@@ -89,6 +92,11 @@ public class Carrito extends HttpServlet {
                 }
             }
         }
+        
+        if(request.getParameter("verCarrito") != null){
+            
+        }
+        
         aux.setCarrito(carrito);
         for (MeterCarrito jue : carrito) {
             total += jue.getJuego().getPrecio() * jue.getCantidad();
