@@ -37,6 +37,13 @@ public class Pedido implements Serializable {
     @JoinColumn(name = "dni")
     private Usuario usuario;
 
+    public Pedido(){}
+    
+    public Pedido(Date fechaRealizacion, double factura, Usuario usuario){
+        this.fechaRealizacion = fechaRealizacion;
+        this.factura = factura;
+        this.usuario = usuario;
+    }
     
 
     public Long getId() {
