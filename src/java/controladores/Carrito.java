@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
@@ -116,7 +117,10 @@ public class Carrito extends HttpServlet {
         if (request.getParameter("verCarrito") != null) {
 
         }
+        
 
+        Collections.sort(carrito, (e1, e2) ->
+                (e1.getJuego().getNombre()).compareTo(e2.getJuego().getNombre()));
         aux.setCarrito(carrito);
         for (MeterCarrito jue : carrito) {
             total += jue.getJuego().getPrecio() * jue.getCantidad();

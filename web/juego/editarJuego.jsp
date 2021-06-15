@@ -72,7 +72,7 @@
                             <h1>Editar juego: ${nombre}</h1>
                         </div>
                         <div class="card-body">
-                            <form action="EditarJuego" method="POST">
+                            <form id="miForm" action="EditarJuego" method="POST">
                                 <div class="form-group">
                                     <label>Nombre: </label>
                                     <input type="hidden" name="id" id="id" value="${id}" />
@@ -118,7 +118,7 @@
                                         <input type="submit" id="actualizar" name="actualizar" class="btn btn-primary form-control" value="Editar" />
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <input type="reset" id="limpiar" name="limpiar" class="btn btn-primary form-control" value="Limpiar" />
+                                        <input type="reset" id="limpiar" name="limpiar" class="btn btn-primary form-control" value="Limpiar"  />
                                     </div>
                                 </div>                              
                             </form>
@@ -135,6 +135,6 @@
 
             </div>
         </footer>
-    </body>
 
+    </body>
 </html>

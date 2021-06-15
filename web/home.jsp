@@ -65,7 +65,7 @@
     </nav>
     <div>
 
-        <div class="row offset-lg-1 col-lg-10">
+        <div class="row offset-lg-1 col-lg-11">
             <c:forEach var="jue" items="${juegoBean.juegos}">
 
                 <div class="col-lg-2 ml-2">
@@ -74,6 +74,7 @@
                             <button type="submit" ><img class="card-img-top" src="fotos/juegos/${jue.url}" alt="Imagen ${jue.nombre}  ${jue.consola.nombre}"></button>
                             <div class="card-body">
                                 <h5 class="card-title">${jue.nombre}</h5>
+                                <p>${jue.consola.nombre}</p>
                                 <input type="hidden" name="id" value="${jue.id}" />
                                 <p class="card-text">Precio: ${jue.precio} &#8364;</p>
                             </div>
