@@ -14,6 +14,6 @@
         <meta charset="UTF-8">
         <meta http-equiv="REFRESH" content="0; url=IniciarSesiones">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       
+    </head>
 </body>
 </html>
