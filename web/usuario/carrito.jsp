@@ -81,7 +81,16 @@
                             </form>
                         </c:forEach>
                         <div class="card-footer">
-                            <p>total: ${param.total}&#8364</p>
+                            <div class="row">
+                                <div class="col-6">
+                                    <p>total: ${param.total}&#8364</p>
+                                </div>
+                                <div class="col-6">
+                                    <form action="CrearPedido" method="POST">
+                                        <input type="submit" name="pedido" value="Realizar pedido" class="btn btn-secondary" />
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <a href="../home.jsp" class="btn btn-primary">Volver</a>

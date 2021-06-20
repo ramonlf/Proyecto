@@ -7,24 +7,20 @@ package controladores;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import modelo.modelo.ConsolaBean;
-import modelo.modelo.ContieneBean;
-import modelo.modelo.JuegoBean;
-import modelo.modelo.ListadoFicheros;
-import modelo.modelo.UsuarioBean;
 
 /**
  *
  * @author Ramon
  */
-@WebServlet(name = "IniciarSesiones", urlPatterns = {"/IniciarSesiones"})
-public class IniciarSesiones extends HttpServlet {
+@WebServlet(name = "Directorio", urlPatterns = {"/juego/Directorio"})
+public class Directorio extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,18 +33,16 @@ public class IniciarSesiones extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String valor = null;
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession sesion = request.getSession();
-        sesion.setAttribute("usuarioBean", new UsuarioBean());
-        sesion.setAttribute("consolaBean", new ConsolaBean());
-        sesion.setAttribute("juegoBean", new JuegoBean());
-        sesion.setAttribute("contieneBean", new ContieneBean());
-        response.sendRedirect("home.jsp");
-        String ruta = getServletContext().getRealPath("fotos/juegos");
-        ListadoFicheros listadoFicheros = new ListadoFicheros();
-        listadoFicheros.setPath(ruta);
-        sesion.setAttribute("listadoFicheros", listadoFicheros);
-        return;
+        String parametro1 = null;
+        valor = request.getQueryString();
+        parametro1 = valor.split("=", 0)[0];
+        if (parametro1.equals("todos")) {
+            response.sendRedirect("directorioJuegos.jsp");
+        } else {
+            response.sendRedirect("directorioJuegos.jsp?consola=" + parametro1);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

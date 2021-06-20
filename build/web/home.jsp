@@ -65,59 +65,175 @@
     </nav>
     <div>
 
-        <div class="row offset-lg-1 col-lg-11">
-            <c:forEach var="jue" items="${juegoBean.juegos}">
-
-                <div class="col-lg-2 ml-2">
-                    <div class="card border mt-3 mb-1">
-                        <form action="juego/VistaJuego" method="POST" >
-                            <button type="submit" ><img class="card-img-top" src="fotos/juegos/${jue.url}" alt="Imagen ${jue.nombre}  ${jue.consola.nombre}"></button>
-                            <div class="card-body">
-                                <h5 class="card-title">${jue.nombre}</h5>
-                                <p>${jue.consola.nombre}</p>
-                                <input type="hidden" name="id" value="${jue.id}" />
-                                <p class="card-text">Precio: ${jue.precio} &#8364;</p>
-                            </div>
-                        </form>
-
-                        <div class="form-row">
-                            <c:if test="${usuario != null}">
-                                <div class="col-sm-6">
-                                </c:if>
-                                <c:if test="${usuario == null}">
-                                    <div class="col-sm-12">
-                                    </c:if>
-                                    <form action="juego/VistaJuego" method="POST">
-                                        <input type="hidden" name="id" value="${jue.id}" />
-                                        <input type="submit"  value="Ver" name="vistaJuego" class="btn form-control" />
-                                    </form>
-                                </div>
-
-                                <c:if test="${usuario != null}">
-                                    <div class="col-sm-6">
-                                        <form action="usuario/Carrito">
-
-                                            <input type="hidden" name="id" value="${jue.id}" />
-                                            <button type="submit" value="carrito" name="carrito" class="btn form-control" > <i class="fa fa-cart-plus"></i> </button>
-                                        </form>
-                                    </div>
-                                </c:if>
-                            </div>
-                        </div>
-                    </div>
-                </c:forEach>
-            </div>
-
-            <footer id="footer " class=" pt-2 pb-1 ">
-                <div class="container-fluid mt-0 ">
-                    <p> &copy; 2021 PlayMon.com <span class="float-right"> <a href="../juego/directorio.jsp">Directorio</a></span> <span class="float-right mr-2"><a href="home.jsp">Inicio</a></span> </p>
-
+        <div class="row offset-lg-2 col-lg-9 mt-3 mb-3">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Populares del momento</h2>
                 </div>
-            </footer>
+                <div class="row offset-lg-1 col-lg-9">
+                    <c:forEach var="jue" items="${juegoBean.juegoConsola}">
+
+                        <div class="col-xl-3">
+                            <div class="card-default border p-1  mt-3 mb-3">
+                                <form action="juego/VistaJuego" method="POST" >
+                                    <button type="submit" ><img class="card-img-top" src="fotos/juegos/${jue.url}" alt="Imagen ${jue.nombre}  ${jue.consola.nombre}"></button>
+                                    <div class="card-body">
+                                        <h5 class="card-title">${jue.nombre}</h5>
+                                        <p>${jue.consola.nombre}</p>
+                                        <input type="hidden" name="id" value="${jue.id}" />
+                                        <p class="card-text">Precio: ${jue.precio} &#8364;</p>
+                                    </div>
+                                </form>
+
+                                <div class="form-row">
+                                    <c:if test="${usuario != null}">
+                                        <div class="col-sm-6">
+                                        </c:if>
+                                        <c:if test="${usuario == null}">
+                                            <div class="col-sm-12">
+                                            </c:if>
+                                            <form action="juego/VistaJuego" method="POST">
+                                                <input type="hidden" name="id" value="${jue.id}" />
+                                                <input type="submit"  value="Ver" name="vistaJuego" class="btn form-control" />
+                                            </form>
+                                        </div>
+
+                                        <c:if test="${usuario != null}">
+                                            <div class="col-sm-6">
+                                                <form action="usuario/Carrito">
+
+                                                    <input type="hidden" name="id" value="${jue.id}" />
+                                                    <button type="submit" value="carrito" name="carrito" class="btn form-control" > <i class="fa fa-cart-plus"></i> </button>
+                                                </form>
+                                            </div>
+                                        </c:if>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </div>
+                    <a href="juego/directorioJuegos.jsp" class="btn btn-primary">Ver más</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="row offset-lg-2 col-lg-9 mt-3 mb-3">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Juegos recientes</h2>
+                </div>
+                <div class="row offset-lg-1 col-lg-9">
+                    <c:forEach var="jue" items="${juegoBean.juegosRecientes}">
+
+                        <div class="col-xl-3">
+                            <div class="card-default border p-1  mt-3 mb-3">
+                                <form action="juego/VistaJuego" method="POST" >
+                                    <button type="submit" ><img class="card-img-top" src="fotos/juegos/${jue.url}" alt="Imagen ${jue.nombre}  ${jue.consola.nombre}"></button>
+                                    <div class="card-body">
+                                        <h5 class="card-title">${jue.nombre}</h5>
+                                        <p>${jue.consola.nombre}</p>
+                                        <input type="hidden" name="id" value="${jue.id}" />
+                                        <p class="card-text">Precio: ${jue.precio} &#8364;</p>
+                                    </div>
+                                </form>
+
+                                <div class="form-row">
+                                    <c:if test="${usuario != null}">
+                                        <div class="col-sm-6">
+                                        </c:if>
+                                        <c:if test="${usuario == null}">
+                                            <div class="col-sm-12">
+                                            </c:if>
+                                            <form action="juego/VistaJuego" method="POST">
+                                                <input type="hidden" name="id" value="${jue.id}" />
+                                                <input type="submit"  value="Ver" name="vistaJuego" class="btn form-control" />
+                                            </form>
+                                        </div>
+
+                                        <c:if test="${usuario != null}">
+                                            <div class="col-sm-6">
+                                                <form action="usuario/Carrito">
+
+                                                    <input type="hidden" name="id" value="${jue.id}" />
+                                                    <button type="submit" value="carrito" name="carrito" class="btn form-control" > <i class="fa fa-cart-plus"></i> </button>
+                                                </form>
+                                            </div>
+                                        </c:if>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </div>
+                    <a href="juego/directorioJuegos.jsp" class="btn btn-primary">Ver más</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div>
+        <div class="row offset-lg-2 col-lg-9 mt-3 mb-3">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Juegos A - Z</h2>
+                </div>
+                <div class="row offset-lg-1 col-lg-9">
+                    <c:forEach var="jue" items="${juegoBean.juegosAlfabeticos}">
+
+                        <div class="col-xl-3">
+                            <div class="card-default border p-1  mt-3 mb-3">
+                                <form action="juego/VistaJuego" method="POST" >
+                                    <button type="submit" ><img class="card-img-top" src="fotos/juegos/${jue.url}" alt="Imagen ${jue.nombre}  ${jue.consola.nombre}"></button>
+                                    <div class="card-body">
+                                        <h5 class="card-title">${jue.nombre}</h5>
+                                        <p>${jue.consola.nombre}</p>
+                                        <input type="hidden" name="id" value="${jue.id}" />
+                                        <p class="card-text">Precio: ${jue.precio} &#8364;</p>
+                                    </div>
+                                </form>
+
+                                <div class="form-row">
+                                    <c:if test="${usuario != null}">
+                                        <div class="col-sm-6">
+                                        </c:if>
+                                        <c:if test="${usuario == null}">
+                                            <div class="col-sm-12">
+                                            </c:if>
+                                            <form action="juego/VistaJuego" method="POST">
+                                                <input type="hidden" name="id" value="${jue.id}" />
+                                                <input type="submit"  value="Ver" name="vistaJuego" class="btn form-control" />
+                                            </form>
+                                        </div>
+
+                                        <c:if test="${usuario != null}">
+                                            <div class="col-sm-6">
+                                                <form action="usuario/Carrito">
+
+                                                    <input type="hidden" name="id" value="${jue.id}" />
+                                                    <button type="submit" value="carrito" name="carrito" class="btn form-control" > <i class="fa fa-cart-plus"></i> </button>
+                                                </form>
+                                            </div>
+                                        </c:if>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </div>
+                    <a href="juego/directorioJuegos.jsp" class="btn btn-primary">Ver más</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="footer " class=" pt-2 pb-1 ">
+        <div class="container-fluid mt-0 ">
+            <p> &copy; 2021 PlayMon.com <span class="float-right"> <a href="../juego/directorio.jsp">Directorio</a></span> <span class="float-right mr-2"><a href="home.jsp">Inicio</a></span> </p>
 
         </div>
+    </footer>
 
 
-    </div>
 </body>
 </html>

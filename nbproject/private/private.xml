@@ -3,24 +3,28 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/juego/subirFoto.jsp</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/juego/directorioJuegos.jsp</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/home.jsp</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/usuario/verUsuario.jsp</file>
-            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/consola/editarConsola.jsp</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/controladores/EditarPerfil.java</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/index.jsp</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/modelo/modelo/JuegoBean.java</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/modelo/entidades/Contiene.java</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/controladores/Carrito.java</file>
-            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/css/administracion.css</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/conf/persistence.xml</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/controladores/Directorio.java</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/usuario/carrito.jsp</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/juego/editarJuego.jsp</file>
-            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/usuario/editarUsuario.jsp</file>
-            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/juego/verJuego.jsp</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/modelo/modelo/ConsolaBean.java</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/controladores/CrearConsola.java</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/controladores/Login.java</file>
             <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/consola/verConsola.jsp</file>
-            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/usuario/registrarse.jsp</file>
-            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/juego/crearJuego.jsp</file>
-            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/css/vistaJuego.css</file>
-            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/css/fondo.css</file>
-            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/juego/vistaJuego.jsp</file>
-            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/usuario/login.jsp</file>
-            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/usuario/editarPerfil.jsp</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/modelo/modelo/ContieneBean.java</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/controladores/CrearPedido.java</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/controladores/IniciarSesiones.java</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/modelo/entidades/Usuario.java</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/web/administrador/administracion.jsp</file>
+            <file>file:/C:/Users/Ramon/Documents/GitHub/Proyecto/src/java/controladores/CrearJuego.java</file>
         </group>
     </open-files>
 </project-private>

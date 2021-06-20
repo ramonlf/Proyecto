@@ -36,6 +36,63 @@ public class Contiene implements Serializable {
     @Temporal(TemporalType.DATE)
     Date fechaRealizacion;         
     int unidades;
+
+    public Contiene(){}
+
+    public Contiene(Pedido pedido, Juego juego, double precio, Date fechaRealizacion, int unidades) {
+        this.id = id;
+        this.pedido = pedido;
+        this.juego = juego;
+        this.precio = precio;
+        this.fechaRealizacion = fechaRealizacion;
+        this.unidades = unidades;
+    }
+
+
+    
+    
+    
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
+    }
+
+    public Juego getJuego() {
+        return juego;
+    }
+
+    public void setJuego(Juego juego) {
+        this.juego = juego;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public Date getFechaRealizacion() {
+        return fechaRealizacion;
+    }
+
+    public void setFechaRealizacion(Date fechaRealizacion) {
+        this.fechaRealizacion = fechaRealizacion;
+    }
+
+    public int getUnidades() {
+        return unidades;
+    }
+
+    public void setUnidades(int unidades) {
+        this.unidades = unidades;
+    }
+    
+    
     
 
     public Long getId() {
