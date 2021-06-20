@@ -19,6 +19,7 @@ import modelo.entidades.Usuario;
 import modelo.entidades.UsuarioJpaController;
 import modelo.modelo.ConsolaBean;
 import modelo.modelo.JuegoBean;
+import modelo.modelo.PedidoBean;
 import modelo.modelo.UsuarioBean;
 
 /**
@@ -61,6 +62,7 @@ public class Login extends HttpServlet {
                         sesion.setAttribute("usuarioBean", new UsuarioBean());
                         sesion.setAttribute("consolaBean", new ConsolaBean());
                         sesion.setAttribute("juegoBean", new JuegoBean());
+                        sesion.setAttribute("pedidoBean", new PedidoBean());
                         response.sendRedirect("../home.jsp");
                         return;
                     }

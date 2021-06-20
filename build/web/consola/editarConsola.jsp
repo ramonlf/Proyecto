@@ -51,6 +51,7 @@
                         <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item text-light" href="../usuario/EditarPerfil"><i class="fa fa-user mr-1"></i>Editar Perfil</a>
                             <a class="dropdown-item text-light" href="../administrador/administracion.jsp"><i class="fa fa-user mr-1"></i>Administrar Sitio</a>
+                            <a class="dropdown-item text-light" href="../usuario/verPedidos.jsp"><i class="fa fa-user mr-1"></i>Pedidos</a>
                             <a class="dropdown-item text-light" href="../CerrarSesion"><i class="fa fa-power-off mr-1"></i>Cerrar Sesion</a>
                         </div>
                     </div>
@@ -88,8 +89,16 @@
                                 <label>URL de la imagen:</label>
                                 <input type="text" id="url" name="url" class="form-control" accept="image/*" value="${url}" required />
                             </div>
-                            <input type="submit" id="actualizar" name="actualizar" value="Editar consola" />
-                            <input type="reset" id="limpiar" name="limpiar" value="Limpiar" />
+
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <input type="submit" id="actualizar" class="btn form-control" name="actualizar" value="Editar consola" />
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input type="reset" id="limpiar" class="btn form-control" name="limpiar" value="Limpiar" />
+                                </div>
+                            </div>            
                         </form>
                     </div>
                     <a href="verConsola.jsp" class="btn btn-primary">Volver</a>
@@ -100,7 +109,7 @@
 
     <footer id="footer " class=" pt-2 pb-1 fixed-bottom ">
         <div class="container-fluid mt-0 ">
-            <p> &copy; 2021 PlayMon.com <span class="float-right"> <a href="../juego/directorio.jsp">Directorio</a></span> <span class="float-right mr-2"><a href="../home.jsp">Inicio</a></span> </p>
+            <p> &copy; 2021 PlayMon.com <span class="float-right"> <a href="../juego/directorioJuegos.jsp">Directorio</a></span> <span class="float-right mr-2"><a href="../home.jsp">Inicio</a></span> </p>
 
         </div>
     </footer>

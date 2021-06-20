@@ -6,6 +6,7 @@
 package modelo.entidades;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -70,6 +71,14 @@ public class Pedido implements Serializable {
         this.factura = factura;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -93,6 +102,14 @@ public class Pedido implements Serializable {
     @Override
     public String toString() {
         return "modelo.entidades.Pedido[ id=" + id + " ]";
+    }
+    
+     public String getFechaRealizacionCorta() {
+        SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
+        String fecha;
+        fecha = formateador.format(this.getFechaRealizacion());
+
+        return fecha;
     }
 
 }

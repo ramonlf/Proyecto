@@ -5,6 +5,8 @@
  */
 package modelo.modelo;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Persistence;
 import modelo.entidades.Pedido;
 import modelo.entidades.PedidoJpaController;
@@ -19,5 +21,15 @@ public class PedidoBean {
     public void crearPedido(Pedido pedido) throws Exception{
         PedidoJpaController pjc = new PedidoJpaController(Persistence.createEntityManagerFactory(PERSISTENCIA));
         pjc.create(pedido);
+    }
+    
+    public List<Pedido> getPedidos(){
+        PedidoJpaController pjc = new PedidoJpaController(Persistence.createEntityManagerFactory(PERSISTENCIA));
+        List<Pedido> pedido =  pjc.findPedidoEntities();
+        List<Pedido> aux = new ArrayList();
+        for(int i = pedido.size() - 1; i >= 0; i--){
+            aux.add(pedido.get(i));
+        }
+        return aux;
     }
 }

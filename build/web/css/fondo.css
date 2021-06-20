@@ -47,6 +47,7 @@ footer span a:hover {
 
 button img{
     width: 100%;
+    height: 400px;
 }
 
 .card form button{
@@ -92,4 +93,20 @@ span.rojo {
 .btn-danger:hover{
     background-color: white !important;
     color: red !important;
+}
+
+@media (max-width: 980px) {
+    .card {
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .card {
+        width: 80%;
+        overflow: hidden;
+    }
+    
+    button img{
+        height: 600px;
+    }
+
 }

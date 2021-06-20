@@ -1,16 +1,16 @@
 <%-- 
-    Document   : carrito
-    Created on : 07-jun-2021, 19:36:48
+    Document   : verPedidos
+    Created on : 20-jun-2021, 17:10:12
     Author     : Ramon
 --%>
 
-<%@page contentType="text/html" pageEncoding="iso-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="iso-8859-1"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Ver pedidos</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -43,7 +43,7 @@
                     <a class="btn btn-primary  my-sm-0" id="login" href="login.jsp"><i class="fa fa-user mr-1"></i>Iniciar Sesión</a>
                     <a class="btn btn-primary  my-sm-0 ml-lg-2" id="sigUp" href="registrarse.jsp"><i class="fas fa-sign-in-alt"></i>Registrarse</a>
                 </c:if>
-                <c:if test="${usuario != null}"> 
+                <c:if test="${usuario != null}">  
                     <form action="Carrito" method="POST">
                         <button type="submit" name="verCarrito"  class="btn" ><span class="rojo">${usuario.carrito.size()}</span><i class="fa fa-cart-arrow-down fa"></i></button>
                     </form>
@@ -51,7 +51,7 @@
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-user mr-2"></i>${usuario.login}
                         </button>
-                       <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton">
+                        <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item text-light" href="EditarPerfil"><i class="fa fa-user mr-1"></i>Editar Perfil</a>
                             <a class="dropdown-item text-light" href="../administrador/administracion.jsp"><i class="fa fa-user mr-1"></i>Administrar Sitio</a>
                             <a class="dropdown-item text-light" href="verPedidos.jsp"><i class="fa fa-user mr-1"></i>Pedidos</a>
@@ -63,45 +63,32 @@
 
             </div>
         </nav>
-        <section>
-            <div class="container mt-4">
 
-                <div class="card">
-                    <div class="card-body">
-                        <c:forEach var="usu" items="${usuario.carrito}">
-                            <form action="Carrito" method="post">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <p class="lead">${usu.juego.nombre} - ${usu.juego.consola.nombre} - Precio: ${usu.juego.precio}&#8364;</p>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <p><input class="btn" type="submit" value=" - " name="menos"/> ${usu.cantidad}  <input type="submit" class="btn" value=" + " name="mas" /> <input type="submit" value="Eliminar" name="eliminar" class="btn btn-danger" /> </p>
-                                        <input type="hidden" value="${usu.juego.id}" name="id">
-                                    </div>
-                                </div>
-
-                            </form>
-                        </c:forEach>
-                        <div class="card-footer">
+        <section class=" pb-5 mt-4" id="admin-course">
+            <div class="container">
+                <div class="col-sm-offset-2 col-sm-12 offset-xl-0 col-xl-12 offset-lg-0 col-lg-12">
+                    <div class="card card-default">
+                        <div class="card-header">
+                            <h2>Pedidos ${usuario.login}:</h2>
+                        </div>
+                        <div class="card-body">
                             <div class="row">
-                                <div class="col-6">
-                                    <p>total: ${param.total}&#8364</p>
-                                </div>
-                                <div class="col-6">
-                                    <form action="CrearPedido" method="POST">
-                                        <input type="submit" name="pedido" value="Realizar pedido" class="btn btn-secondary" />
-                                    </form>
+                                <div class="card-default offset-lg-2 col-lg-9">
+                                    <c:forEach var="ped" items="${pedidoBean.pedidos}">
+                                        <c:if test="${usuario.id == ped.usuario.id}">
+                                            <p class="lead">${ped.usuario.nombre} - ${ped.factura} - ${ped.fechaRealizacionCorta}</p>
+                                        </c:if>
+                                    </c:forEach>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <a href="../home.jsp" class="btn btn-primary">Volver</a>
-                </div>
 
+                        </div>
+
+                        <a href="../index.jsp" class="btn btn-primary">Volver</a>
+                    </div>
+                </div>
             </div>
         </section>
-
-
 
         <footer id="footer " class=" pt-2 pb-1 fixed-bottom">
             <div class="container-fluid mt-0 ">
@@ -110,4 +97,6 @@
             </div>
         </footer>
     </body>
+
+
 </html>

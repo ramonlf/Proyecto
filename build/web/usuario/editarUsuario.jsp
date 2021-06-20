@@ -43,7 +43,7 @@
                     <a class="btn btn-primary  my-sm-0 ml-lg-2" id="sigUp" href="registrarse.jsp"><i class="fas fa-sign-in-alt"></i>Registrarse</a>
                 </c:if>
                 <c:if test="${usuario != null}">  
-                   <form action="Carrito" method="POST">
+                    <form action="Carrito" method="POST">
                         <button type="submit" name="verCarrito"  class="btn" ><span class="rojo">${usuario.carrito.size()}</span><i class="fa fa-cart-arrow-down fa"></i></button>
                     </form>
                     <div class="dropdown ml-lg-2">
@@ -53,7 +53,9 @@
                         <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item text-light" href="EditarPerfil"><i class="fa fa-user mr-1"></i>Editar Perfil</a>
                             <a class="dropdown-item text-light" href="../administrador/administracion.jsp"><i class="fa fa-user mr-1"></i>Administrar Sitio</a>
+                            <a class="dropdown-item text-light" href="verPedidos.jsp"><i class="fa fa-user mr-1"></i>Pedidos</a>
                             <a class="dropdown-item text-light" href="../CerrarSesion"><i class="fa fa-power-off mr-1"></i>Cerrar Sesion</a>
+                            
                         </div>
                     </div>
                 </c:if>
@@ -94,7 +96,7 @@
                                         <input type="text" name="apellido" id="apellido" class="form-control" value="${apellido}" required />
                                     </div>
                                     <div class="form-group col-md-2">
-                                        <label>Nombre de Usuario: </label>
+                                        <label>Usuario: </label>
                                         <input type="text" name="login" id="login" class="form-control" value="${login}" required />
                                     </div>
                                 </div>
@@ -126,8 +128,16 @@
                                 </div>
 
 
-                                <input type="submit" id="actualizar" name="actualizar" value="Editar" />
-                                <input type="reset" id="limpiar" name="limpiar" value="Limpiar" />
+
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <input type="submit" class="btn form-control" id="actualizar" name="actualizar" value="Editar" />
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <input type="reset" class="btn form-control" id="limpiar" name="limpiar" value="Limpiar" />
+                                    </div>
+                                </div>               
                             </form>
                         </div>
                         <a href="verUsuario.jsp" class="btn btn-primary">Volver</a>
@@ -137,7 +147,7 @@
         </section>
         <footer id="footer " class=" pt-2 pb-1 ">
             <div class="container-fluid mt-0 ">
-                <p> &copy; 2021 PlayMon.com <span class="float-right"> <a href="../juego/directorio.jsp">Directorio</a></span> <span class="float-right mr-2"><a href="../home.jsp">Inicio</a></span> </p>
+                <p> &copy; 2021 PlayMon.com <span class="float-right"> <a href="../juego/directorioJuegos.jsp">Directorio</a></span> <span class="float-right mr-2"><a href="../home.jsp">Inicio</a></span> </p>
 
             </div>
         </footer>

@@ -17,6 +17,7 @@ import modelo.modelo.ConsolaBean;
 import modelo.modelo.ContieneBean;
 import modelo.modelo.JuegoBean;
 import modelo.modelo.ListadoFicheros;
+import modelo.modelo.PedidoBean;
 import modelo.modelo.UsuarioBean;
 
 /**
@@ -43,6 +44,7 @@ public class IniciarSesiones extends HttpServlet {
         sesion.setAttribute("consolaBean", new ConsolaBean());
         sesion.setAttribute("juegoBean", new JuegoBean());
         sesion.setAttribute("contieneBean", new ContieneBean());
+        sesion.setAttribute("pedidoBean", new PedidoBean());
         response.sendRedirect("home.jsp");
         String ruta = getServletContext().getRealPath("fotos/juegos");
         ListadoFicheros listadoFicheros = new ListadoFicheros();

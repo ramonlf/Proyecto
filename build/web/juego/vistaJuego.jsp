@@ -57,6 +57,7 @@
                             <c:if test="${usuario.administrador}">
                                 <a class="dropdown-item text-light" href="../administrador/administracion.jsp"><i class="fa fa-user mr-1"></i>Administrar Sitio</a>
                             </c:if>
+                            <a class="dropdown-item text-light" href="../usuario/verPedidos.jsp"><i class="fa fa-user mr-1"></i>Pedidos</a>
                             <a class="dropdown-item text-light" href="../CerrarSesion"><i class="fa fa-power-off mr-1"></i>Cerrar Sesion</a>
                         </div>
                     </div>
@@ -77,26 +78,41 @@
                             </figure>
                         </div>
                     </div>
-                    <div class="container rounded-left rounded-right shadow" id="estado">
-                        <p class="text-center p-2 ">Disponible</p>
+                    <div class="form-row">
+                        <div class="col-sm-12">
+                            <c:if test="${cantidad > 0}">
+                                <button  class="btn-success form-control" > Disponible </button>
+                            </c:if>
+                            <c:if test="${cantidad < 1}">
+                                <button  class="btn-danger form-control" > No disponible </button>
+                            </c:if>
+                        </div>
 
-                    </div>
 
-                    <div class="container rounded-left rounded-right shadow" id="botones">
-                        <p class="text-center p-2 "><a href="">SEGUIR</a></p>
+
+                        <c:if test="${usuario != null}">
+                            <div class="col-sm-12">
+                                <form action="../usuario/Carrito">
+
+                                    <input type="hidden" name="id" value="${id}" />
+                                    <button type="submit"  value="carrito" name="carrito" class="btn form-control" > <i class="fa fa-cart-plus"></i> </button>
+                                </form>
+                            </div>
+                        </c:if>
 
                     </div>
                 </div>
+
                 <!--Fin Foto y botones-->
                 <div class="col-lg-6 ">
-                    <div class="container pl-5 pt-2 pb-2 fondoBlanco rounded-right rounded-left">
+                    <div class="container pl-lg-5 pt-2 pb-2 fondoBlanco rounded-right rounded-left">
                         <h4 class="font-weight-bold">${nombre} (${consola}) ${consola} clave GLOBAL</h4>
                         <div class="card-default text-dark bg-dark mb-3" style="max-width: 18rem;">
                             <div class="card-body">
                                 <h5 class="card-title text-center font-weight-bold text-light">${precio}&#8364;</h5>                               
                             </div>
                         </div>
-                        <div class="votos mb-2">
+                        <!--<div class="votos mb-2">
 
                             <div class="contenedor">
                                 <span id="nota">3.9</span>
@@ -118,7 +134,7 @@
                                     </span>
                                 </form>
                             </div>
-                        </div>
+                        </div> -->
                         <div id="descripcion" class="container">
                             <h4>${nombre} (${consola})</h4>
                             <p>${descripcion}
@@ -135,17 +151,24 @@
                         <c:if test="${usuario.administrador}" >
                             <div class="container">
                                 <h4>Stock: </h4>
-                                <p class="h3 ">${cantidad} <span class="text-success">disponibles</span></p>
+                                <c:if test="${cantidad > 0}">
+                                    <p class="h3 ">${cantidad} <span class="text-success">disponibles</span></p>
+                                </c:if>
+
+                                <c:if test="${cantidad < 1}">
+                                    <p class="h3 ">${cantidad} <span class="text-danger">disponibles</span></p>
+                                </c:if>
                             </div>
                         </c:if>
                     </div>
                 </div>
+
             </div>
         </div>
 
-        <footer id="footer " class=" pt-2 pb-1 ">
+        <footer id="footer " class=" pt-2 pb-1 fixed-bottom ">
             <div class="container-fluid mt-0 ">
-                <p> &copy; 2021 PlayMon.com <span class="float-right"> <a href="directorio.jsp">Directorio</a></span> <span class="float-right mr-2"><a href="../home.jsp">Inicio</a></span> </p>
+                <p> &copy; 2021 PlayMon.com <span class="float-right"> <a href="../juego/directorioJuegos.jsp">Directorio</a></span> <span class="float-right mr-2"><a href="../home.jsp">Inicio</a></span> </p>
 
             </div>
         </footer>

@@ -56,6 +56,7 @@
                         <c:if test="${usuario.administrador}">
                             <a class="dropdown-item text-light" href="administrador/administracion.jsp"><i class="fa fa-user mr-1"></i>Administrar Sitio</a>
                         </c:if>
+                        <a class="dropdown-item text-light" href="usuario/verPedidos.jsp"><i class="fa fa-user mr-1"></i>Pedidos</a>
                         <a class="dropdown-item text-light" href="CerrarSesion"><i class="fa fa-power-off mr-1"></i>Cerrar Sesion</a>
                     </div>
                 </div>
@@ -171,8 +172,8 @@
             </div>
         </div>
     </div>
-    
-    
+
+
     <div>
         <div class="row offset-lg-2 col-lg-9 mt-3 mb-3">
             <div class="card">
@@ -229,7 +230,7 @@
 
     <footer id="footer " class=" pt-2 pb-1 ">
         <div class="container-fluid mt-0 ">
-            <p> &copy; 2021 PlayMon.com <span class="float-right"> <a href="../juego/directorio.jsp">Directorio</a></span> <span class="float-right mr-2"><a href="home.jsp">Inicio</a></span> </p>
+            <p> &copy; 2021 PlayMon.com <span class="float-right"> <a href="../juego/directorioJuegos.jsp">Directorio</a></span> <span class="float-right mr-2"><a href="home.jsp">Inicio</a></span> </p>
 
         </div>
     </footer>
